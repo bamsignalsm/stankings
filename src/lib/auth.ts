@@ -4,14 +4,7 @@ export const PROTECTED_PATH_PREFIXES = [
   "/documents",
 ] as const;
 
-import {
-  ADMIN_AUTH_PATH,
-  ENERGY_HOME_PATH,
-  USER_LOGIN_PATH,
-  USER_REGISTER_PATH,
-  isEnergyPanelPath,
-  resolveEnergyNext,
-} from "@/lib/auth-paths";
+import { isEnergyPanelPath } from "@/lib/auth-paths";
 
 export function isProtectedPath(pathname: string): boolean {
   // Public library index — structure and principles only

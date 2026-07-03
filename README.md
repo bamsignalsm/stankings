@@ -13,26 +13,38 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Supabase Auth (Member Access)
+## Production (Docker / Coolify)
 
-Institutional documents (`/library`, `/constitution`) require a verified member account.
+Deployment is **Docker-first**. See **[docs/deployment/](docs/deployment/)**.
 
-1. Create a [Supabase](https://supabase.com) project (or use an existing one).
-2. Copy `.env.example` to `.env.local` and set:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-3. In Supabase Dashboard → **Authentication → URL Configuration**:
-   - Site URL: `http://localhost:3000` (dev) or `https://stankings.com` (prod)
-   - Redirect URLs: `http://localhost:3000/auth/callback`, `https://stankings.com/auth/callback`
-4. Enable **Confirm email** under Authentication → Providers → Email.
+Coolify settings (no hacks):
+
+| Field | Value |
+|-------|--------|
+| Build Pack | Dockerfile |
+| Dockerfile | `/Dockerfile` |
+| Port | `3000` |
+| Domain | `stankings.com` |
+| Pre/Post commands | *(empty)* |
+| Custom Docker options | *(empty)* |
+
+```bash
+npm run build
+npm start
+# or in container: node server.js
+```
+
+Health:
+
+- `GET /api/health` — liveness
+- `GET /api/health?ready=1` — readiness (env + Supabase)
 
 ## Structure
 
 - **Homepage** — Mission, vision, companies, live platforms, pillars
-- **Companies** — Individual pages for each Center of Excellence
-- **Member Access** (`/members`) — Public info about institutional documents
-- **The Stankings Library** (`/library`) — Members only, email verified
-- **Constitution** (`/constitution`) — Members only, email verified
+- **Public institutional pages** — Trust, Legal, Support, Status
+- **Member Access** (`/members`) — Library and constitution (verified members)
+- **Energy console** (`/energy`) — Super-admin operations
 
 ## Live Platforms
 
@@ -40,20 +52,13 @@ Institutional documents (`/library`, `/constitution`) require a verified member 
 - [bamsignal.com](https://bamsignal.com) — Relationships & community
 - [bayright.com](https://bayright.com) — Financial infrastructure
 
-## Build
+## Scripts
 
-```bash
-npm run build
-npm start
-```
-
-## Production (Coolify)
-
-Deploy settings: [`docs/coolify.md`](docs/coolify.md)
-
-- **Build Pack:** Dockerfile
-- **Port:** 3000
-- **Health:** `/api/health`
-- **Domain:** stankings.com
-- **No** PHP / `artisan` commands — Next.js only
-- Migrations: `supabase db push` (CLI), not container start
+| Script | Purpose |
+|--------|---------|
+| `npm run dev` | Local development |
+| `npm run build` | Production build (standalone) |
+| `npm start` | Production server |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript |
+| `npm run seed:auth` | Local/admin user seed (requires service role) |

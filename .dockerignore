@@ -1,16 +1,39 @@
+# Dependencies & build output
 node_modules
 .next
+out
+build
+coverage
+*.tsbuildinfo
+
+# VCS / editor
 .git
 .github
 .cursor
+.vscode
+.idea
+
+# Local env (Coolify injects env — never bake secrets from disk)
+.env
+.env.*
+!.env.example
+
+# Supabase local
 .supabase
 supabase/.temp
+
+# Docs & non-runtime assets (not needed in image)
 docs
 content
 *.md
 !README.md
-.env*
-.env.local
-.tsbuildinfo
+
+# Logs & OS
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .DS_Store
+Thumbs.db
+
+# Tests / scripts not required at runtime
+scripts

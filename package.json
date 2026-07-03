@@ -2,21 +2,24 @@
   "name": "stankings",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "seed:auth": "node scripts/seed-auth-users.mjs",
-    "cert:stage1": "node scripts/stage1-certification-audit.mjs"
+    "seed:auth": "node scripts/seed-auth-users.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "next": "^15.3.3",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "sharp": "^0.35.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.8",
@@ -26,7 +29,6 @@
     "eslint": "^9.28.0",
     "eslint-config-next": "^15.3.3",
     "postcss": "^8.5.4",
-    "sharp": "^0.35.2",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3"
   }
