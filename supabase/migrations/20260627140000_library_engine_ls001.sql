@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS stankings_knowledge_objects (
   volume_slug TEXT,
   category TEXT,
   status TEXT NOT NULL DEFAULT 'draft'
-    CHECK (status IN ('draft', 'in_review', 'approved', 'archived', 'superseded')),
+    CHECK (status IN ('draft', 'in_review', 'approved', 'archived', 'superseded', 'forming')),
   version TEXT NOT NULL DEFAULT '1.0',
   author TEXT,
   approver TEXT,
@@ -79,7 +79,10 @@ CREATE TABLE IF NOT EXISTS stankings_knowledge_relationships (
   source_identifier TEXT NOT NULL,
   target_identifier TEXT NOT NULL,
   relationship_type TEXT NOT NULL
-    CHECK (relationship_type IN ('references', 'depends_on', 'supersedes', 'related')),
+    CHECK (relationship_type IN (
+      'references', 'depends_on', 'supersedes', 'related',
+      'supports', 'implements', 'conforms_to', 'enforces', 'includes', 'part_of'
+    )),
   note TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (source_identifier, target_identifier, relationship_type)
