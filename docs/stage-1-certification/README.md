@@ -22,9 +22,21 @@
 3. **robots.txt** — public `/library` index now allowed for crawlers
 4. **Email DNS strong** — MX (Zoho), SPF, DKIM, DMARC p=reject configured
 
+## Coolify settings (apply in UI)
+
+See [`docs/coolify.md`](../coolify.md). Critical corrections from template defaults:
+
+| Wrong (template) | Correct |
+|------------------|---------|
+| Watch Paths `src/pages/**` | `src/**` (App Router) or empty |
+| Pre/Post `php artisan migrate` | *(empty)* |
+| Custom Docker fuse/SYS_ADMIN | *(empty)* |
+| Labels `123456789` | Reset to Defaults |
+
 ## To close Stage 1
 
-- [ ] Founder approves deploy
+- [ ] Founder applies Coolify settings per `docs/coolify.md`
+- [ ] Founder sets Coolify env (Supabase Stankings project `dfaqkrikdvohvvcuxoek`)
 - [ ] Coolify deploy succeeds
 - [ ] Production health + readiness PASS
 - [ ] Founder walkthrough PASS

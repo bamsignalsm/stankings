@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.github
+.cursor
+.supabase
+supabase/.temp
+docs
+content
+*.md
+!README.md
+.env*
+.env.local
+.tsbuildinfo
+npm-debug.log*
+.DS_Store

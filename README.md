@@ -46,3 +46,14 @@ Institutional documents (`/library`, `/constitution`) require a verified member 
 npm run build
 npm start
 ```
+
+## Production (Coolify)
+
+Deploy settings: [`docs/coolify.md`](docs/coolify.md)
+
+- **Build Pack:** Dockerfile
+- **Port:** 3000
+- **Health:** `/api/health`
+- **Domain:** stankings.com
+- **No** PHP / `artisan` commands — Next.js only
+- Migrations: `supabase db push` (CLI), not container start

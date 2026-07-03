@@ -1,4 +1,6 @@
 # Stankings HQ — production image (Coolify)
+# Build Pack: Dockerfile · Port: 3000 · Health: /api/health
+
 FROM node:20-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -8,7 +10,16 @@ FROM node:20-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# NEXT_PUBLIC_* must be present at build time (set in Coolify → Environment)
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+ARG NEXT_PUBLIC_SITE_URL=https://stankings.com
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_TELEMETRY_DISABLED=1
+
 RUN npm run build
 
 FROM node:20-slim AS runner

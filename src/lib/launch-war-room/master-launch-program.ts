@@ -100,7 +100,7 @@ const STAGE_1_TASKS: MasterLaunchTask[] = [
   { id: "s1-pre-cert", label: "Pre-deployment certification", status: "in_progress", owner: "Engineering", evidence: "docs/stage-1-certification/ · script PASS" },
   { id: "s1-content-cert", label: "Content certification", status: "in_progress", owner: "Engineering", evidence: "20/20 public routes · prod walkthrough pending" },
   { id: "s1-email-cert", label: "Email DNS certification", status: "in_progress", owner: "Founder", evidence: "MX/SPF/DKIM/DMARC PASS · delivery tests pending" },
-  { id: "s1-deploy", label: "Deploy to production (Coolify)", status: "waiting", owner: "Founder", evidence: "HTTP 503 live · Founder GO required" },
+  { id: "s1-deploy", label: "Deploy to production (Coolify)", status: "waiting", owner: "Founder", evidence: "docs/coolify.md settings · apply UI corrections then deploy" },
   { id: "s1-dns", label: "Verify DNS", status: "completed", owner: "Founder", evidence: "A: 104.21.x / 172.67.x (Cloudflare)" },
   { id: "s1-ssl", label: "Verify SSL", status: "in_progress", owner: "Founder", evidence: "HTTPS OK · app returns 503 until deploy" },
   { id: "s1-cf", label: "Verify Cloudflare", status: "completed", owner: "Founder", evidence: "cf-ray headers · proxied A records" },
