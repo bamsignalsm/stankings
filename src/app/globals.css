@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  /* Institutional palette — Legacy Gold system */
+  --color-obsidian: #070707;
+  --color-legacy-gold: #D4A64A;
+  --color-legacy-gold-light: #E8C97A;
+  --color-legacy-gold-dark: #A67C2E;
+  --color-bronze: #6B4423;
+  --color-ivory: #F4EFE6;
+  --color-ivory-muted: #9C958C;
+  --color-forest: #1B4D3E;
+  --color-burgundy: #6B1F2A;
+  --color-royal: #1E3A8A;
+
+  /* Semantic aliases (existing class names map to institutional colors) */
+  --color-gold: #D4A64A;
+  --color-gold-light: #E8C97A;
+  --color-gold-dark: #A67C2E;
+  --color-ink: #070707;
+  --color-ink-light: #0F0F0F;
+  --color-ink-muted: #161616;
+  --color-cream: #F4EFE6;
+  --color-cream-muted: #9C958C;
+  --color-success: #1B4D3E;
+  --color-danger: #6B1F2A;
+  --color-info: #1E3A8A;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink text-cream antialiased;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-legacy-gold) 35%, transparent);
+    color: var(--color-ivory);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold,
+  .text-gradient-legacy-gold {
+    background: linear-gradient(
+      135deg,
+      var(--color-legacy-gold-light),
+      var(--color-legacy-gold),
+      var(--color-bronze)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gold-subtle {
+    border-color: color-mix(in srgb, var(--color-legacy-gold) 22%, transparent);
+  }
+
+  .bg-gold-subtle {
+    background-color: color-mix(in srgb, var(--color-legacy-gold) 10%, transparent);
+  }
+
+  .hero-text-shadow {
+    text-shadow:
+      0 2px 20px rgba(7, 7, 7, 0.95),
+      0 1px 4px rgba(7, 7, 7, 0.8);
+  }
+
+  .hero-gold-shadow {
+    filter: drop-shadow(0 2px 16px rgba(7, 7, 7, 0.9));
+  }
+
+  /* Museum — leather-bound volume cover */
+  .book-cover {
+    background:
+      linear-gradient(145deg, rgba(212, 166, 74, 0.12) 0%, transparent 40%),
+      linear-gradient(180deg, #1a1510 0%, #0c0a08 45%, #14100c 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(212, 166, 74, 0.2),
+      inset -4px 0 12px rgba(0, 0, 0, 0.5),
+      0 12px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .book-cover-spine {
+    background: linear-gradient(90deg, #0a0806 0%, #1f1812 50%, #0a0806 100%);
+  }
+
+  .gold-emboss {
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.8),
+      0 0 24px rgba(212, 166, 74, 0.25);
+  }
+
+  .sacred-vignette {
+    background: radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      rgba(212, 166, 74, 0.06) 0%,
+      transparent 55%
+    );
+  }
+}

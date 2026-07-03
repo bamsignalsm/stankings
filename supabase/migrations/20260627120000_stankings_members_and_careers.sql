@@ -1,0 +1,1 @@
+-- Stankings Group members, careers (also applied via Supabase MCP)

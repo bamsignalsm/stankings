@@ -1,0 +1,15 @@
+{
+  "name": "@stankings/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stankings Group — shared release governance (product-agnostic)",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./release": "./src/release/index.ts",
+    "./certification": "./src/certification/index.ts",
+    "./versioning": "./src/versioning/index.ts",
+    "./artifacts": "./src/artifacts/index.ts",
+    "./approval": "./src/approval/index.ts"
+  }
+}
