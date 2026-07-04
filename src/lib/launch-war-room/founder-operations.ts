@@ -41,22 +41,22 @@ export interface FounderWarRoomSnapshot {
 
 /** Single source for Founder War Room panels — update when evidence changes */
 export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
-  updatedAt: "2026-07-04T10:00:00Z",
+  updatedAt: "2026-07-04T11:00:00Z",
   launchProgressNote:
-    "Stage 1 ACTIVE DEPLOYMENT — blocked on Coolify host write permissions (not repository).",
+    "Stage 1 — production LIVE; redeploy latest main for Sprints 013–017 routes, then enter Operational Maintenance.",
   systemHealth: [
     {
       id: "hq-app",
       label: "System Health — HQ App",
-      health: "down",
-      detail: "Public edge returns Traefik 'no available server' when probed historically; confirm after Coolify deploy.",
+      health: "healthy",
+      detail: "https://stankings.com/api/health → 200; ready=1 → database connected (probed 2026-07-04).",
       href: "/api/health",
     },
     {
       id: "shared-portals",
       label: "Shared Authority Portals",
-      health: "unknown",
-      detail: "Trust, Legal, Security, Support, Compliance ship with HQ application.",
+      health: "degraded",
+      detail: "Live build is older (cb41438). /trust /legal /support OK; /security /design-system /search 404 until redeploy.",
       href: "/trust",
     },
   ],
@@ -65,20 +65,19 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
       id: "deploy-status",
       label: "Deployment Status",
       health: "action_required",
-      detail: "Coolify cannot write /data/coolify/applications/<id>/.env — host permission failure.",
-      href: "/docs/stage-1-certification/503-root-cause-report.md",
+      detail: "Container running. Redeploy main (10b085e+) to ship authority centers, design system, and shared services.",
     },
     {
       id: "repo-status",
       label: "Repository Status",
       health: "healthy",
-      detail: "main branch Docker-first (Sprint 011–014). Build/typecheck/lint pass on latest commits.",
+      detail: "main certified through Sprint 017. Typecheck/lint/build pass.",
     },
     {
       id: "cloud-status",
       label: "Cloud Status",
-      health: "unknown",
-      detail: "Coolify host reachable historically via Cloudflare; control-plane write path failing.",
+      health: "healthy",
+      detail: "Cloudflare + origin serving HTTP 200 for HQ.",
     },
   ],
   environment: [
@@ -159,21 +158,20 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
     },
   ],
   dailyTasks: [
-    "Coolify: fix /data/coolify/applications write permissions (Sprint 012)",
-    "Coolify: clear PHP pre/post commands and custom Docker options",
-    "Coolify: set build-time NEXT_PUBLIC_* and deploy",
-    "Verify curl https://stankings.com/api/health → 200",
-    "Founder walkthrough checklist after HTTP 200",
+    "Coolify: Redeploy latest main (includes Trust/Security/Design System)",
+    "Walkthrough: docs/founder-walkthrough-stage-1.md",
+    "Confirm /security /design-system /search return 200 after redeploy",
+    "Change default seed passwords; revoke shared access tokens",
+    "Sign Stage 1 exit → Operational Maintenance → Stage 2 BamSignal",
   ],
   outstandingRisks: [
-    "Coolify host permission corruption blocks all new deploys",
-    "Stage 1 not closed — Stage 2 BamSignal remains locked",
+    "Production build lagging main (missing Sprint 013–017 routes)",
+    "Stage 1 not formally closed — Stage 2 BamSignal still locked by process",
     "Default seed passwords must be changed before public admin use",
     "Personal access tokens shared in chat should be revoked",
   ],
   operationalAlerts: [
-    "P0: Production deploy blocked before docker compose (tee Permission denied)",
-    "P0: Public site Traefik 'no available server' until container runs",
+    "P1: Redeploy main so authority portals and design system are live",
   ],
 };
 
