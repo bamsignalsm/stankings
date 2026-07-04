@@ -1,4 +1,5 @@
 import type { AuthorityArticle, AuthoritySection } from "./types";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 
 export const COMPLIANCE_SECTIONS: AuthoritySection[] = [
   { slug: "overview", title: "Overview", summary: "How compliance is governed at HQ.", href: "/compliance/overview" },
@@ -20,11 +21,11 @@ export const COMPLIANCE_ARTICLES: Record<string, AuthorityArticle> = {
   overview: article("overview", "Compliance Overview", [
     { heading: "HQ origin", body: "Compliance orientation for the ecosystem originates at Stankings HQ. Operating companies implement sector-specific obligations (for example payments) under their own licences and providers." },
     { heading: "No policy forks", body: "Products must not publish institutional compliance statements that contradict HQ Trust, Legal, or Security Centers." },
-    { heading: "Contact", body: "legal@stankings.com for institutional compliance questions." },
+    { heading: "Contact", body: `${CONTACTS.legal} for institutional compliance questions.` },
   ]),
   "data-protection": article("data-protection", "Data Protection", [
     { heading: "Principles", body: "See Trust Center Privacy and Legal Center Privacy Policy. HQ does not pool product user databases." },
-    { heading: "Requests", body: "privacy@stankings.com for HQ-held data; Support for product-held data." },
+    { heading: "Requests", body: `${CONTACTS.privacy} for HQ-held data; Support for product-held data.` },
   ]),
   financial: article("financial", "Financial Services", [
     { heading: "BayRight", body: "Payment and escrow operations are BayRight’s responsibility, including provider certifications and customer funds handling." },

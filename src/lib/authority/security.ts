@@ -1,6 +1,7 @@
 import type { AuthorityArticle, AuthoritySection } from "./types";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 
-export const SECURITY_CONTACT = "security@stankings.com";
+export const SECURITY_CONTACT = CONTACTS.security;
 
 export const SECURITY_SECTIONS: AuthoritySection[] = [
   { slug: "responsible-disclosure", title: "Responsible Disclosure", summary: "Safe harbor for good-faith security research.", href: "/security/responsible-disclosure" },
@@ -25,18 +26,18 @@ function article(
 export const SECURITY_ARTICLES: Record<string, AuthorityArticle> = {
   "responsible-disclosure": article("responsible-disclosure", "Responsible Disclosure", [
     { heading: "Scope", body: "Good-faith reports affecting stankings.com and institutional properties. Include the product name for BamSignal, Yike, BayRight, Foundation, or Institute issues — HQ routes appropriately." },
-    { heading: "How to report", body: `Email ${SECURITY_CONTACT} with description, reproduction steps, and impact. Request a PGP key in your initial message if you need encrypted exchange.` },
+    { heading: "How to report", body: `Email ${CONTACTS.security} with description, reproduction steps, and impact. Request a PGP key in your initial message if you need encrypted exchange.` },
     { heading: "Safe harbor", body: "We will not pursue legal action against researchers who act in good faith, avoid privacy violations, do not degrade availability, and give reasonable time to remediate before public disclosure." },
     { heading: "Timeline", body: "We aim to acknowledge within three business days and provide a substantive update within fifteen business days for verified issues." },
   ]),
   "vulnerability-reporting": article("vulnerability-reporting", "Vulnerability Reporting", [
-    { heading: "Primary channel", body: `${SECURITY_CONTACT}` },
+    { heading: "Primary channel", body: CONTACTS.security },
     { heading: "security.txt", body: "Machine-readable contact is published at /.well-known/security.txt." },
     { heading: "Do not", body: "Do not access other users’ data, disrupt services, or demand payment as a condition of disclosure." },
   ]),
   "bug-reporting": article("bug-reporting", "Bug Reporting", [
-    { heading: "Security vs product bugs", body: "Security vulnerabilities go to security@stankings.com. Functional product bugs go through Support to the correct product queue." },
-    { heading: "HQ website bugs", body: "Defects on stankings.com: support@stankings.com with steps to reproduce." },
+    { heading: "Security vs product bugs", body: `Security vulnerabilities go to ${CONTACTS.security}. Functional product bugs go through Support to the correct product queue.` },
+    { heading: "HQ website bugs", body: `Defects on stankings.com: ${CONTACTS.support} with steps to reproduce.` },
   ]),
   "infrastructure-overview": article("infrastructure-overview", "Infrastructure Overview", [
     { heading: "HQ", body: "stankings.com is a Next.js application deployed in containers behind TLS. Institutional membership uses Supabase authentication." },

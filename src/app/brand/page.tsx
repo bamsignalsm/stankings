@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHero, DocumentCard, LegalNotice } from "@/components/ui";
-import { BRAND } from "@/lib/brand";
+import {
+  BRAND_ASSETS,
+  BRAND_COLORS,
+  BRAND_FONTS,
+  BRAND_USAGE_RULES,
+} from "@/lib/shared/branding/registry";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -12,16 +18,6 @@ export const metadata: Metadata = buildPageMetadata({
     "Central brand asset repository for Stankings Group — logos, colors, fonts, and usage rules.",
   path: "/brand",
 });
-
-const COLORS = [
-  { name: "Obsidian Black", hex: "#070707" },
-  { name: "Legacy Gold", hex: "#D4A64A" },
-  { name: "Warm Ivory", hex: "#F4EFE6" },
-  { name: "Deep Bronze", hex: "#6B4423" },
-  { name: "Forest Green", hex: "#1B4D3E" },
-  { name: "Burgundy", hex: "#6B1F2A" },
-  { name: "Royal Blue", hex: "#1E3A8A" },
-];
 
 export default function BrandPage() {
   return (
@@ -48,19 +44,17 @@ export default function BrandPage() {
         <div className="mx-auto max-w-5xl space-y-12 px-6">
           <LegalNotice>
             Brand assets originate at HQ. Product companies may use marks for accurate product
-            identification. Press and partners: request packs via press@stankings.com.
+            identification. Press and partners: request packs via {CONTACTS.press}.
           </LegalNotice>
 
           <div>
             <h2 className="mb-4 font-serif text-2xl text-cream">Logos & icons</h2>
             <div className="grid gap-6 sm:grid-cols-3">
-              {[
-                { title: "Primary logo", src: BRAND.logo.src },
-                { title: "Icon", src: BRAND.icon.src },
-                { title: "Open Graph", src: BRAND.ogImage.src },
-              ].map((asset) => (
+              {BRAND_ASSETS.filter((a) =>
+                ["logo", "icon", "og"].includes(a.id),
+              ).map((asset) => (
                 <figure
-                  key={asset.title}
+                  key={asset.id}
                   className="rounded-lg border border-gold-subtle bg-ink-muted p-6"
                 >
                   <div className="mb-4 flex h-28 items-center justify-center rounded-sm bg-ink">
@@ -73,6 +67,7 @@ export default function BrandPage() {
                     />
                   </div>
                   <figcaption className="font-serif text-lg text-cream">{asset.title}</figcaption>
+                  <p className="text-xs text-cream-muted">{asset.note}</p>
                 </figure>
               ))}
             </div>
@@ -81,9 +76,9 @@ export default function BrandPage() {
           <div>
             <h2 className="mb-4 font-serif text-2xl text-cream">Brand colors</h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {COLORS.map((c) => (
+              {BRAND_COLORS.map((c) => (
                 <div
-                  key={c.hex}
+                  key={c.id}
                   className="overflow-hidden rounded-lg border border-gold-subtle"
                 >
                   <div className="h-16" style={{ backgroundColor: c.hex }} />
@@ -99,24 +94,28 @@ export default function BrandPage() {
           <div>
             <h2 className="mb-4 font-serif text-2xl text-cream">Fonts</h2>
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-lg border border-gold-subtle bg-ink-muted p-5">
-                <p className="font-serif text-2xl text-cream">Cormorant Garamond</p>
-                <p className="mt-2 text-sm text-cream-muted">Headings and institutional titles</p>
-              </div>
-              <div className="rounded-lg border border-gold-subtle bg-ink-muted p-5">
-                <p className="text-2xl text-cream">DM Sans</p>
-                <p className="mt-2 text-sm text-cream-muted">Body and interface text</p>
-              </div>
+              {BRAND_FONTS.map((f) => (
+                <div
+                  key={f.id}
+                  className="rounded-lg border border-gold-subtle bg-ink-muted p-5"
+                >
+                  <p
+                    className={`text-2xl text-cream ${f.id === "serif" ? "font-serif" : ""}`}
+                  >
+                    {f.name}
+                  </p>
+                  <p className="mt-2 text-sm text-cream-muted">{f.role}</p>
+                </div>
+              ))}
             </div>
           </div>
 
           <div>
             <h2 className="mb-4 font-serif text-2xl text-cream">Usage rules</h2>
             <ul className="space-y-2 text-sm text-cream-muted">
-              <li>◆ Maintain clear space around the logo equal to the height of the mark’s gold element.</li>
-              <li>◆ Do not recolor Legacy Gold or stretch the wordmark.</li>
-              <li>◆ Do not imply endorsement without written permission.</li>
-              <li>◆ Prefer WebP assets for web; request print packages from Press.</li>
+              {BRAND_USAGE_RULES.map((rule) => (
+                <li key={rule}>◆ {rule}</li>
+              ))}
             </ul>
           </div>
 

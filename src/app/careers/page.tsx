@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { CareerPost } from "@/lib/types";
 import { EmptyState } from "@/components/institutional/InstitutionalPageShell";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -73,7 +74,7 @@ export default async function CareersPage() {
           {posts.length === 0 ? (
             <EmptyState
               title="No open positions at this time"
-              body="Check back soon, or send a general expression of interest to careers@stankings.com."
+              body={`Check back soon, or send a general expression of interest to ${CONTACTS.careers}.`}
             />
           ) : (
             <div className="space-y-4">
@@ -103,8 +104,8 @@ export default async function CareersPage() {
             </ol>
             <p className="mt-4 text-sm text-cream-muted">
               General enquiries:{" "}
-              <a href="mailto:careers@stankings.com" className="text-gold hover:text-gold-light">
-                careers@stankings.com
+              <a href={`mailto:${CONTACTS.careers}`} className="text-gold hover:text-gold-light">
+                {CONTACTS.careers}
               </a>
             </p>
           </div>

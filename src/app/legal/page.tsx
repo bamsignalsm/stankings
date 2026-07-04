@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthorityHub } from "@/components/authority/AuthorityHub";
 import { LEGAL_ORIGIN_NOTICE, LEGAL_SECTIONS } from "@/lib/authority/legal";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -18,7 +19,7 @@ export default function LegalCenterPage() {
       description="Institutional legal policies originate at Stankings HQ. Product companies may publish product-specific terms on their domains; those terms must align with HQ standards."
       originNotice={LEGAL_ORIGIN_NOTICE}
       sections={LEGAL_SECTIONS}
-      contactEmail="legal@stankings.com"
+      contactEmail={CONTACTS.legal}
       contactLabel="Legal"
     />
   );

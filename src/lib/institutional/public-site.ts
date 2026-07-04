@@ -5,21 +5,9 @@
 
 import { COMPANIES, LIVE_PLATFORMS, SITE } from "@/lib/data";
 import { LEADERSHIP_PROFILES } from "@/lib/leadership/profiles";
+import { INSTITUTIONAL_CONTACT as SHARED_CONTACTS } from "@/lib/shared/config/contacts";
 
-export const INSTITUTIONAL_CONTACT = {
-  general: "hello@stankings.com",
-  support: "support@stankings.com",
-  trust: "trust@stankings.com",
-  security: "security@stankings.com",
-  legal: "legal@stankings.com",
-  privacy: "privacy@stankings.com",
-  press: "press@stankings.com",
-  careers: "careers@stankings.com",
-  disclosure: "security@stankings.com",
-  lawEnforcement: "legal@stankings.com",
-  dataRequests: "privacy@stankings.com",
-  accessibility: "accessibility@stankings.com",
-} as const;
+export const INSTITUTIONAL_CONTACT = SHARED_CONTACTS;
 
 export type PublicPageStatus = "live" | "draft" | "planned";
 

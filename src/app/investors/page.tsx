@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -58,8 +59,8 @@ export default function InvestorsPage() {
           <h2 className="mb-3 font-serif text-2xl text-cream">Contact</h2>
           <p className="text-cream-muted">
             Institutional and capital enquiries:{" "}
-            <a href="mailto:hello@stankings.com" className="text-gold hover:text-gold-light">
-              hello@stankings.com
+            <a href={`mailto:${CONTACTS.hello}`} className="text-gold hover:text-gold-light">
+              {CONTACTS.hello}
             </a>
             . Media:{" "}
             <Link href="/press" className="text-gold hover:text-gold-light">

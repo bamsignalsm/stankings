@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthorityHub } from "@/components/authority/AuthorityHub";
-import { SECURITY_CONTACT, SECURITY_SECTIONS } from "@/lib/authority/security";
+import { SECURITY_SECTIONS } from "@/lib/authority/security";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -15,10 +16,10 @@ export default function SecurityCenterPage() {
     <AuthorityHub
       eyebrow="Security Center"
       title="Security for the ecosystem"
-      description="Professional security coordination for Stankings HQ and routing for product vulnerabilities. Primary contact: security@stankings.com."
-      originNotice="Security standards originate at HQ. Product companies implement controls on their own infrastructure. Report vulnerabilities to security@stankings.com — see also /.well-known/security.txt."
+      description={`Professional security coordination for Stankings HQ and routing for product vulnerabilities. Primary contact: ${CONTACTS.security}.`}
+      originNotice={`Security standards originate at HQ. Product companies implement controls on their own infrastructure. Report vulnerabilities to ${CONTACTS.security} — see also /.well-known/security.txt.`}
       sections={SECURITY_SECTIONS}
-      contactEmail={SECURITY_CONTACT}
+      contactEmail={CONTACTS.security}
       contactLabel="Security"
     />
   );

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { BRAND, SITE_URL } from "@/lib/brand";
-import { INSTITUTIONAL_CONTACT, LIVE_PLATFORMS, SITE } from "@/lib/institutional/public-site";
+import { LIVE_PLATFORMS, SITE } from "@/lib/institutional/public-site";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -23,10 +24,10 @@ export default function PressPage() {
         <div className="rounded-lg border border-gold/30 bg-gold-subtle p-6">
           <h2 className="mb-2 font-serif text-xl text-cream">Media contact</h2>
           <a
-            href={`mailto:${INSTITUTIONAL_CONTACT.press}`}
+            href={`mailto:${CONTACTS.press}`}
             className="font-serif text-2xl text-gold hover:text-gold-light"
           >
-            {INSTITUTIONAL_CONTACT.press}
+            {CONTACTS.press}
           </a>
         </div>
 
@@ -49,8 +50,8 @@ export default function PressPage() {
             </li>
             <li>
               Full brand pack: request via{" "}
-              <a href={`mailto:${INSTITUTIONAL_CONTACT.press}`} className="text-gold">
-                {INSTITUTIONAL_CONTACT.press}
+              <a href={`mailto:${CONTACTS.press}`} className="text-gold">
+                {CONTACTS.press}
               </a>
             </li>
           </ul>

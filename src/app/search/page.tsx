@@ -11,6 +11,9 @@ const CATEGORY_LABEL: Record<SearchCategory, string> = {
   policy: "Policy",
   documentation: "Documentation",
   resource: "Resource",
+  download: "Download",
+  trust: "Trust",
+  legal: "Legal",
 };
 
 export default function SearchPage() {

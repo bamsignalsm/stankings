@@ -1,24 +1,18 @@
 import type { AuthorityArticle, AuthoritySection } from "./types";
+import {
+  TRUST_ORIGIN_NOTICE,
+  TRUST_REGISTRY,
+} from "@/lib/shared/trust/registry";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 
-/** HQ is the origin of trust policy for every Stankings product. */
-export const TRUST_ORIGIN_NOTICE =
-  "Stankings HQ is the central trust authority for every current and future Stankings product. Product companies implement these standards operationally; they do not publish conflicting institutional policies.";
+export { TRUST_ORIGIN_NOTICE };
 
-export const TRUST_SECTIONS: AuthoritySection[] = [
-  { slug: "trust-principles", title: "Trust Principles", summary: "Foundational commitments that bind every Stankings institution.", href: "/trust/trust-principles" },
-  { slug: "privacy", title: "Privacy", summary: "How personal data is governed across HQ and product boundaries.", href: "/trust/privacy" },
-  { slug: "security", title: "Security", summary: "Security expectations and the Security Center.", href: "/security" },
-  { slug: "responsible-ai", title: "Responsible AI", summary: "Human accountability for AI-assisted decisions.", href: "/trust/responsible-ai" },
-  { slug: "transparency", title: "Transparency", summary: "What we publish and how we report.", href: "/trust/transparency" },
-  { slug: "identity-verification", title: "Identity Verification", summary: "Verification standards across the ecosystem.", href: "/trust/identity-verification" },
-  { slug: "verification-standards", title: "Verification Standards", summary: "Evidence requirements for trust claims.", href: "/trust/verification-standards" },
-  { slug: "community-standards", title: "Community Standards", summary: "Expected conduct in Stankings-affiliated communities.", href: "/trust/community-standards" },
-  { slug: "safety", title: "Safety", summary: "User and platform safety obligations.", href: "/trust/safety" },
-  { slug: "incident-reports", title: "Incident Reports", summary: "How material incidents are recorded and closed.", href: "/trust/incident-reports" },
-  { slug: "data-requests", title: "Data Requests", summary: "Access, correction, portability, and deletion.", href: "/trust/data-requests" },
-  { slug: "law-enforcement", title: "Law Enforcement Requests", summary: "Lawful process and user rights.", href: "/trust/law-enforcement" },
-  { slug: "user-rights", title: "User Rights", summary: "Rights individuals may exercise regarding their data.", href: "/trust/user-rights" },
-];
+export const TRUST_SECTIONS: AuthoritySection[] = TRUST_REGISTRY.map((t) => ({
+  slug: t.id,
+  title: t.title,
+  summary: t.summary,
+  href: t.href,
+}));
 
 function article(
   slug: string,
@@ -38,11 +32,11 @@ export const TRUST_ARTICLES: Record<string, AuthorityArticle> = {
   privacy: article("privacy", "Privacy", [
     { heading: "HQ policy origin", body: "Institutional privacy commitments are published in the Legal Center and Trust Center. Product-specific processing is described on product domains and must align with HQ principles." },
     { heading: "No silent data pooling", body: "HQ does not pool product user databases. Cross-product data use requires lawful basis and explicit consent where required." },
-    { heading: "Requests", body: "Institutional data requests: privacy@stankings.com. Product data requests are routed through Support to the correct product queue." },
+    { heading: "Requests", body: `Institutional data requests: ${CONTACTS.privacy}. Product data requests are routed through Support to the correct product queue.` },
   ]),
   security: article("security", "Security", [
     { heading: "Security Center", body: "Operational security guidance, disclosure, and infrastructure overview live in the Security Center at /security." },
-    { heading: "Contact", body: "security@stankings.com — primary channel for vulnerability reports and security coordination." },
+    { heading: "Contact", body: `${CONTACTS.security} — primary channel for vulnerability reports and security coordination.` },
   ]),
   "responsible-ai": article("responsible-ai", "Responsible AI", [
     { heading: "Human accountability", body: "AI may assist explanation and operations. Material institutional decisions remain human responsibilities under the Constitution and Canons." },
@@ -62,7 +56,7 @@ export const TRUST_ARTICLES: Record<string, AuthorityArticle> = {
   "verification-standards": article("verification-standards", "Verification Standards", [
     { heading: "Evidence", body: "Verification claims must be backed by documented checks appropriate to the claim (identity, asset, payment, or reputation)." },
     { heading: "No false assurance", body: "Products must not imply HQ guarantees outcomes it does not control." },
-    { heading: "Appeals", body: "Users may challenge verification outcomes through product support, with escalation to trust@stankings.com for institutional matters." },
+    { heading: "Appeals", body: `Users may challenge verification outcomes through product support, with escalation to ${CONTACTS.trust} for institutional matters.` },
   ]),
   "community-standards": article("community-standards", "Community Standards", [
     { heading: "Respect", body: "Harassment, discrimination, and impersonation of Stankings institutions or leaders are prohibited." },
@@ -70,24 +64,24 @@ export const TRUST_ARTICLES: Record<string, AuthorityArticle> = {
     { heading: "Enforcement", body: "Products enforce community standards on their platforms. HQ may revoke institutional membership for serious violations." },
   ]),
   safety: article("safety", "Safety", [
-    { heading: "User safety", body: "Users should verify official domains, report harm through product channels first, and escalate urgent institutional matters to trust@stankings.com." },
+    { heading: "User safety", body: `Users should verify official domains, report harm through product channels first, and escalate urgent institutional matters to ${CONTACTS.trust}.` },
     { heading: "Platform safety", body: "Operating companies maintain abuse reporting and escalation. HQ publishes shared principles here." },
     { heading: "Financial safety", body: "Payments are handled by BayRight and product billing systems — never by unsolicited email requests for credentials." },
   ]),
   "incident-reports": article("incident-reports", "Incident Reports", [
     { heading: "Material incidents", body: "Material incidents require review, root cause analysis, lessons learned, preventive plans, and Library updates before closure under institutional standards." },
     { heading: "Public status", body: "When an incident affects public services, Status reflects known impact without inventing timelines or metrics." },
-    { heading: "Reporting", body: "Security incidents: security@stankings.com. Product outages: product support via /support." },
+    { heading: "Reporting", body: `Security incidents: ${CONTACTS.security}. Product outages: product support via /support.` },
   ]),
   "data-requests": article("data-requests", "Data Requests", [
-    { heading: "Institutional data", body: "Requests for stankings.com member or careers data: privacy@stankings.com with identity verification." },
+    { heading: "Institutional data", body: `Requests for stankings.com member or careers data: ${CONTACTS.privacy} with identity verification.` },
     { heading: "Product routing", body: "BamSignal, Yike, BayRight, Foundation, and Institute product data are not held in HQ product databases. Use Support to reach the correct queue." },
     { heading: "What to include", body: "Full name, contact email, request type (access, correction, deletion, portability), and account identifiers you control." },
   ]),
   "law-enforcement": article("law-enforcement", "Law Enforcement Requests", [
-    { heading: "Legal process", body: "Valid legal process from competent authorities: legal@stankings.com." },
+    { heading: "Legal process", body: `Valid legal process from competent authorities: ${CONTACTS.legal}.` },
     { heading: "Product data", body: "Requests for product-held data must identify the product. Each company maintains independent stores." },
-    { heading: "Emergency", body: "Imminent harm: legal@stankings.com with URGENT in the subject line." },
+    { heading: "Emergency", body: `Imminent harm: ${CONTACTS.legal} with URGENT in the subject line.` },
   ]),
   "user-rights": article("user-rights", "User Rights", [
     { heading: "Rights", body: "Depending on applicable law, individuals may request access, correction, deletion, portability, and restriction of processing for data HQ controls." },

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
-import { INSTITUTIONAL_CONTACT } from "@/lib/institutional/public-site";
+import { CONTACTS } from "@/lib/shared/config/contacts";
+import { HQ_SITE } from "@/lib/shared/config";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -11,14 +12,18 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 const CONTACT_CHANNELS = [
-  { label: "General", email: INSTITUTIONAL_CONTACT.general, href: "/support/general" },
-  { label: "Support", email: INSTITUTIONAL_CONTACT.support, href: "/support" },
-  { label: "Trust & Privacy", email: INSTITUTIONAL_CONTACT.trust, href: "/trust" },
-  { label: "Legal", email: INSTITUTIONAL_CONTACT.legal, href: "/legal" },
-  { label: "Press & Media", email: INSTITUTIONAL_CONTACT.press, href: "/media" },
-  { label: "Careers", email: INSTITUTIONAL_CONTACT.careers, href: "/careers" },
-  { label: "Security", email: INSTITUTIONAL_CONTACT.security, href: "/trust/responsible-disclosure" },
-  { label: "Accessibility", email: INSTITUTIONAL_CONTACT.accessibility, href: "/legal/accessibility" },
+  { label: "General", email: CONTACTS.hello, href: "/support/general" },
+  { label: "Office", email: CONTACTS.office, href: "/support/hq" },
+  { label: "Support", email: CONTACTS.support, href: "/support" },
+  { label: "Trust & Privacy", email: CONTACTS.trust, href: "/trust" },
+  { label: "Legal", email: CONTACTS.legal, href: "/legal" },
+  { label: "Press", email: CONTACTS.press, href: "/press" },
+  { label: "Media", email: CONTACTS.media, href: "/media" },
+  { label: "Careers", email: CONTACTS.careers, href: "/careers" },
+  { label: "Developers", email: CONTACTS.developers, href: "/developer" },
+  { label: "Foundation", email: CONTACTS.foundation, href: "/foundation" },
+  { label: "Security", email: CONTACTS.security, href: "/security" },
+  { label: "Accessibility", email: CONTACTS.accessibility, href: "/legal/accessibility" },
 ];
 
 export default function ContactPage() {
@@ -26,15 +31,16 @@ export default function ContactPage() {
     <InstitutionalPageShell
       eyebrow="Contact"
       title="Get in touch"
-      description="Route your enquiry to the right team. Product issues should go to product support — not this general inbox."
+      description="Route your enquiry to the right team. Product issues should go to product support — not the general inbox."
+      width="wide"
     >
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {CONTACT_CHANNELS.map((channel) => (
           <div
             key={channel.label}
             className="rounded-lg border border-gold-subtle bg-ink-muted p-6"
           >
-            <p className="text-xs uppercase tracking-widest text-gold">{channel.label}</p>
+            <p className="text-xs tracking-widest text-gold uppercase">{channel.label}</p>
             <a
               href={`mailto:${channel.email}`}
               className="mt-2 block font-serif text-lg text-cream hover:text-gold"
@@ -52,7 +58,7 @@ export default function ContactPage() {
         <h2 className="mb-2 font-serif text-xl text-cream">Headquarters</h2>
         <p className="text-cream-muted">Lagos, Nigeria</p>
         <p className="mt-2 text-sm text-cream-muted">
-          Stankings Group Ltd · stankings.com
+          {HQ_SITE.name} Ltd · {HQ_SITE.domain}
         </p>
       </div>
     </InstitutionalPageShell>

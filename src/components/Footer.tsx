@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/institutional/public-site";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { USER_LOGIN_PATH } from "@/lib/auth-paths";
 import { BrandLogo } from "@/components/BrandLogo";
 
@@ -90,16 +91,16 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-cream-muted">
               <li>
-                <a href="mailto:hello@stankings.com" className="transition-colors hover:text-cream">
-                  hello@stankings.com
+                <a href={`mailto:${CONTACTS.hello}`} className="transition-colors hover:text-cream">
+                  {CONTACTS.hello}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:security@stankings.com"
+                  href={`mailto:${CONTACTS.security}`}
                   className="transition-colors hover:text-cream"
                 >
-                  security@stankings.com
+                  {CONTACTS.security}
                 </a>
               </li>
               <li>Lagos, Nigeria</li>

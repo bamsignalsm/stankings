@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -54,8 +55,8 @@ export default function PartnersPage() {
           <h2 className="mb-2 font-serif text-xl text-cream">Engage</h2>
           <p className="text-sm text-cream-muted">
             Partnership enquiries:{" "}
-            <a href="mailto:hello@stankings.com" className="text-gold hover:text-gold-light">
-              hello@stankings.com
+            <a href={`mailto:${CONTACTS.hello}`} className="text-gold hover:text-gold-light">
+              {CONTACTS.hello}
             </a>
             . Product-specific integrations should contact the relevant company support channel
             via{" "}

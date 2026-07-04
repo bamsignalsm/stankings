@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BRAND, SITE_URL } from "@/lib/brand";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -99,7 +100,7 @@ export default function RootLayout({
             name: "Stankings Group",
             url: SITE_URL,
             logo: `${SITE_URL}${BRAND.logo.src}`,
-            email: "hello@stankings.com",
+            email: CONTACTS.hello,
             address: {
               "@type": "PostalAddress",
               addressLocality: "Lagos",

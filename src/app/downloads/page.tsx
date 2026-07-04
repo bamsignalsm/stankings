@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHero, DocumentCard, EmptyStateUi, LegalNotice } from "@/components/ui";
-import { INSTITUTIONAL_CONTACT } from "@/lib/institutional/public-site";
+import { CONTACTS } from "@/lib/shared/config/contacts";
+import { DOWNLOAD_REGISTRY, listAvailableDownloads } from "@/lib/shared/downloads/registry";
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -12,46 +13,10 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/downloads",
 });
 
-const DOWNLOADS = [
-  {
-    type: "Company",
-    title: "Company profile",
-    summary: "Institutional overview via About and Companies pages.",
-    href: "/about",
-  },
-  {
-    type: "Press",
-    title: "Press kit",
-    summary: "Boilerplate, contacts, and brand references.",
-    href: "/press",
-  },
-  {
-    type: "Brand",
-    title: "Brand assets",
-    summary: "Logos, colors, and usage rules.",
-    href: "/brand",
-  },
-  {
-    type: "Policy",
-    title: "Legal policies",
-    summary: "Terms, privacy, cookies, and compliance documents.",
-    href: "/legal",
-  },
-  {
-    type: "Trust",
-    title: "Trust resources",
-    summary: "Trust Center policies for all products.",
-    href: "/trust",
-  },
-  {
-    type: "Security",
-    title: "Security resources",
-    summary: "Disclosure policy and security.txt.",
-    href: "/security",
-  },
-];
-
 export default function DownloadsPage() {
+  const available = listAvailableDownloads();
+  const mobile = DOWNLOAD_REGISTRY.filter((d) => d.kind === "mobile");
+
   return (
     <div className="pt-20">
       <JsonLd
@@ -80,8 +45,14 @@ export default function DownloadsPage() {
           </LegalNotice>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {DOWNLOADS.map((item) => (
-              <DocumentCard key={item.href} {...item} />
+            {available.map((item) => (
+              <DocumentCard
+                key={item.id}
+                type={item.kind.replace("_", " ")}
+                title={item.title}
+                summary={item.summary}
+                href={item.href}
+              />
             ))}
           </div>
 
@@ -89,7 +60,10 @@ export default function DownloadsPage() {
             <h2 className="mb-4 font-serif text-2xl text-cream">Mobile distribution</h2>
             <EmptyStateUi
               title="Android / iOS / APK"
-              body="Mobile packages are published by BamSignal and other product companies through official stores. HQ does not host APK or IPA files."
+              body={
+                mobile[0]?.note ??
+                "Mobile packages are published by product companies through official stores. HQ does not host APK or IPA files."
+              }
             />
             <p className="mt-4 text-sm text-cream-muted">
               Product support:{" "}
@@ -104,8 +78,8 @@ export default function DownloadsPage() {
             <h2 className="mb-2 font-serif text-xl text-cream">Request packages</h2>
             <p className="text-sm text-cream-muted">
               Press and brand packs:{" "}
-              <a href={`mailto:${INSTITUTIONAL_CONTACT.press}`} className="text-gold">
-                {INSTITUTIONAL_CONTACT.press}
+              <a href={`mailto:${CONTACTS.press}`} className="text-gold">
+                {CONTACTS.press}
               </a>
             </p>
           </div>

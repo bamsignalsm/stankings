@@ -1,23 +1,16 @@
 import type { AuthorityArticle, AuthoritySection } from "./types";
+import { LEGAL_REGISTRY } from "@/lib/shared/legal/registry";
+import { CONTACTS } from "@/lib/shared/config/contacts";
 
 export const LEGAL_ORIGIN_NOTICE =
   "Legal policies for institutional properties originate at Stankings HQ. Product companies may publish product-specific terms on their domains; those terms must not contradict HQ institutional standards.";
 
-export const LEGAL_SECTIONS: AuthoritySection[] = [
-  { slug: "terms", title: "Terms of Use", summary: "Terms governing use of stankings.com.", href: "/legal/terms" },
-  { slug: "privacy", title: "Privacy Policy", summary: "Institutional privacy policy.", href: "/legal/privacy" },
-  { slug: "cookies", title: "Cookie Policy", summary: "Cookies and similar technologies.", href: "/legal/cookies" },
-  { slug: "acceptable-use", title: "Acceptable Use", summary: "Prohibited uses of institutional properties.", href: "/legal/acceptable-use" },
-  { slug: "trademark", title: "Trademark", summary: "Stankings names and marks.", href: "/legal/trademark" },
-  { slug: "copyright", title: "Copyright", summary: "Ownership of institutional content.", href: "/legal/copyright" },
-  { slug: "licensing", title: "Licensing", summary: "Licensing of institutional materials.", href: "/legal/licensing" },
-  { slug: "dmca", title: "DMCA", summary: "Copyright infringement notices.", href: "/legal/dmca" },
-  { slug: "compliance", title: "Compliance", summary: "Compliance Center overview.", href: "/compliance" },
-  { slug: "accessibility", title: "Accessibility", summary: "Accessibility statement.", href: "/legal/accessibility" },
-  { slug: "community-guidelines", title: "Community Guidelines", summary: "Expected conduct.", href: "/legal/community-guidelines" },
-  { slug: "data-retention", title: "Data Retention", summary: "Retention schedules.", href: "/legal/data-retention" },
-  { slug: "refunds", title: "Refund Policy", summary: "Institutional refund posture.", href: "/legal/refunds" },
-];
+export const LEGAL_SECTIONS: AuthoritySection[] = LEGAL_REGISTRY.map((p) => ({
+  slug: p.id,
+  title: p.title,
+  summary: p.summary,
+  href: p.href,
+}));
 
 function article(
   slug: string,
@@ -34,7 +27,7 @@ export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
     { heading: "Data we collect", body: "Member registration, careers applications, support and contact submissions, and technical logs required for security and reliability." },
     { heading: "How we use data", body: "To provide member access, respond to enquiries, operate careers, maintain governance records, and secure institutional systems." },
     { heading: "Sharing", body: "We do not sell personal data. Processors such as authentication and hosting providers act under contract. Products do not receive HQ member data without separate consent." },
-    { heading: "Contact", body: "privacy@stankings.com" },
+    { heading: "Contact", body: CONTACTS.privacy },
   ]),
   terms: article("terms", "Terms of Use", [
     { heading: "Acceptance", body: "By using stankings.com you agree to these terms and Acceptable Use." },
@@ -54,7 +47,7 @@ export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
   trademark: article("trademark", "Trademark", [
     { heading: "Marks", body: "Stankings, Stankings Group, and related logos are trademarks or trade names of Stankings Group Ltd or its companies." },
     { heading: "Use", body: "Do not use marks in a way that implies endorsement without written permission. Press may use marks for accurate reporting." },
-    { heading: "Contact", body: "legal@stankings.com" },
+    { heading: "Contact", body: CONTACTS.legal },
   ]),
   copyright: article("copyright", "Copyright", [
     { heading: "Ownership", body: "Content on stankings.com is owned by Stankings Group Ltd or licensed to it, unless otherwise stated." },
@@ -63,19 +56,19 @@ export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
   licensing: article("licensing", "Licensing", [
     { heading: "Institutional materials", body: "Licensing of brand assets or documents requires written permission from HQ." },
     { heading: "Press kit", body: "Accredited media may use press kit assets for accurate reporting per Press guidelines." },
-    { heading: "Contact", body: "press@stankings.com for brand; legal@stankings.com for licensing." },
+    { heading: "Contact", body: `${CONTACTS.press} for brand; ${CONTACTS.legal} for licensing.` },
   ]),
   dmca: article("dmca", "DMCA / Copyright Notices", [
-    { heading: "Notices", body: "Copyright infringement notices regarding institutional content: legal@stankings.com with sufficient detail to identify the work and location." },
+    { heading: "Notices", body: `Copyright infringement notices regarding institutional content: ${CONTACTS.legal} with sufficient detail to identify the work and location.` },
     { heading: "Product content", body: "Notices regarding product-hosted content should be directed to the product company via Support." },
-    { heading: "Counter-notices", body: "If applicable law provides counter-notice procedures, include them in correspondence to legal@stankings.com." },
+    { heading: "Counter-notices", body: `If applicable law provides counter-notice procedures, include them in correspondence to ${CONTACTS.legal}.` },
   ]),
   compliance: article("compliance", "Compliance", [
     { heading: "Compliance Center", body: "Shared compliance resources are published at /compliance. Legal documents remain in the Legal Center." },
   ]),
   accessibility: article("accessibility", "Accessibility Statement", [
     { heading: "Commitment", body: "We aim to meet WCAG 2.1 Level AA for public institutional pages." },
-    { heading: "Feedback", body: "accessibility@stankings.com — include page URL and description of the barrier." },
+    { heading: "Feedback", body: `${CONTACTS.accessibility} — include page URL and description of the barrier.` },
     { heading: "Known limitations", body: "Some member library documents may predate current accessibility standards; remediation is ongoing." },
   ]),
   "community-guidelines": article("community-guidelines", "Community Guidelines", [
