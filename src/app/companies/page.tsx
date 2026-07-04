@@ -3,11 +3,14 @@ import Link from "next/link";
 import { CompanyCard } from "@/components/CompanyCard";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { COMPANIES } from "@/lib/data";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Companies",
-  description: "Centers of Excellence across the Stankings Group ecosystem.",
-};
+  description:
+    "Centers of Excellence across the Stankings Group ecosystem — commerce, education, and society.",
+  path: "/companies",
+});
 
 export default function CompaniesPage() {
   const live = COMPANIES.filter((c) => c.isLive);
@@ -18,10 +21,11 @@ export default function CompaniesPage() {
       eyebrow="Our Companies"
       title="Centers of Excellence"
       description="Stankings Group builds through specialized companies — each with its own mission, team, and operational independence."
+      width="full"
     >
       {live.length > 0 ? (
         <section className="mb-16">
-          <h2 className="mb-6 font-serif text-2xl text-cream">Live platforms</h2>
+          <h2 className="mb-6 font-serif text-2xl text-cream">Operating platforms</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {live.map((company) => (
               <CompanyCard key={company.slug} company={company} />
@@ -32,7 +36,7 @@ export default function CompaniesPage() {
 
       {building.length > 0 ? (
         <section>
-          <h2 className="mb-6 font-serif text-2xl text-cream">In development</h2>
+          <h2 className="mb-6 font-serif text-2xl text-cream">Institutional & in development</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {building.map((company) => (
               <CompanyCard key={company.slug} company={company} />

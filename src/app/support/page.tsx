@@ -5,11 +5,13 @@ import {
   InstitutionalPageShell,
 } from "@/components/institutional/InstitutionalPageShell";
 import { SUPPORT_PRODUCTS } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Support Center",
   description: "Get help with BamSignal, Yike, BayRight, or general Stankings enquiries.",
-};
+  path: "/support",
+});
 
 export default function SupportCenterPage() {
   return (

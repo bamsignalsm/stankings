@@ -8,7 +8,15 @@ interface InstitutionalPageShellProps {
   children: ReactNode;
   backHref?: string;
   backLabel?: string;
+  /** Content column width */
+  width?: "narrow" | "wide" | "full";
 }
+
+const WIDTH = {
+  narrow: "max-w-3xl",
+  wide: "max-w-5xl",
+  full: "max-w-7xl",
+} as const;
 
 export function InstitutionalPageShell({
   eyebrow,
@@ -17,11 +25,13 @@ export function InstitutionalPageShell({
   children,
   backHref,
   backLabel = "Back",
+  width = "narrow",
 }: InstitutionalPageShellProps) {
+  const max = WIDTH[width];
   return (
     <div className="pt-20">
       <section className="border-b border-gold-subtle py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6">
+        <div className={`mx-auto ${max} px-6`}>
           {backHref ? (
             <Link
               href={backHref}
@@ -37,13 +47,22 @@ export function InstitutionalPageShell({
             {title}
           </h1>
           {description ? (
-            <p className="text-lg leading-relaxed text-cream-muted">{description}</p>
+            <p className="max-w-3xl text-lg leading-relaxed text-cream-muted">{description}</p>
           ) : null}
         </div>
       </section>
       <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-3xl px-6">{children}</div>
+        <div className={`mx-auto ${max} px-6`}>{children}</div>
       </section>
+    </div>
+  );
+}
+
+export function EmptyState({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-lg border border-gold-subtle bg-ink-muted p-8 text-center">
+      <p className="font-serif text-xl text-cream">{title}</p>
+      <p className="mt-2 text-sm text-cream-muted">{body}</p>
     </div>
   );
 }

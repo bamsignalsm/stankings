@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { COMPANIES, LIVE_PLATFORMS, PILLARS, SITE } from "@/lib/data";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About",
-  description: "Stankings Group — an enduring African institution building trusted businesses and technologies.",
-};
+  description:
+    "Stankings Group — an enduring African institution building trusted businesses, technologies, education, and social impact.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -14,20 +17,25 @@ export default function AboutPage() {
       eyebrow="About Stankings Group"
       title="An enduring institution"
       description={SITE.brandPromise}
+      width="wide"
     >
-      <div className="space-y-10">
-        <blockquote className="border-l-2 border-gold pl-6 font-serif text-2xl italic text-cream/90">
+      <div className="space-y-12">
+        <blockquote className="border-l-2 border-gold pl-6 font-serif text-2xl text-cream/90 italic">
           &ldquo;{SITE.motto}&rdquo;
         </blockquote>
         <p className="text-cream-muted">— {SITE.founder}, Founder</p>
 
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
-            <h2 className="mb-2 text-xs font-semibold uppercase tracking-widest text-gold">Mission</h2>
+            <h2 className="mb-2 text-xs font-semibold tracking-widest text-gold uppercase">
+              Mission
+            </h2>
             <p className="text-cream-muted">{SITE.mission}</p>
           </div>
           <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
-            <h2 className="mb-2 text-xs font-semibold uppercase tracking-widest text-gold">Vision</h2>
+            <h2 className="mb-2 text-xs font-semibold tracking-widest text-gold uppercase">
+              Vision
+            </h2>
             <p className="text-cream-muted">{SITE.vision}</p>
           </div>
         </div>
@@ -46,10 +54,11 @@ export default function AboutPage() {
 
         <div>
           <h2 className="mb-4 font-serif text-2xl text-cream">Institutional pillars</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-3">
             {PILLARS.map((pillar) => (
               <div key={pillar.title} className="rounded-lg border border-gold-subtle bg-ink-muted p-5">
                 <h3 className="font-serif text-lg text-cream">{pillar.title}</h3>
+                <p className="mt-1 text-xs tracking-widest text-gold uppercase">{pillar.subtitle}</p>
                 <p className="mt-2 text-sm text-cream-muted">{pillar.description}</p>
               </div>
             ))}
@@ -59,7 +68,7 @@ export default function AboutPage() {
         <div>
           <h2 className="mb-4 font-serif text-2xl text-cream">Live platforms</h2>
           <p className="mb-4 text-sm text-cream-muted">
-            Each platform operates independently with its own runtime, database, and authentication.
+            Each platform operates independently — separate runtime, database, and authentication.
           </p>
           <div className="flex flex-wrap gap-3">
             {LIVE_PLATFORMS.map((p) => (
@@ -79,7 +88,7 @@ export default function AboutPage() {
         <div>
           <h2 className="mb-4 font-serif text-2xl text-cream">Centers of Excellence</h2>
           <p className="mb-4 text-sm text-cream-muted">
-            {COMPANIES.length} companies across marketplace, relationships, finance, education, and more.
+            {COMPANIES.length} companies across commerce, education, and society.
           </p>
           <Link href="/companies" className="text-gold hover:text-gold-light">
             View all companies →

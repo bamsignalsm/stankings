@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { getLeadershipProfile } from "@/lib/leadership/profiles";
 import { getPublicLeadership } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -17,10 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const profile = getLeadershipProfile(slug);
   if (!profile) return { title: "Leadership" };
-  return {
+  return buildPageMetadata({
     title: profile.name,
     description: `${profile.constitutionalOffice} — Stankings Group`,
-  };
+    path: `/leadership/${slug}`,
+  });
 }
 
 export default async function LeadershipProfilePublicPage({ params }: PageProps) {

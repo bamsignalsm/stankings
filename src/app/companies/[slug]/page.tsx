@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { COMPANIES, getCompanyBySlug } from "@/lib/data";
+import { COMPANIES } from "@/lib/data";
+import { getCompanyProfile } from "@/lib/corporate/company-profiles";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -13,24 +15,30 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const company = getCompanyBySlug(slug);
+  const company = getCompanyProfile(slug);
   if (!company) return { title: "Company Not Found" };
-  return {
+  return buildPageMetadata({
     title: company.name,
     description: company.description,
-  };
+    path: `/companies/${slug}`,
+  });
 }
+
+const STATUS_LABEL: Record<string, string> = {
+  operating: "Operating",
+  in_development: "In development",
+  institutional: "Institutional",
+};
 
 export default async function CompanyPage({ params }: PageProps) {
   const { slug } = await params;
-  const company = getCompanyBySlug(slug);
+  const company = getCompanyProfile(slug);
   if (!company) notFound();
 
   const related = COMPANIES.filter((c) => c.slug !== slug).slice(0, 3);
 
   return (
     <div className="pt-20">
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-gold-subtle py-20">
         <div
           className="absolute inset-0 opacity-10"
@@ -40,22 +48,28 @@ export default async function CompanyPage({ params }: PageProps) {
         />
         <div className="relative mx-auto max-w-7xl px-6">
           <Link
-            href="/#companies"
+            href="/companies"
             className="mb-8 inline-flex items-center gap-2 text-sm text-cream-muted transition hover:text-gold"
           >
-            ← All Companies
+            ← All companies
           </Link>
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-gold">
+              <p className="mb-2 text-xs font-medium tracking-[0.3em] text-gold uppercase">
                 {company.excellence}
               </p>
               <h1 className="mb-3 font-serif text-5xl font-semibold text-cream md:text-6xl">
                 {company.name}
               </h1>
               <p className="text-xl text-cream-muted">{company.tagline}</p>
+              <p className="mt-4 text-sm text-cream-muted">
+                Status:{" "}
+                <span className="text-cream">{STATUS_LABEL[company.statusLabel]}</span>
+                {" · "}
+                {company.statusDescription}
+              </p>
             </div>
-            {company.website && (
+            {company.website ? (
               <a
                 href={`https://${company.website}`}
                 target="_blank"
@@ -64,43 +78,54 @@ export default async function CompanyPage({ params }: PageProps) {
               >
                 Visit {company.website} ↗
               </a>
-            )}
+            ) : null}
           </div>
         </div>
       </section>
 
-      {/* Content */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-3">
-            <div className="lg:col-span-2 space-y-8">
+            <div className="space-y-10 lg:col-span-2">
               <div>
-                <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
-                  About {company.name}
-                </h2>
-                <p className="leading-relaxed text-cream-muted">
-                  {company.description}
-                </p>
+                <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">Mission</h2>
+                <p className="leading-relaxed text-cream-muted">{company.mission}</p>
               </div>
               <div>
                 <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
-                  Mission
+                  Area of operation
                 </h2>
-                <p className="leading-relaxed text-cream-muted">{company.mission}</p>
+                <p className="leading-relaxed text-cream-muted">{company.areaOfOperation}</p>
+              </div>
+              <div>
+                <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+                  Relationship to Stankings HQ
+                </h2>
+                <p className="leading-relaxed text-cream-muted">{company.relationshipToHq}</p>
+              </div>
+              <div>
+                <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+                  Forward programme
+                </h2>
+                <ul className="space-y-2">
+                  {company.roadmap.map((item) => (
+                    <li key={item} className="flex gap-2 text-cream-muted">
+                      <span className="text-gold">◆</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
             <div className="space-y-6">
               <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
-                <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gold">
-                  Services & Capabilities
+                <h3 className="mb-4 text-xs font-semibold tracking-widest text-gold uppercase">
+                  Services
                 </h3>
                 <ul className="space-y-2">
                   {company.services.map((service) => (
-                    <li
-                      key={service}
-                      className="flex items-start gap-2 text-sm text-cream-muted"
-                    >
+                    <li key={service} className="flex items-start gap-2 text-sm text-cream-muted">
                       <span className="mt-1 text-gold" style={{ color: company.color }}>
                         •
                       </span>
@@ -110,38 +135,56 @@ export default async function CompanyPage({ params }: PageProps) {
                 </ul>
               </div>
 
-              <div
-                className="rounded-lg border p-6"
-                style={{
-                  borderColor: `${company.color}30`,
-                  backgroundColor: `${company.color}08`,
-                }}
-              >
-                <p className="text-xs uppercase tracking-widest text-cream-muted">
-                  Center of Excellence
-                </p>
-                <p
-                  className="mt-1 font-serif text-xl font-semibold"
-                  style={{ color: company.color }}
-                >
-                  {company.excellence}
-                </p>
+              <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6 text-sm">
+                <h3 className="mb-3 text-xs font-semibold tracking-widest text-gold uppercase">
+                  Resources
+                </h3>
+                <ul className="space-y-2 text-cream-muted">
+                  {company.website ? (
+                    <li>
+                      Domain:{" "}
+                      <a
+                        href={`https://${company.website}`}
+                        className="text-gold hover:text-gold-light"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {company.website}
+                      </a>
+                    </li>
+                  ) : (
+                    <li>Domain: Operated under stankings.com</li>
+                  )}
+                  <li>
+                    <Link href={company.supportPath} className="text-gold hover:text-gold-light">
+                      Support
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={company.legalPath} className="text-gold hover:text-gold-light">
+                      Legal
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={company.privacyPath} className="text-gold hover:text-gold-light">
+                      Privacy
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Ecosystem context */}
       <section className="border-t border-gold-subtle bg-ink-light py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-8 font-serif text-2xl font-semibold text-cream">
-            Part of the Stankings Ecosystem
+          <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+            Part of Stankings Group
           </h2>
           <p className="mb-8 max-w-2xl text-cream-muted">
-            {company.name} operates within the Stankings Group ecosystem — sharing
-            identity, trust, and institutional values while specializing in its
-            unique mission. The success of one company strengthens every other.
+            {company.name} operates within Stankings Group — sharing institutional identity and
+            governance standards while remaining operationally independent.
           </p>
           <div className="grid gap-5 sm:grid-cols-3">
             {related.map((c) => (
@@ -151,9 +194,7 @@ export default async function CompanyPage({ params }: PageProps) {
                 className="rounded-lg border border-gold-subtle bg-ink-muted p-5 transition hover:border-gold/30"
               >
                 <p className="text-xs text-cream-muted">{c.excellence}</p>
-                <p className="mt-1 font-serif text-lg font-semibold text-cream">
-                  {c.name}
-                </p>
+                <p className="mt-1 font-serif text-lg font-semibold text-cream">{c.name}</p>
               </Link>
             ))}
           </div>

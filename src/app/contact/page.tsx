@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { INSTITUTIONAL_CONTACT } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description: "Contact Stankings Group — general, support, legal, press, and careers.",
-};
+  path: "/contact",
+});
 
 const CONTACT_CHANNELS = [
   { label: "General", email: INSTITUTIONAL_CONTACT.general, href: "/support/general" },

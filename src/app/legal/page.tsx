@@ -5,11 +5,13 @@ import {
   InstitutionalPageShell,
 } from "@/components/institutional/InstitutionalPageShell";
 import { LEGAL_DOCUMENTS } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Legal Center",
   description: "Privacy policies, terms, and product-specific legal resources.",
-};
+  path: "/legal",
+});
 
 const INSTITUTIONAL = LEGAL_DOCUMENTS.filter((d) => d.product === "stankings");
 const PRODUCT = LEGAL_DOCUMENTS.filter((d) => d.product !== "stankings");

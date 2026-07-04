@@ -4,12 +4,14 @@ import {
   InstitutionalPageShell,
 } from "@/components/institutional/InstitutionalPageShell";
 import { TRUST_CENTER_SECTIONS } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Trust Center",
   description:
     "Privacy principles, security practices, and transparency resources from Stankings Group.",
-};
+  path: "/trust",
+});
 
 export default function TrustCenterPage() {
   return (

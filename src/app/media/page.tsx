@@ -1,64 +1,79 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
-import { INSTITUTIONAL_CONTACT, LIVE_PLATFORMS, SITE } from "@/lib/institutional/public-site";
+import { BRAND } from "@/lib/brand";
+import { INSTITUTIONAL_CONTACT } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Media",
-  description: "Media inquiries and institutional communications from Stankings Group.",
-};
+  description: "Corporate gallery — logos, brand assets, and approved imagery for Stankings Group.",
+  path: "/media",
+});
+
+const ASSETS = [
+  { title: "Primary logo", src: BRAND.logo.src, note: "Horizontal wordmark" },
+  { title: "App icon", src: BRAND.icon.src, note: "Square mark" },
+  { title: "Open Graph", src: BRAND.ogImage.src, note: "Social preview (JPEG)" },
+];
 
 export default function MediaPage() {
   return (
     <InstitutionalPageShell
       eyebrow="Media"
-      title="Media & communications"
-      description="Official information for journalists, analysts, and institutional partners."
+      title="Brand & corporate gallery"
+      description="Approved assets for accredited media and partners. Do not alter colours, proportions, or clear space."
+      width="wide"
     >
-      <div className="space-y-8">
-        <div className="rounded-lg border border-gold/30 bg-gold-subtle p-6">
-          <h2 className="mb-2 font-serif text-xl text-cream">Press contact</h2>
-          <a
-            href={`mailto:${INSTITUTIONAL_CONTACT.press}`}
-            className="font-serif text-2xl text-gold hover:text-gold-light"
-          >
-            {INSTITUTIONAL_CONTACT.press}
-          </a>
-        </div>
-
+      <div className="space-y-10">
         <section>
-          <h2 className="mb-3 font-serif text-xl text-cream">Boilerplate</h2>
-          <p className="leading-relaxed text-cream-muted">
-            {SITE.name} is one of Africa&apos;s emerging institutional groups — building trusted
-            businesses, transformative technologies, and lasting social impact. Live platforms
-            include {LIVE_PLATFORMS.map((p) => p.name).join(", ")}. Founded by {SITE.founder}.
-          </p>
+          <h2 className="mb-4 font-serif text-2xl text-cream">Logos & marks</h2>
+          <div className="grid gap-6 sm:grid-cols-3">
+            {ASSETS.map((asset) => (
+              <figure
+                key={asset.title}
+                className="rounded-lg border border-gold-subtle bg-ink-muted p-6"
+              >
+                <div className="relative mb-4 flex h-32 items-center justify-center rounded-sm bg-ink">
+                  <Image
+                    src={asset.src}
+                    alt={asset.title}
+                    width={200}
+                    height={80}
+                    className="max-h-20 w-auto object-contain"
+                  />
+                </div>
+                <figcaption>
+                  <p className="font-serif text-lg text-cream">{asset.title}</p>
+                  <p className="text-xs text-cream-muted">{asset.note}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section>
-          <h2 className="mb-3 font-serif text-xl text-cream">Resources</h2>
-          <ul className="space-y-2">
-            <li>
-              <Link href="/press" className="text-gold hover:text-gold-light">
-                Press Kit →
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="text-gold hover:text-gold-light">
-                About Stankings Group →
-              </Link>
-            </li>
-            <li>
-              <Link href="/leadership" className="text-gold hover:text-gold-light">
-                Leadership →
-              </Link>
-            </li>
-            <li>
-              <Link href="/status" className="text-gold hover:text-gold-light">
-                System Status →
-              </Link>
-            </li>
-          </ul>
+          <h2 className="mb-3 font-serif text-2xl text-cream">Screenshots & photography</h2>
+          <p className="text-cream-muted">
+            Product screenshots are published by each operating company on its own domain. Corporate
+            photography packs are provided to accredited media on request.
+          </p>
+        </section>
+
+        <section className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
+          <h2 className="mb-2 font-serif text-xl text-cream">Brand downloads</h2>
+          <p className="text-sm text-cream-muted">
+            Request high-resolution packages from{" "}
+            <a href={`mailto:${INSTITUTIONAL_CONTACT.press}`} className="text-gold">
+              {INSTITUTIONAL_CONTACT.press}
+            </a>
+            . See also{" "}
+            <Link href="/press" className="text-gold hover:text-gold-light">
+              Press
+            </Link>
+            .
+          </p>
         </section>
       </div>
     </InstitutionalPageShell>

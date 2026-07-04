@@ -53,6 +53,10 @@ export const PUBLIC_PAGE_AUDIT: PublicPageAudit[] = [
   { slug: "developer", label: "Developer", href: "/developer", status: "live", phase: "Public Website" },
   { slug: "press", label: "Press Kit", href: "/press", status: "live", phase: "Public Website" },
   { slug: "legal", label: "Legal Center", href: "/legal", status: "live", phase: "Legal Center" },
+  { slug: "partners", label: "Partners", href: "/partners", status: "live", phase: "Public Website" },
+  { slug: "investors", label: "Investors", href: "/investors", status: "live", phase: "Public Website" },
+  { slug: "foundation", label: "Foundation", href: "/foundation", status: "live", phase: "Public Website" },
+  { slug: "institute", label: "Institute", href: "/institute", status: "live", phase: "Public Website" },
 ];
 
 export interface InstitutionalSection {
@@ -324,6 +328,10 @@ export const INSTITUTIONAL_FOOTER_GROUPS = [
       { href: "/constitution", label: "Constitution" },
       { href: "/library", label: "The Library" },
       { href: "/careers", label: "Careers" },
+      { href: "/partners", label: "Partners" },
+      { href: "/investors", label: "Investors" },
+      { href: "/foundation", label: "Foundation" },
+      { href: "/institute", label: "Institute" },
     ],
   },
   {

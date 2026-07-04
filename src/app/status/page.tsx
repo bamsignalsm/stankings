@@ -4,11 +4,13 @@ import {
   StatusBadge,
 } from "@/components/institutional/InstitutionalPageShell";
 import { STATUS_SNAPSHOT } from "@/lib/institutional/public-site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "System Status",
   description: "Operational status for Stankings HQ, BamSignal, Yike, and BayRight.",
-};
+  path: "/status",
+});
 
 export default function SystemStatusPage() {
   const { products, incidents, history, updatedAt } = STATUS_SNAPSHOT;

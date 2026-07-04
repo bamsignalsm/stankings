@@ -54,6 +54,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const aliases = ["/privacy", "/terms", "/cookies", "/security"].map((path) => ({
+    url: `${base}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     {
       url: base,
@@ -68,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     ...staticPages,
+    ...aliases,
     ...companyPages,
     ...trustPages,
     ...legalPages,
