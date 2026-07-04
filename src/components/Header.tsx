@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { href: "/security", label: "Security" },
   { href: "/support", label: "Support" },
   { href: "/legal", label: "Legal" },
-  { href: "/careers", label: "Careers" },
+  { href: "/search", label: "Search" },
 ];
 
 export function Header() {

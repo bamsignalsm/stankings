@@ -15,6 +15,7 @@ import {
   type MasterLaunchTask,
   type OpsChecklistItem,
 } from "@/lib/launch-war-room";
+import { FounderWarRoomOps } from "@/components/launch-war-room/FounderWarRoomOps";
 
 function LaunchCommandCenter() {
   const c = LAUNCH_COMMAND_CENTER;
@@ -337,6 +338,7 @@ export function LaunchWarRoomPanel() {
       </p>
 
       <LaunchCommandCenter />
+      <FounderWarRoomOps />
 
       {LAUNCH_COMMAND_CENTER.stage1Certification.status !== "closed" ? (
         <section className="mb-8 rounded-lg border border-amber-400/40 bg-amber-400/5 p-5">

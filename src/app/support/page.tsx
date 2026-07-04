@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
 import { SupportExperience } from "@/components/authority/SupportExperience";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SUPPORT_FAQS } from "@/lib/authority/support";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -18,6 +20,20 @@ export default function SupportCenterPage() {
       description="Select the correct queue for General, HQ, BamSignal, Yike, BayRight, Foundation, or Institute. Institutional policies originate at HQ; product teams operate product systems."
       width="wide"
     >
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: SUPPORT_FAQS.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }}
+      />
       <SupportExperience />
     </InstitutionalPageShell>
   );
