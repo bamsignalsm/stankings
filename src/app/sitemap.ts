@@ -73,6 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cookies",
     "/security",
     "/brand",
+    "/design-system",
     "/downloads",
     "/search",
   ].map((path) => ({

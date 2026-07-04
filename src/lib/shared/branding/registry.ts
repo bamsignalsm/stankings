@@ -1,15 +1,18 @@
 /**
  * Branding registry — shared brand tokens and assets.
+ * Colors align with @/lib/design-system tokens.
  */
 
+import { colors } from "@/lib/design-system/tokens";
+
 export const BRAND_COLORS = [
-  { id: "obsidian", name: "Obsidian Black", hex: "#070707" },
-  { id: "legacy-gold", name: "Legacy Gold", hex: "#D4A64A" },
-  { id: "warm-ivory", name: "Warm Ivory", hex: "#F4EFE6" },
-  { id: "deep-bronze", name: "Deep Bronze", hex: "#6B4423" },
-  { id: "forest", name: "Forest Green", hex: "#1B4D3E" },
-  { id: "burgundy", name: "Burgundy", hex: "#6B1F2A" },
-  { id: "royal", name: "Royal Blue", hex: "#1E3A8A" },
+  { id: "obsidian", name: "Obsidian Black", hex: colors.obsidian },
+  { id: "legacy-gold", name: "Legacy Gold", hex: colors.legacyGold },
+  { id: "warm-ivory", name: "Warm Ivory", hex: colors.ivory },
+  { id: "deep-bronze", name: "Deep Bronze", hex: colors.bronze },
+  { id: "forest", name: "Forest Green", hex: colors.forest },
+  { id: "burgundy", name: "Burgundy", hex: colors.burgundy },
+  { id: "royal", name: "Royal Blue", hex: colors.royal },
 ] as const;
 
 export const BRAND_FONTS = [

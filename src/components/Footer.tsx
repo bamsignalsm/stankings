@@ -14,6 +14,7 @@ const AUTHORITY_LINKS = [
   { href: "/status", label: "Status" },
   { href: "/developer", label: "Developers" },
   { href: "/brand", label: "Brand" },
+  { href: "/design-system", label: "Design System" },
   { href: "/downloads", label: "Downloads" },
   { href: "/search", label: "Search" },
   { href: "/press", label: "Press" },

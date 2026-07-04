@@ -4,7 +4,7 @@
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 
-  /* Institutional palette — Legacy Gold system */
+  /* Institutional palette — Legacy Gold system (design tokens) */
   --color-obsidian: #070707;
   --color-legacy-gold: #D4A64A;
   --color-legacy-gold-light: #E8C97A;
@@ -28,6 +28,21 @@
   --color-success: #1B4D3E;
   --color-danger: #6B1F2A;
   --color-info: #1E3A8A;
+
+  /* Design system motion & elevation (consumable by products) */
+  --ds-duration-fast: 120ms;
+  --ds-duration-normal: 200ms;
+  --ds-duration-slow: 320ms;
+  --ds-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ds-elevation-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --ds-elevation-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ds-elevation-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --ds-container-narrow: 48rem;
+  --ds-container-content: 64rem;
+  --ds-container-wide: 80rem;
+  --ds-radius-sm: 0.125rem;
+  --ds-radius-md: 0.375rem;
+  --ds-radius-lg: 0.5rem;
 }
 
 @layer base {
@@ -35,9 +50,28 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     @apply bg-ink text-cream antialiased;
     font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-legacy-gold);
+    outline-offset: 2px;
   }
 
   ::selection {
@@ -126,5 +160,30 @@
       rgba(212, 166, 74, 0.06) 0%,
       transparent 55%
     );
+  }
+
+  /* Design system containers */
+  .ds-container-narrow {
+    width: 100%;
+    max-width: var(--ds-container-narrow);
+    margin-inline: auto;
+  }
+
+  .ds-container-content {
+    width: 100%;
+    max-width: var(--ds-container-content);
+    margin-inline: auto;
+  }
+
+  .ds-container-wide {
+    width: 100%;
+    max-width: var(--ds-container-wide);
+    margin-inline: auto;
+  }
+
+  .ds-transition {
+    transition-property: color, background-color, border-color, opacity, box-shadow;
+    transition-duration: var(--ds-duration-normal);
+    transition-timing-function: var(--ds-easing-standard);
   }
 }

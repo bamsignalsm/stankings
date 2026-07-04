@@ -51,6 +51,7 @@ const STATIC_PAGES: SharedSearchDocument[] = [
   doc("press", "Press", "Press kit and media contacts.", "/press", "resource"),
   doc("media", "Media", "Brand gallery.", "/media", "resource"),
   doc("brand", "Brand Center", "Logos, colors, fonts.", "/brand", "resource"),
+  doc("design-system", "Design System", "Tokens and reusable components.", "/design-system", "documentation"),
   doc("downloads", "Download Center", "Press kit and brand downloads.", "/downloads", "download"),
   doc("developer", "Developer Center", "APIs and product developer links.", "/developer", "documentation"),
   doc("partners", "Partners", "Partnership engagement.", "/partners", "page"),

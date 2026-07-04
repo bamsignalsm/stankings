@@ -8,6 +8,7 @@ import {
   SUPPORT_QUEUES,
   type SupportQueue,
 } from "@/lib/authority/support";
+import { FormField, Input, Textarea } from "@/components/ui";
 
 export function SupportExperience() {
   const [selected, setSelected] = useState(SUPPORT_QUEUES[0].slug);
@@ -155,36 +156,35 @@ function QueuePanel({ queue }: { queue: SupportQueue }) {
           servers from this form.
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
-          <label className="block text-sm text-cream-muted">
-            Name
-            <input
+          <FormField id="support-name" label="Name">
+            <Input
+              id="support-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 w-full rounded-sm border border-gold-subtle bg-ink px-3 py-2 text-cream"
             />
-          </label>
-          <label className="block text-sm text-cream-muted">
-            Email
-            <input
+          </FormField>
+          <FormField id="support-email" label="Email">
+            <Input
+              id="support-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-sm border border-gold-subtle bg-ink px-3 py-2 text-cream"
             />
-          </label>
+          </FormField>
         </div>
-        <label className="mt-3 block text-sm text-cream-muted">
-          Message
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={4}
-            className="mt-1 w-full rounded-sm border border-gold-subtle bg-ink px-3 py-2 text-cream"
-          />
-        </label>
+        <div className="mt-3">
+          <FormField id="support-message" label="Message">
+            <Textarea
+              id="support-message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={4}
+            />
+          </FormField>
+        </div>
         <a
           href={mailto}
-          className="mt-4 inline-flex rounded-sm border border-gold bg-gold px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-gold-light"
+          className="mt-4 inline-flex items-center justify-center rounded-sm border border-gold bg-gold px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
         >
           Send via email
         </a>

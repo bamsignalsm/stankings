@@ -1,5 +1,7 @@
 "use client";
 
+import { Input } from "./Input";
+
 export function SearchHeader({
   value,
   onChange,
@@ -16,13 +18,13 @@ export function SearchHeader({
       <label htmlFor="global-search-input" className="sr-only">
         {label}
       </label>
-      <input
+      <Input
         id="global-search-input"
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-sm border border-gold-subtle bg-ink-muted px-4 py-3 text-cream placeholder:text-cream-muted/60 focus:border-gold/50 focus:outline-none"
+        className="py-3"
       />
     </div>
   );
