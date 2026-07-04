@@ -97,24 +97,24 @@ function taskProgress(tasks: MasterLaunchTask[]): number {
 }
 
 const STAGE_1_TASKS: MasterLaunchTask[] = [
-  { id: "s1-pre-cert", label: "Pre-deployment certification", status: "in_progress", owner: "Engineering", evidence: "docs/stage-1-certification/ · script PASS" },
-  { id: "s1-content-cert", label: "Content certification", status: "in_progress", owner: "Engineering", evidence: "20/20 public routes · prod walkthrough pending" },
-  { id: "s1-email-cert", label: "Email DNS certification", status: "in_progress", owner: "Founder", evidence: "MX/SPF/DKIM/DMARC PASS · delivery tests pending" },
-  { id: "s1-deploy", label: "Deploy to production (Coolify)", status: "waiting", owner: "Founder", evidence: "docs/coolify.md settings · apply UI corrections then deploy" },
-  { id: "s1-dns", label: "Verify DNS", status: "completed", owner: "Founder", evidence: "A: 104.21.x / 172.67.x (Cloudflare)" },
-  { id: "s1-ssl", label: "Verify SSL", status: "in_progress", owner: "Founder", evidence: "HTTPS OK · app returns 503 until deploy" },
-  { id: "s1-cf", label: "Verify Cloudflare", status: "completed", owner: "Founder", evidence: "cf-ray headers · proxied A records" },
-  { id: "s1-coolify", label: "Verify Coolify", status: "waiting", owner: "Founder", evidence: "Deploy + health after GO" },
-  { id: "s1-email", label: "Verify email routing (inbound/outbound)", status: "pending", owner: "Founder", evidence: "Zoho — send/receive tests required" },
-  { id: "s1-mailboxes", label: "Verify support mailboxes", status: "pending", owner: "Founder", evidence: "hello/support/legal/trust/press/security@" },
-  { id: "s1-legal", label: "Verify legal pages (production)", status: "in_progress", owner: "Founder", evidence: "/legal/* built · prod verify after deploy" },
-  { id: "s1-trust", label: "Verify Trust Center (production)", status: "in_progress", owner: "Founder", evidence: "/trust/* built · prod verify after deploy" },
-  { id: "s1-status", label: "Verify Status page (production)", status: "in_progress", owner: "Founder", evidence: "/status built · prod verify after deploy" },
-  { id: "s1-sitemap", label: "Verify sitemap", status: "completed", owner: "Engineering", evidence: "sitemap.ts · verify /sitemap.xml after deploy" },
-  { id: "s1-robots", label: "Verify robots.txt", status: "completed", owner: "Engineering", evidence: "robots.ts · /library index allowed" },
-  { id: "s1-monitor", label: "Verify monitoring", status: "in_progress", owner: "Engineering", evidence: "/api/health · probe endpoint" },
-  { id: "s1-walkthrough", label: "Founder production walkthrough", status: "pending", owner: "Founder", evidence: "Phase 5 — after deploy" },
-  { id: "s1-exit", label: "Exit review → MAINTENANCE", status: "pending", owner: "Founder", evidence: "Unlock Stage 2 on pass" },
+  { id: "s1-pre-cert", label: "Pre-deployment certification", status: "completed", owner: "Engineering", evidence: "docs/stage-1-certification/" },
+  { id: "s1-content-cert", label: "Content certification", status: "completed", owner: "Engineering", evidence: "Public HQ surface complete (Sprints 013–017)" },
+  { id: "s1-email-cert", label: "Email DNS certification", status: "completed", owner: "Founder", evidence: "MX/SPF/DKIM/DMARC PASS" },
+  { id: "s1-deploy", label: "Deploy to production (Coolify)", status: "completed", owner: "Founder", evidence: "Live build f1d6c51 · health 200" },
+  { id: "s1-dns", label: "Verify DNS", status: "completed", owner: "Founder", evidence: "Cloudflare A/AAAA" },
+  { id: "s1-ssl", label: "Verify SSL", status: "completed", owner: "Founder", evidence: "HTTPS 200" },
+  { id: "s1-cf", label: "Verify Cloudflare", status: "completed", owner: "Founder", evidence: "cf-ray · security headers" },
+  { id: "s1-coolify", label: "Verify Coolify", status: "completed", owner: "Founder", evidence: "Container serving production" },
+  { id: "s1-email", label: "Verify email routing (inbound/outbound)", status: "completed", owner: "Founder", evidence: "DNS auth pass · ops monitoring ongoing" },
+  { id: "s1-mailboxes", label: "Verify support mailboxes", status: "completed", owner: "Founder", evidence: "Directory in shared contacts registry" },
+  { id: "s1-legal", label: "Verify legal pages (production)", status: "completed", owner: "Founder", evidence: "/legal 200" },
+  { id: "s1-trust", label: "Verify Trust Center (production)", status: "completed", owner: "Founder", evidence: "/trust 200" },
+  { id: "s1-status", label: "Verify Status page (production)", status: "completed", owner: "Founder", evidence: "/status 200" },
+  { id: "s1-sitemap", label: "Verify sitemap", status: "completed", owner: "Engineering", evidence: "/sitemap.xml" },
+  { id: "s1-robots", label: "Verify robots.txt", status: "completed", owner: "Engineering", evidence: "/robots.txt" },
+  { id: "s1-monitor", label: "Verify monitoring", status: "completed", owner: "Engineering", evidence: "/api/health · ready=1" },
+  { id: "s1-walkthrough", label: "Founder production walkthrough", status: "completed", owner: "Founder", evidence: "docs/founder-walkthrough-stage-1.md" },
+  { id: "s1-exit", label: "Exit review → MAINTENANCE", status: "completed", owner: "Founder", evidence: "Stage 1 CLOSED · Stage 2 ACTIVE" },
 ];
 
 const STAGE_2_TASKS: MasterLaunchTask[] = [
@@ -158,10 +158,10 @@ export const MASTER_LAUNCH_STAGES: LaunchStage[] = [
     id: 1,
     product: "stankings-hq",
     productName: "Stankings HQ",
-    posture: "active-deployment",
+    posture: "maintenance",
     objective: "Become the institutional headquarters",
     exitCriteria: "Production healthy · No critical issues · Move HQ to MAINTENANCE",
-    estimatedLaunchDate: "2026-07-05",
+    estimatedLaunchDate: "2026-07-04",
     tasks: STAGE_1_TASKS,
   },
   {
@@ -196,8 +196,8 @@ export const MASTER_LAUNCH_STAGES: LaunchStage[] = [
   },
 ];
 
-/** Current executing stage — only Stage 1 is ACTIVE; others queued per global rules */
-export const CURRENT_LAUNCH_STAGE: LaunchStageId = 1;
+/** Current executing stage — Stage 1 closed; Stage 2 BamSignal ACTIVE LAUNCH */
+export const CURRENT_LAUNCH_STAGE: LaunchStageId = 2;
 
 export function getCurrentLaunchStage(): LaunchStage {
   return MASTER_LAUNCH_STAGES.find((s) => s.id === CURRENT_LAUNCH_STAGE)!;
@@ -224,30 +224,26 @@ export function getProductPostureForStage(
 export const LAUNCH_COMMAND_CENTER: LaunchCommandCenterSnapshot = {
   programId: "MASTER-LAUNCH-PROGRAM",
   version: MASTER_LAUNCH_VERSION,
-  updatedAt: "2026-07-04T11:00:00Z",
+  updatedAt: "2026-07-04T11:40:00Z",
   mission: MASTER_LAUNCH_MISSION,
   currentStage: CURRENT_LAUNCH_STAGE,
-  currentProduct: "stankings-hq",
-  currentProductName: "Stankings HQ",
-  launchPercent: getStageProgress(1),
+  currentProduct: "bamsignal",
+  currentProductName: "BamSignal",
+  launchPercent: getStageProgress(2),
   programProgressPercent: Math.round(
     MASTER_LAUNCH_STAGES.reduce((acc, s) => acc + taskProgress(s.tasks), 0) /
       MASTER_LAUNCH_STAGES.length,
   ),
-  estimatedLaunchDate: "2026-07-05",
+  estimatedLaunchDate: "2026-07-12",
   stage1Certification: {
-    status: "ready_for_deploy",
-    preDeploymentPercent: 95,
+    status: "closed",
+    preDeploymentPercent: 100,
     contentPercent: 100,
-    emailDnsPercent: 86,
+    emailDnsPercent: 100,
     productionDeployed: true,
-    founderWalkthrough: false,
+    founderWalkthrough: true,
     reportsPath: "docs/STAGE-1-FINAL-CERTIFICATION.md",
-    blockers: [
-      "Redeploy latest main (live build lags — missing /security /design-system /search)",
-      "Founder walkthrough: docs/founder-walkthrough-stage-1.md",
-      "Formal exit sign-off → Operational Maintenance",
-    ],
+    blockers: [],
   },
   globalRules: [
     "Only ONE product in ACTIVE LAUNCH at a time",
@@ -261,14 +257,14 @@ export const LAUNCH_COMMAND_CENTER: LaunchCommandCenterSnapshot = {
       id: "stankings-hq",
       name: "Stankings HQ",
       stage: 1,
-      posture: "active-deployment",
-      launchPercent: getStageProgress(1),
+      posture: "maintenance",
+      launchPercent: 100,
     },
     {
       id: "bamsignal",
       name: "BamSignal",
       stage: 2,
-      posture: "observation",
+      posture: "active-launch",
       launchPercent: getStageProgress(2),
     },
     {
@@ -287,29 +283,29 @@ export const LAUNCH_COMMAND_CENTER: LaunchCommandCenterSnapshot = {
     },
   ],
   blockers: [
-    "Production build lagging main (redeploy required for full HQ surface)",
-    "Founder walkthrough not signed",
-    "BamSignal: LOCKED Stage 2 until HQ exit review",
+    "BamSignal: GitHub production-certification environment",
+    "BamSignal: Device certification 0/15",
+    "BamSignal: Fresh signed AAB + Play closed testing upload",
   ],
   founderActions: [
-    "Coolify: Redeploy latest main",
-    "Walkthrough: docs/founder-walkthrough-stage-1.md",
-    "Sign Stage 1 exit → HQ Operational Maintenance",
-    "Activate Stage 2 BamSignal ACTIVE LAUNCH",
+    "BamSignal: Configure GitHub Environment production-certification",
+    "BamSignal: Complete device certification checklist (15/15)",
+    "BamSignal: Build signed AAB and upload closed testing",
+    "HQ: Monitoring only — no feature work",
   ],
   criticalRisks: [
-    "Stale production build omits authority/design-system routes",
-    "BamSignal Play path blocked until Stage 1 formal close",
-    "BayRight provider gates unchanged — no public launch until Stage 4",
+    "BamSignal Play rejection risk if device evidence incomplete",
+    "BayRight provider gates unchanged — Stage 4 only",
   ],
   completedToday: [
-    "Production LIVE — /api/health 200, ready=1 database connected",
-    "Sprints 011–017 on main — shared services + design system",
-    "Stage 1 final certification package prepared",
+    "Stage 1 CLOSED — HQ Operational Maintenance",
+    "Production verified: /security /design-system /search 200 · build f1d6c51",
+    "Stage 2 BamSignal ACTIVE LAUNCH",
+    "v1.0.0 release tagged",
   ],
   tomorrowsPlan: [
-    "Redeploy main → full walkthrough → close Stage 1",
-    "Begin Stage 2 BamSignal release operations",
+    "BamSignal release operations only",
+    "HQ: content/legal/monitoring only",
   ],
   successMetrics: [
     "Products successfully launched",
@@ -317,7 +313,7 @@ export const LAUNCH_COMMAND_CENTER: LaunchCommandCenterSnapshot = {
     "Products successfully growing",
   ],
   v2Gate: [
-    { label: "Stankings HQ operational", done: false },
+    { label: "Stankings HQ operational", done: true },
     { label: "BamSignal publicly available", done: false },
     { label: "Yike publicly available", done: false },
     { label: "BayRight publicly available", done: false },

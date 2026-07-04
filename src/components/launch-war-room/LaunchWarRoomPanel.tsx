@@ -325,11 +325,21 @@ export function LaunchWarRoomPanel() {
       <div className="mb-8 rounded-lg border border-gold/40 bg-gold-subtle/10 p-4 text-sm">
         <p className="font-medium text-gold">Master Launch Program v1.0</p>
         <p className="mt-1 text-cream-muted">{MASTER_LAUNCH_MISSION}</p>
+        <p className="mt-3 text-sm text-forest">
+          Stage 1 · Stankings HQ · ✅ Operational Maintenance (v1.0.0)
+        </p>
+        <p className="mt-1 text-sm text-gold">
+          Stage 2 · BamSignal · ACTIVE LAUNCH
+        </p>
         <ul className="mt-3 space-y-1 text-xs text-cream-muted">
           {rules.map((r) => (
             <li key={r}>◆ {r}</li>
           ))}
         </ul>
+        <p className="mt-3 text-xs text-cream-muted">
+          HQ freeze: company additions, legal/policy updates, monitoring, security patches,
+          dependency updates only — no new features.
+        </p>
       </div>
 
       <h1 className="mb-2 font-serif text-3xl font-semibold text-cream">Launch Command Center</h1>

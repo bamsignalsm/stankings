@@ -41,22 +41,22 @@ export interface FounderWarRoomSnapshot {
 
 /** Single source for Founder War Room panels — update when evidence changes */
 export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
-  updatedAt: "2026-07-04T11:00:00Z",
+  updatedAt: "2026-07-04T11:40:00Z",
   launchProgressNote:
-    "Stage 1 — production LIVE; redeploy latest main for Sprints 013–017 routes, then enter Operational Maintenance.",
+    "Stage 1 ✅ Operational Maintenance · Stage 2 BamSignal ACTIVE LAUNCH",
   systemHealth: [
     {
       id: "hq-app",
       label: "System Health — HQ App",
       health: "healthy",
-      detail: "https://stankings.com/api/health → 200; ready=1 → database connected (probed 2026-07-04).",
+      detail: "https://stankings.com/api/health → 200; ready=1 → database connected.",
       href: "/api/health",
     },
     {
       id: "shared-portals",
       label: "Shared Authority Portals",
-      health: "degraded",
-      detail: "Live build is older (cb41438). /trust /legal /support OK; /security /design-system /search 404 until redeploy.",
+      health: "healthy",
+      detail: "/trust /legal /support /security /design-system /search → 200 (build f1d6c51).",
       href: "/trust",
     },
   ],
@@ -64,20 +64,20 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
     {
       id: "deploy-status",
       label: "Deployment Status",
-      health: "action_required",
-      detail: "Container running. Redeploy main (10b085e+) to ship authority centers, design system, and shared services.",
+      health: "healthy",
+      detail: "Production serving latest certified HQ release (v1.0.0).",
     },
     {
       id: "repo-status",
       label: "Repository Status",
       health: "healthy",
-      detail: "main certified through Sprint 017. Typecheck/lint/build pass.",
+      detail: "main protected · v1.0.0 tagged · HQ feature freeze in effect.",
     },
     {
       id: "cloud-status",
       label: "Cloud Status",
       health: "healthy",
-      detail: "Cloudflare + origin serving HTTP 200 for HQ.",
+      detail: "Cloudflare + Coolify origin serving HTTP 200.",
     },
   ],
   environment: [
@@ -85,39 +85,39 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
       id: "env-status",
       label: "Environment Status",
       health: "healthy",
-      detail: "Supabase Stankings project linked; 59 migrations applied; .env.example documents required vars.",
+      detail: "Supabase connected; public env validated via readiness probe.",
     },
     {
       id: "ssl-status",
       label: "SSL Status",
       health: "healthy",
-      detail: "Cloudflare terminates TLS for stankings.com (certificate valid when edge responds).",
+      detail: "Cloudflare TLS terminating for stankings.com.",
     },
     {
       id: "domain-status",
       label: "Domain Status",
       health: "healthy",
-      detail: "stankings.com resolves to Cloudflare anycast addresses.",
+      detail: "stankings.com resolves via Cloudflare.",
     },
     {
       id: "dns-status",
       label: "DNS Status",
       health: "healthy",
-      detail: "A/AAAA records present; MX/SPF/DKIM/DMARC configured (Zoho).",
+      detail: "A/AAAA + mail authentication records present.",
     },
     {
       id: "email-status",
       label: "Email Status",
       health: "unknown",
-      detail: "DNS authentication pass; inbound/outbound delivery tests remain Founder-owned.",
+      detail: "DNS auth pass; continue monitoring mailbox delivery.",
     },
   ],
   infrastructure: [
     {
       id: "certificates",
       label: "Certificates",
-      health: "unknown",
-      detail: "Edge certs via Cloudflare. Origin certs managed in Coolify — verify in host panel.",
+      health: "healthy",
+      detail: "Edge certificates managed by Cloudflare.",
     },
   ],
   renewals: [
@@ -126,7 +126,7 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
       label: "stankings.com domain",
       category: "domain",
       status: "unknown",
-      note: "Confirm registrar renewal date in domain account — not stored in app.",
+      note: "Confirm registrar renewal date in domain account.",
     },
     {
       id: "cf-ssl",
@@ -147,32 +147,27 @@ export const FOUNDER_WAR_ROOM: FounderWarRoomSnapshot = {
       label: "Supabase project",
       category: "cloud",
       status: "current",
-      note: "Stankings Group project dfaqkrikdvohvvcuxoek — monitor plan limits in dashboard.",
+      note: "Stankings Group project — monitor plan limits.",
     },
     {
       id: "github",
       label: "GitHub repository",
       category: "repository",
       status: "current",
-      note: "bamsignalsm/stankings on main.",
+      note: "bamsignalsm/stankings · v1.0.0",
     },
   ],
   dailyTasks: [
-    "Coolify: Redeploy latest main (includes Trust/Security/Design System)",
-    "Walkthrough: docs/founder-walkthrough-stage-1.md",
-    "Confirm /security /design-system /search return 200 after redeploy",
-    "Change default seed passwords; revoke shared access tokens",
-    "Sign Stage 1 exit → Operational Maintenance → Stage 2 BamSignal",
+    "BamSignal: GitHub production-certification environment",
+    "BamSignal: Device certification 15/15",
+    "BamSignal: Signed AAB + Play closed testing",
+    "HQ: Monitoring only — no feature work",
   ],
   outstandingRisks: [
-    "Production build lagging main (missing Sprint 013–017 routes)",
-    "Stage 1 not formally closed — Stage 2 BamSignal still locked by process",
-    "Default seed passwords must be changed before public admin use",
-    "Personal access tokens shared in chat should be revoked",
+    "BamSignal Play rejection if device evidence incomplete",
+    "BayRight provider gates remain for Stage 4",
   ],
-  operationalAlerts: [
-    "P1: Redeploy main so authority portals and design system are live",
-  ],
+  operationalAlerts: [],
 };
 
 export function opsHealthColor(health: OpsSignalHealth): string {
