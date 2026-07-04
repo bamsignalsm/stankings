@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AuthorityArticlePage } from "@/components/authority/AuthorityHub";
-import { getTrustArticle, TRUST_SECTIONS } from "@/lib/authority/trust";
+import { getSecurityArticle, SECURITY_SECTIONS } from "@/lib/authority/security";
 import { buildPageMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -9,32 +9,30 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return TRUST_SECTIONS.filter((s) => s.href.startsWith("/trust/")).map((s) => ({
-    slug: s.slug,
-  }));
+  return SECURITY_SECTIONS.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getTrustArticle(slug);
-  if (!article) return { title: "Trust Center" };
+  const article = getSecurityArticle(slug);
+  if (!article) return { title: "Security Center" };
   return buildPageMetadata({
     title: article.title,
     description: article.sections[0]?.body ?? article.title,
-    path: `/trust/${slug}`,
+    path: `/security/${slug}`,
   });
 }
 
-export default async function TrustTopicPage({ params }: PageProps) {
+export default async function SecurityTopicPage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getTrustArticle(slug);
+  const article = getSecurityArticle(slug);
   if (!article) notFound();
 
   return (
     <AuthorityArticlePage
-      eyebrow="Trust Center"
-      backHref="/trust"
-      backLabel="Trust Center"
+      eyebrow="Security Center"
+      backHref="/security"
+      backLabel="Security Center"
       article={article}
     />
   );

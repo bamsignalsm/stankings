@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  InstitutionalPageShell,
-} from "@/components/institutional/InstitutionalPageShell";
-import { getSupportProduct, SUPPORT_PRODUCTS } from "@/lib/institutional/public-site";
+import { InstitutionalPageShell } from "@/components/institutional/InstitutionalPageShell";
+import { getSupportQueue, SUPPORT_QUEUES } from "@/lib/authority/support";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ product: string }>;
 }
 
 export async function generateStaticParams() {
-  return SUPPORT_PRODUCTS.map((p) => ({ product: p.slug }));
+  return SUPPORT_QUEUES.map((p) => ({ product: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { product } = await params;
-  const p = getSupportProduct(product);
+  const p = getSupportQueue(product);
   if (!p) return { title: "Support Center" };
-  return { title: `${p.name} Support`, description: p.description };
+  return buildPageMetadata({
+    title: `${p.name} Support`,
+    description: p.description,
+    path: `/support/${product}`,
+  });
 }
 
 export default async function ProductSupportPage({ params }: PageProps) {
   const { product } = await params;
-  const p = getSupportProduct(product);
+  const p = getSupportQueue(product);
   if (!p) notFound();
 
   return (
@@ -36,14 +39,14 @@ export default async function ProductSupportPage({ params }: PageProps) {
     >
       <div className="space-y-8">
         <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
-          <p className="text-xs uppercase tracking-widest text-gold">Primary contact</p>
+          <p className="text-xs tracking-widest text-gold uppercase">Queue contact</p>
           <a
-            href={`mailto:${p.supportEmail}`}
+            href={`mailto:${p.email}`}
             className="mt-2 block font-serif text-2xl text-cream hover:text-gold"
           >
-            {p.supportEmail}
+            {p.email}
           </a>
-          {p.slug !== "general" ? (
+          {p.url ? (
             <a
               href={p.url}
               target="_blank"
@@ -67,21 +70,21 @@ export default async function ProductSupportPage({ params }: PageProps) {
           </ul>
         </div>
 
-        {p.slug === "general" ? (
-          <p className="text-sm text-cream-muted">
-            Product-specific issues should go to{" "}
-            <Link href="/support/bamsignal" className="text-gold">BamSignal</Link>,{" "}
-            <Link href="/support/yike" className="text-gold">Yike</Link>, or{" "}
-            <Link href="/support/bayright" className="text-gold">BayRight</Link> support.
-          </p>
-        ) : (
-          <p className="text-sm text-cream-muted">
-            Institutional questions (governance, careers, media):{" "}
-            <Link href="/support/general" className="text-gold">
-              General Enquiries
-            </Link>
-          </p>
-        )}
+        <p className="text-sm text-cream-muted">
+          Institutional policies:{" "}
+          <Link href="/trust" className="text-gold">
+            Trust
+          </Link>
+          ,{" "}
+          <Link href="/legal" className="text-gold">
+            Legal
+          </Link>
+          ,{" "}
+          <Link href="/security" className="text-gold">
+            Security
+          </Link>
+          .
+        </p>
       </div>
     </InstitutionalPageShell>
   );

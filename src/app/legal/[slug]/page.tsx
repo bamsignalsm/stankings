@@ -1,68 +1,44 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import {
-  ContentSections,
-  InstitutionalPageShell,
-} from "@/components/institutional/InstitutionalPageShell";
-import { getLegalContent } from "@/lib/institutional/legal-content";
-import { getLegalDocument, LEGAL_DOCUMENTS } from "@/lib/institutional/public-site";
+import { notFound, redirect } from "next/navigation";
+import { AuthorityArticlePage } from "@/components/authority/AuthorityHub";
+import { getLegalArticle, LEGAL_SECTIONS } from "@/lib/authority/legal";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return LEGAL_DOCUMENTS.filter((d) => !d.externalUrl).map((d) => ({ slug: d.slug }));
+  return LEGAL_SECTIONS.filter((s) => s.href.startsWith("/legal/")).map((s) => ({
+    slug: s.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getLegalDocument(slug);
-  if (!doc) return { title: "Legal Center" };
-  return { title: doc.title, description: doc.summary };
+  const article = getLegalArticle(slug);
+  if (!article) return { title: "Legal Center" };
+  return buildPageMetadata({
+    title: article.title,
+    description: article.sections[0]?.body ?? article.title,
+    path: `/legal/${slug}`,
+  });
 }
 
 export default async function LegalDocumentPage({ params }: PageProps) {
   const { slug } = await params;
-  const doc = getLegalDocument(slug);
-  if (!doc) notFound();
-
-  if (doc.externalUrl) {
-    return (
-      <InstitutionalPageShell
-        eyebrow="Legal Center"
-        title={doc.title}
-        description={doc.summary}
-        backHref="/legal"
-        backLabel="Legal Center"
-      >
-        <p className="text-cream-muted">
-          This policy is hosted on the product domain.{" "}
-          <a href={doc.externalUrl} className="text-gold hover:text-gold-light">
-            Open {doc.title} ↗
-          </a>
-        </p>
-      </InstitutionalPageShell>
-    );
+  if (slug === "compliance") {
+    redirect("/compliance");
   }
-
-  const content = getLegalContent(slug);
-  if (!content) notFound();
+  const article = getLegalArticle(slug);
+  if (!article) notFound();
 
   return (
-    <InstitutionalPageShell
+    <AuthorityArticlePage
       eyebrow="Legal Center"
-      title={content.title}
       backHref="/legal"
       backLabel="Legal Center"
-    >
-      <ContentSections sections={content.sections} lastUpdated={content.lastUpdated} />
-      <p className="mt-12 text-sm text-cream-muted">
-        <Link href="/trust/privacy-principles" className="text-gold hover:text-gold-light">
-          Privacy Principles →
-        </Link>
-      </p>
-    </InstitutionalPageShell>
+      article={article}
+    />
   );
 }

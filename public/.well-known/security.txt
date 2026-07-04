@@ -1,0 +1,7 @@
+Contact: mailto:security@stankings.com
+Expires: 2027-07-04T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://stankings.com/.well-known/security.txt
+Policy: https://stankings.com/security/responsible-disclosure
+Hiring: https://stankings.com/careers
+Acknowledgments: https://stankings.com/security

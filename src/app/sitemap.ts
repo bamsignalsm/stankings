@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
 import { COMPANIES } from "@/lib/data";
-import {
-  LEGAL_DOCUMENTS,
-  PUBLIC_PAGE_AUDIT,
-  TRUST_CENTER_SECTIONS,
-  SUPPORT_PRODUCTS,
-} from "@/lib/institutional/public-site";
-import { getPublicLeadership } from "@/lib/institutional/public-site";
+import { PUBLIC_PAGE_AUDIT, getPublicLeadership } from "@/lib/institutional/public-site";
+import { TRUST_SECTIONS } from "@/lib/authority/trust";
+import { SECURITY_SECTIONS } from "@/lib/authority/security";
+import { LEGAL_SECTIONS } from "@/lib/authority/legal";
+import { SUPPORT_QUEUES } from "@/lib/authority/support";
+import { COMPLIANCE_SECTIONS } from "@/lib/authority/compliance";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://stankings.com";
@@ -26,22 +25,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const trustPages = TRUST_CENTER_SECTIONS.map((s) => ({
+  const trustPages = TRUST_SECTIONS.filter((s) => s.href.startsWith("/trust/")).map((s) => ({
     url: `${base}${s.href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
-  const legalPages = LEGAL_DOCUMENTS.filter((d) => !d.externalUrl).map((d) => ({
-    url: `${base}/legal/${d.slug}`,
+  const securityPages = SECURITY_SECTIONS.map((s) => ({
+    url: `${base}${s.href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
-  const supportPages = SUPPORT_PRODUCTS.map((p) => ({
+  const legalPages = LEGAL_SECTIONS.filter((s) => s.href.startsWith("/legal/")).map((s) => ({
+    url: `${base}${s.href}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const supportPages = SUPPORT_QUEUES.map((p) => ({
     url: `${base}/support/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const compliancePages = COMPLIANCE_SECTIONS.map((s) => ({
+    url: `${base}${s.href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
@@ -78,8 +91,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...aliases,
     ...companyPages,
     ...trustPages,
+    ...securityPages,
     ...legalPages,
     ...supportPages,
+    ...compliancePages,
+    {
+      url: `${base}/compliance`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/security`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...leadershipPages,
   ];
 }

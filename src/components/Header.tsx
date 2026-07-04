@@ -11,11 +11,11 @@ import { ThemeToggle } from "@/components/ThemeProvider";
 const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/companies", label: "Companies" },
-  { href: "/leadership", label: "Leadership" },
   { href: "/trust", label: "Trust" },
+  { href: "/security", label: "Security" },
+  { href: "/support", label: "Support" },
+  { href: "/legal", label: "Legal" },
   { href: "/careers", label: "Careers" },
-  { href: "/library", label: "Library" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -42,10 +42,10 @@ export function Header() {
           <ThemeToggle />
           <HeaderAuth />
           <Link
-            href="/support"
+            href="/status"
             className="hidden rounded-sm border border-gold/40 bg-gold-subtle px-4 py-2 text-sm font-medium text-gold transition hover:border-gold hover:bg-gold/15 lg:inline-block"
           >
-            Support
+            Status
           </Link>
 
           <button

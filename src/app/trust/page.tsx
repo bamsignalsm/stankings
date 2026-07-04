@@ -1,39 +1,25 @@
 import type { Metadata } from "next";
-import {
-  InstitutionalCardGrid,
-  InstitutionalPageShell,
-} from "@/components/institutional/InstitutionalPageShell";
-import { TRUST_CENTER_SECTIONS } from "@/lib/institutional/public-site";
+import { AuthorityHub } from "@/components/authority/AuthorityHub";
+import { TRUST_ORIGIN_NOTICE, TRUST_SECTIONS } from "@/lib/authority/trust";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Trust Center",
   description:
-    "Privacy principles, security practices, and transparency resources from Stankings Group.",
+    "Central trust authority for every Stankings product — privacy, safety, verification, and user rights.",
   path: "/trust",
 });
 
 export default function TrustCenterPage() {
   return (
-    <InstitutionalPageShell
+    <AuthorityHub
       eyebrow="Trust Center"
-      title="Trust is institutional capital"
-      description="Shared trust resources for the Stankings ecosystem. Product platforms maintain independent systems — this center explains how we govern information responsibly."
-    >
-      <InstitutionalCardGrid
-        items={TRUST_CENTER_SECTIONS.map((s) => ({
-          href: s.href,
-          title: s.title,
-          summary: s.summary,
-        }))}
-      />
-      <div className="mt-12 rounded-lg border border-gold-subtle bg-ink-muted p-6">
-        <h2 className="mb-2 font-serif text-xl text-cream">Product independence</h2>
-        <p className="text-sm leading-relaxed text-cream-muted">
-          BamSignal, Yike, and BayRight operate separate databases, authentication, and payments.
-          Stankings Group provides institutional identity and governance — not a shared runtime.
-        </p>
-      </div>
-    </InstitutionalPageShell>
+      title="Central trust authority"
+      description="Trust policies for every current and future Stankings product originate here. Products implement these standards; they do not publish conflicting institutional policies."
+      originNotice={TRUST_ORIGIN_NOTICE}
+      sections={TRUST_SECTIONS}
+      contactEmail="trust@stankings.com"
+      contactLabel="Trust"
+    />
   );
 }
