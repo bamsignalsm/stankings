@@ -111,7 +111,7 @@ curl -s 'https://stankings.com/api/health?ready=1'`}
                 {
                   meta: "Sprint 013",
                   title: "Public institution completion",
-                  detail: "Corporate public pages and light/dark theme.",
+                  detail: "Corporate public pages and institutional dark theme.",
                 },
                 {
                   meta: "Sprint 011",
