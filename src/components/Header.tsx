@@ -6,7 +6,6 @@ import { useState } from "react";
 import { COMPANIES } from "@/lib/data";
 import { HeaderAuth } from "@/components/HeaderAuth";
 import { BrandLogo } from "@/components/BrandLogo";
-import { ThemeToggle } from "@/components/ThemeProvider";
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
@@ -39,7 +38,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <HeaderAuth />
           <Link
             href="/status"

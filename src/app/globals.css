@@ -79,24 +79,7 @@
     color: var(--color-ivory);
   }
 
-  /* Light theme — corporate headquarters readability */
-  html.light {
-    --color-ink: #f7f4ef;
-    --color-ink-light: #ffffff;
-    --color-ink-muted: #efeae2;
-    --color-cream: #121212;
-    --color-cream-muted: #5c564e;
-    --color-obsidian: #f7f4ef;
-    --color-ivory: #121212;
-    --color-ivory-muted: #5c564e;
-  }
-
-  html.light body {
-    color-scheme: light;
-  }
-
-  html.dark body,
-  html:not(.light) body {
+  html.dark body {
     color-scheme: dark;
   }
 }
