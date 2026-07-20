@@ -2,6 +2,8 @@
 
 Docker-first. Coolify-native. No platform lock-in.
 
+**Ecosystem standards (source of truth):** [docs/engineering/](../engineering/README.md)
+
 | Document | Purpose |
 |----------|---------|
 | [Architecture](./architecture.md) | Runtime topology |
