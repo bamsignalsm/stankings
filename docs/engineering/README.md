@@ -10,6 +10,7 @@ Projects: **Stankings** (HQ), **BamSignal**, **BayRight**, **Yike**.
 |----------|--------|
 | [ENGINEERING_STANDARD.md](./ENGINEERING_STANDARD.md) | Master protocol — isolation, validation, evidence, root cause |
 | [GIT_STANDARD.md](./GIT_STANDARD.md) | Branches, commits, PRs, protected `main` |
+| [AUTOMATION_STANDARD.md](./AUTOMATION_STANDARD.md) | Cursor auto-merge setup (`bamsignalhq` collaborator) |
 | [DEPLOYMENT_STANDARD.md](./DEPLOYMENT_STANDARD.md) | GitHub App → Coolify → Hetzner → health |
 | [RELEASE_STANDARD.md](./RELEASE_STANDARD.md) | Pre/post deploy gates and completion criteria |
 | [SECURITY_STANDARD.md](./SECURITY_STANDARD.md) | Secrets, Access, least privilege |
