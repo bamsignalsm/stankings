@@ -50,8 +50,19 @@ Product-specific runbooks: [`docs/deployment/`](../deployment/README.md).
 ## Other products
 
 - **BamSignal:** `DEPLOYMENT_STANDARD.md` in BamSignal repo (reference implementation)
-- **BayRight:** `docs/coolify-deployment.md` in BayRight repo
+- **BayRight:** `docs/coolify-deployment.md` + `docs/execution-sprint-004/GROUP-INFRASTRUCTURE-STANDARDIZATION-REPORT.md`
 - **Yike:** Coolify app on same host; product repo docs
+
+## Group status snapshot (2026-07-20)
+
+| Product | GitHub App | Auto Deploy | Production URL | HTTP | Notes |
+|---------|------------|-------------|----------------|------|-------|
+| BamSignal | ✅ | ✅ | bamsignal.com | `/ready` 200 | Reference |
+| Yike | ✅ | ✅ | yike.ng | 200 | — |
+| BayRight | ✅ | ✅ | bayright.com | 200 | `/api/health` degraded — migrate provider secrets to Coolify |
+| Stankings | ✅ | ✅ | stankings.com | apex 200 | **www.stankings.com → 503** — add www to Coolify domains |
+
+GitHub agent merge (Option 1): **all four repos ✅** — see [AUTOMATION_STANDARD.md](./AUTOMATION_STANDARD.md).
 
 ## Infrastructure changes
 

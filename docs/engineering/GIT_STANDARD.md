@@ -35,13 +35,13 @@ Small, low-risk fixes: follow each repo’s branch protection and existing workf
 
 ## Cursor / AI automation (Option 1)
 
-So agents can merge without the owner clicking **Merge** on every PR:
+All four Group repos are configured (2026-07-20). See [AUTOMATION_STANDARD.md](./AUTOMATION_STANDARD.md).
 
-1. Repo owner invites **`bamsignalhq`** as **Maintain** collaborator (see [AUTOMATION_STANDARD.md](./AUTOMATION_STANDARD.md)).
-2. Run `./scripts/configure-github-automation.sh owner/repo` once per repo.
+1. Repo owner invites **`bamsignalhq`** as **Write** collaborator (Admin on BamSignal only).
+2. Owner enables auto-merge + branch protection in GitHub UI (or runs `./scripts/configure-github-automation.sh` as **Admin**).
 3. Agent uses feature branch → `gh pr create` → `gh pr merge --auto --squash`.
 
-`bamsignalhq/bamsignal` is already configured. Other Group repos require the collaborator invite first.
+Private repos on GitHub Free cannot enforce this — product repos that need Option 1 must be **public** (code visible; secrets stay in Coolify).
 
 ## Evidence
 
