@@ -59,3 +59,5 @@ Expect `permissions.push: true`, `allow_auto_merge: true`, `required_approving_r
 - **Maintain** (not Admin) is enough for PRs and branch protection updates; it does not grant billing or repo deletion.
 - Secrets and production deploy credentials stay in Coolify/runtime—never in git.
 - Branch protection still blocks direct `main` pushes; all production changes go through PR + checks.
+
+<!-- automation verified 2026-07-20 -->
