@@ -18,8 +18,8 @@ export const stankingsBrand = {
     src: "/images/logo.webp",
     /** Active master — public/images/source/logo-master.png */
     master: "/images/source/logo-master.png",
-    width: 1209,
-    height: 288,
+    width: 1824,
+    height: 460,
     alt: "Stankings",
   },
   icon: {

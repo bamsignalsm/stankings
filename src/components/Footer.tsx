@@ -105,7 +105,7 @@ export function Footer() {
                   {CONTACTS.security}
                 </a>
               </li>
-              <li>Lagos, Nigeria</li>
+              <li>Abia, Nigeria</li>
               <li>
                 <Link href={USER_LOGIN_PATH} className="transition-colors hover:text-cream">
                   Member sign in
