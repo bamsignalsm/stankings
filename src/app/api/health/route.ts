@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { getAppVersion, getBuildId, getPublicEnvStatus, isPublicEnvReady } from "@/lib/env";
+import { buildStandardHealthPayload } from "@/lib/deploy-metadata";
+import { getAppVersion, getPublicEnvStatus, isPublicEnvReady } from "@/lib/env";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -13,29 +14,32 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const ready = searchParams.get("ready") === "1";
 
-  const base = {
-    status: "ok" as const,
-    service: "stankings-hq",
-    version: getAppVersion(),
-    build: getBuildId(),
-    timestamp: new Date().toISOString(),
-  };
-
   if (!ready) {
-    return NextResponse.json(base, { status: 200 });
+    return NextResponse.json(
+      buildStandardHealthPayload({
+        application: "stankings",
+        version: getAppVersion(),
+        status: "ok",
+        database: "skipped",
+      }),
+      { status: 200 },
+    );
   }
 
   const env = getPublicEnvStatus();
   if (!isPublicEnvReady()) {
     return NextResponse.json(
-      {
-        ...base,
+      buildStandardHealthPayload({
+        application: "stankings",
+        version: getAppVersion(),
         status: "degraded",
-        ready: false,
-        env,
         database: "skipped",
-        detail: "Required public environment variables missing or placeholder",
-      },
+        diagnostics: {
+          ready: false,
+          env,
+          detail: "Required public environment variables missing or placeholder",
+        },
+      }),
       { status: 503 },
     );
   }
@@ -48,35 +52,36 @@ export async function GET(request: Request) {
 
     if (error) {
       return NextResponse.json(
-        {
-          ...base,
+        buildStandardHealthPayload({
+          application: "stankings",
+          version: getAppVersion(),
           status: "degraded",
-          ready: false,
-          env,
           database: "unreachable",
-          detail: error.message,
-        },
+          diagnostics: { ready: false, env, detail: error.message },
+        }),
         { status: 503 },
       );
     }
 
-    return NextResponse.json({
-      ...base,
-      ready: true,
-      env,
-      database: "connected",
-    });
+    return NextResponse.json(
+      buildStandardHealthPayload({
+        application: "stankings",
+        version: getAppVersion(),
+        status: "ok",
+        database: "connected",
+        diagnostics: { ready: true, env },
+      }),
+    );
   } catch (e) {
     const message = e instanceof Error ? e.message : "unknown";
     return NextResponse.json(
-      {
-        ...base,
+      buildStandardHealthPayload({
+        application: "stankings",
+        version: getAppVersion(),
         status: "degraded",
-        ready: false,
-        env,
         database: "error",
-        detail: message,
-      },
+        diagnostics: { ready: false, env, detail: message },
+      }),
       { status: 503 },
     );
   }
