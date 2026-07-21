@@ -1,5 +1,7 @@
 # Stankings Brand Assets
 
+> **Governance:** [BRAND_GOVERNANCE.md](./BRAND_GOVERNANCE.md) — **ACTIVE** (July 2026 baseline). Visual system is frozen; updates are pipeline-driven only.
+
 Single source of truth for public brand surfaces on [stankings.com](https://stankings.com).
 
 **Do not redesign logos in application code.** Drop approved master artwork into `public/images/source/`, then regenerate derived assets.
