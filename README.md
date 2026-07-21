@@ -54,7 +54,9 @@ Health:
 
 ## Branding
 
-Public brand assets are generated from a versioned master. See **[docs/branding/BRAND_ASSETS.md](docs/branding/BRAND_ASSETS.md)**.
+**Brand Governance: ACTIVE** (July 2026 baseline). See **[docs/branding/BRAND_GOVERNANCE.md](docs/branding/BRAND_GOVERNANCE.md)**.
+
+Asset inventory: **[docs/branding/BRAND_ASSETS.md](docs/branding/BRAND_ASSETS.md)**.
 
 | Path | Role |
 |------|------|
@@ -63,10 +65,11 @@ Public brand assets are generated from a versioned master. See **[docs/branding/
 | `src/lib/brand.ts` | Runtime `BRAND` API for UI / SEO |
 
 ```bash
-npm run optimize:brand   # regenerate derived assets
+npm run optimize:brand   # regenerate derived assets (only when master artwork changes)
 npm run verify:brand     # CI filesystem + import checks
 ```
 
+Visual system is **frozen**. Do not perform branding infrastructure work unless official artwork changes.
 ## Scripts
 
 | Script | Purpose |

@@ -21,6 +21,8 @@
 
 **Verdict: CERTIFIED**
 
+**Governance status:** ACTIVE — see [BRAND_GOVERNANCE.md](./BRAND_GOVERNANCE.md).
+
 ---
 
 ## Pre-merge checklist
