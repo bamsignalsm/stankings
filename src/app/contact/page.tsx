@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
-  description: "Contact Stankings Group — general, support, legal, press, and careers.",
+  description: "Contact Stankings Legacy Ltd — general, support, legal, press, and careers.",
   path: "/contact",
 });
 
@@ -19,7 +19,7 @@ const CONTACT_CHANNELS = [
   { label: "Legal", email: CONTACTS.legal, href: "/legal" },
   { label: "Press", email: CONTACTS.press, href: "/press" },
   { label: "Media", email: CONTACTS.media, href: "/media" },
-  { label: "Careers", email: CONTACTS.careers, href: "/careers" },
+  { label: "Careers", email: CONTACTS.careers, href: "/career" },
   { label: "Developers", email: CONTACTS.developers, href: "/developer" },
   { label: "Foundation", email: CONTACTS.foundation, href: "/foundation" },
   { label: "Security", email: CONTACTS.security, href: "/security" },

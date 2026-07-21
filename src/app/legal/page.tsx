@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Legal Center",
   description:
-    "Central legal hub for Stankings Group — terms, privacy, cookies, trademark, DMCA, and compliance.",
+    "Central legal hub for Stankings Legacy Ltd — terms, privacy, cookies, trademark, DMCA, and compliance.",
   path: "/legal",
 });
 

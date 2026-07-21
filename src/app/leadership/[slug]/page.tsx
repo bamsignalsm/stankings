@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!profile) return { title: "Leadership" };
   return buildPageMetadata({
     title: profile.name,
-    description: `${profile.constitutionalOffice} — Stankings Group`,
+    description: `${profile.constitutionalOffice} — Stankings Legacy Ltd`,
     path: `/leadership/${slug}`,
   });
 }

@@ -180,10 +180,10 @@ export default async function CompanyPage({ params }: PageProps) {
       <section className="border-t border-gold-subtle bg-ink-light py-16">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
-            Part of Stankings Group
+            Part of Stankings Legacy Ltd
           </h2>
           <p className="mb-8 max-w-2xl text-cream-muted">
-            {company.name} operates within Stankings Group — sharing institutional identity and
+            {company.name} operates within Stankings Legacy Ltd — sharing institutional identity and
             governance standards while remaining operationally independent.
           </p>
           <div className="grid gap-5 sm:grid-cols-3">

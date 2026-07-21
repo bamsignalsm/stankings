@@ -23,7 +23,7 @@ function article(
 /** Extends / replaces prior legal content with HQ-origin policies */
 export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
   privacy: article("privacy", "Privacy Policy", [
-    { heading: "Who we are", body: "Stankings Group Ltd operates stankings.com as institutional headquarters. This policy covers institutional properties. Product user data is governed by product policies that must align with HQ trust principles." },
+    { heading: "Who we are", body: "Stankings Legacy Ltd operates stankings.com as institutional headquarters. This policy covers institutional properties. Product user data is governed by product policies that must align with HQ trust principles." },
     { heading: "Data we collect", body: "Member registration, careers applications, support and contact submissions, and technical logs required for security and reliability." },
     { heading: "How we use data", body: "To provide member access, respond to enquiries, operate careers, maintain governance records, and secure institutional systems." },
     { heading: "Sharing", body: "We do not sell personal data. Processors such as authentication and hosting providers act under contract. Products do not receive HQ member data without separate consent." },
@@ -33,7 +33,7 @@ export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
     { heading: "Acceptance", body: "By using stankings.com you agree to these terms and Acceptable Use." },
     { heading: "Institutional content", body: "Constitutional text, library materials, and governance documents are protected. Member access does not confer redistribution rights." },
     { heading: "No product services", body: "stankings.com does not provide marketplace, social, or payment services. Those are offered by independent companies under their own terms." },
-    { heading: "Limitation of liability", body: "Institutional content is informational. To the extent permitted by law, Stankings Group is not liable for indirect or consequential damages arising from use of this site." },
+    { heading: "Limitation of liability", body: "Institutional content is informational. To the extent permitted by law, Stankings Legacy Ltd is not liable for indirect or consequential damages arising from use of this site." },
   ]),
   cookies: article("cookies", "Cookie Policy", [
     { heading: "Essential cookies", body: "Authentication session cookies for member sign-in. Required for library access." },
@@ -45,12 +45,12 @@ export const LEGAL_ARTICLES: Record<string, AuthorityArticle> = {
     { heading: "Enforcement", body: "Violations may result in account suspension, legal action, or referral to authorities." },
   ]),
   trademark: article("trademark", "Trademark", [
-    { heading: "Marks", body: "Stankings, Stankings Group, and related logos are trademarks or trade names of Stankings Group Ltd or its companies." },
+    { heading: "Marks", body: "Stankings, Stankings Legacy Ltd, and related logos are trademarks or trade names of Stankings Legacy Ltd or its companies." },
     { heading: "Use", body: "Do not use marks in a way that implies endorsement without written permission. Press may use marks for accurate reporting." },
     { heading: "Contact", body: CONTACTS.legal },
   ]),
   copyright: article("copyright", "Copyright", [
-    { heading: "Ownership", body: "Content on stankings.com is owned by Stankings Group Ltd or licensed to it, unless otherwise stated." },
+    { heading: "Ownership", body: "Content on stankings.com is owned by Stankings Legacy Ltd or licensed to it, unless otherwise stated." },
     { heading: "Member materials", body: "Access to Library materials does not transfer copyright." },
   ]),
   licensing: article("licensing", "Licensing", [

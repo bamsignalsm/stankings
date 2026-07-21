@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Press",
-  description: "Press kit, boilerplate, media contacts, and brand resources for Stankings Group.",
+  description: "Press kit, boilerplate, media contacts, and brand resources for Stankings Legacy Ltd.",
   path: "/press",
 });
 

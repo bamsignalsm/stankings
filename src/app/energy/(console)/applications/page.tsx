@@ -24,7 +24,7 @@ export default async function AdminApplicationsPage() {
         Applications
       </h1>
       <p className="mb-8 text-cream-muted">
-        Review applications submitted for Stankings Group career posts.
+        Review applications submitted for Stankings Legacy Ltd career posts.
       </p>
 
       <div className="space-y-4">

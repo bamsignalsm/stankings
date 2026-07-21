@@ -3,6 +3,7 @@
  * Colors align with @/lib/design-system tokens.
  */
 
+import { BRAND } from "@/lib/brand";
 import { colors } from "@/lib/design-system/tokens";
 
 export const BRAND_COLORS = [
@@ -21,11 +22,11 @@ export const BRAND_FONTS = [
 ] as const;
 
 export const BRAND_ASSETS = [
-  { id: "logo", title: "Primary logo", src: "/images/logo.webp", note: "Horizontal wordmark" },
-  { id: "icon", title: "App icon", src: "/images/icon.webp", note: "Square mark" },
-  { id: "icon-512", title: "Icon 512", src: "/images/icon-512.webp", note: "Large icon" },
-  { id: "og", title: "Open Graph", src: "/images/og-image.jpg", note: "Social preview (JPEG)" },
-  { id: "og-webp", title: "Open Graph WebP", src: "/images/og-image.webp", note: "Social preview (WebP)" },
+  { id: "logo", title: "Primary logo", src: BRAND.logo.src, note: "Horizontal wordmark (STANKINGS)" },
+  { id: "icon", title: "App icon", src: BRAND.icon.src, note: "Square mark (from primary logo)" },
+  { id: "icon-512", title: "Icon 512", src: BRAND.favicon.src512, note: "Large icon" },
+  { id: "og", title: "Open Graph", src: BRAND.ogImage.src, note: "Social preview (JPEG)" },
+  { id: "og-webp", title: "Open Graph WebP", src: BRAND.ogImage.webp, note: "Social preview (WebP)" },
 ] as const;
 
 export const BRAND_USAGE_RULES = [

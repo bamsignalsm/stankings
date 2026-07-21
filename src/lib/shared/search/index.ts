@@ -40,13 +40,13 @@ function doc(
 }
 
 const STATIC_PAGES: SharedSearchDocument[] = [
-  doc("home", "Home", "Stankings Group institutional homepage.", "/", "page"),
+  doc("home", "Home", "Stankings Legacy Ltd institutional homepage.", "/", "page"),
   doc("about", "About", "Mission, vision, and institutional pillars.", "/about", "page"),
   doc("companies", "Companies", "Centers of Excellence.", "/companies", "page"),
   doc("leadership", "Leadership", "Stewardship and governance.", "/leadership", "page"),
   doc("constitution", "Constitution", "Volume I overview.", "/constitution", "documentation"),
   doc("library", "Library", "Corporate document repository.", "/library", "documentation"),
-  doc("careers", "Careers", "Hiring and open positions.", "/careers", "page"),
+  doc("careers", "Careers", "Hiring and open positions.", "/career", "page"),
   doc("contact", "Contact", "Institutional contact channels.", "/contact", "page"),
   doc("press", "Press", "Press kit and media contacts.", "/press", "resource"),
   doc("media", "Media", "Brand gallery.", "/media", "resource"),

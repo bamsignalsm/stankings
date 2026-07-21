@@ -30,7 +30,7 @@ export default function HomePage() {
                 <span className="text-cream-muted">An enduring institution.</span>
               </h2>
               <p className="mb-6 leading-relaxed text-cream-muted">
-                Stankings Group exists as a permanent institution dedicated to creating
+                Stankings Legacy Ltd exists as a permanent institution dedicated to creating
                 lasting value through enterprise, technology, education, innovation,
                 philanthropy, and ethical leadership. We are proudly African, building
                 trust infrastructure that makes Nigerians feel safer making important
@@ -62,7 +62,7 @@ export default function HomePage() {
                   The Custodian Principle
                 </h3>
                 <p className="text-cream-muted">
-                  No individual owns the legacy of Stankings Group. Every leader is
+                  No individual owns the legacy of Stankings Legacy Ltd. Every leader is
                   entrusted with preserving, strengthening, and responsibly transferring
                   that legacy. Leadership is stewardship. Authority is responsibility.
                 </p>
@@ -132,7 +132,7 @@ export default function HomePage() {
               Platforms you can use today
             </h2>
             <p className="text-cream-muted">
-              Three Stankings Group companies are live and serving customers across
+              Three Stankings Legacy Ltd companies are live and serving customers across
               Nigeria — marketplace, relationships, and financial infrastructure.
             </p>
           </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 import { SITE } from "@/lib/institutional/public-site";
 import { CONTACTS } from "@/lib/shared/config/contacts";
 import { USER_LOGIN_PATH } from "@/lib/auth-paths";
@@ -20,7 +21,7 @@ const AUTHORITY_LINKS = [
   { href: "/press", label: "Press" },
   { href: "/media", label: "Media" },
   { href: "/contact", label: "Contact" },
-  { href: "/careers", label: "Careers" },
+  { href: "/career", label: "Careers" },
   { href: "/constitution", label: "Constitution" },
 ] as const;
 
@@ -116,7 +117,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gold-subtle pt-8 md:flex-row">
           <p className="text-xs text-cream-muted/60">
-            © {year} Stankings Group Ltd. All rights reserved.
+            © {year} {BRAND.legalName}. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-xs text-cream-muted/60">
             <Link href="/privacy" className="hover:text-cream">

@@ -9,8 +9,8 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
   description:
-    "Careers at Stankings Group — culture, benefits, hiring philosophy, and open positions.",
-  path: "/careers",
+    "Careers at Stankings Legacy Ltd — culture, benefits, hiring philosophy, and open positions.",
+  path: "/career",
 });
 
 export default async function CareersPage() {
@@ -32,14 +32,14 @@ export default async function CareersPage() {
       <section className="border-b border-gold-subtle py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="mb-4 text-xs tracking-[0.35em] text-gold uppercase">
-            Stankings Group Careers
+            Stankings Legacy Ltd Careers
           </p>
           <h1 className="mb-6 font-serif text-4xl font-semibold text-cream md:text-5xl">
             Build institutions that empower generations
           </h1>
           <p className="text-lg text-cream-muted">
-            All recruitment across the Stankings ecosystem is published centrally by Stankings
-            Group. Individual companies do not post roles independently.
+            All recruitment across the Stankings Legacy Ltd portfolio is published centrally.
+            Individual products do not post roles independently.
           </p>
         </div>
       </section>
@@ -81,7 +81,7 @@ export default async function CareersPage() {
               {posts.map((post) => (
                 <Link
                   key={post.id}
-                  href={`/careers/${post.slug}`}
+                  href={`/career/${post.slug}`}
                   className="block rounded-lg border border-gold-subtle bg-ink-muted p-6 transition hover:border-gold/40"
                 >
                   <p className="text-xs tracking-widest text-gold uppercase">{post.company_area}</p>
@@ -98,7 +98,7 @@ export default async function CareersPage() {
             <h2 className="mb-2 font-serif text-xl text-cream">Application process</h2>
             <ol className="list-decimal space-y-2 pl-5 text-sm text-cream-muted">
               <li>Review the role and apply through the published posting.</li>
-              <li>Applications are reviewed centrally by Stankings Group.</li>
+              <li>Applications are reviewed centrally by Stankings Legacy Ltd.</li>
               <li>Shortlisted candidates are contacted for interviews.</li>
               <li>Offers reflect stewardship expectations for the role.</li>
             </ol>

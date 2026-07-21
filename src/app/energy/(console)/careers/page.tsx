@@ -54,7 +54,7 @@ export default async function AdminCareersPage() {
                 Edit
               </Link>
               <Link
-                href={`/careers/${post.slug}`}
+                href={`/career/${post.slug}`}
                 className="text-sm text-cream-muted hover:text-gold"
               >
                 View

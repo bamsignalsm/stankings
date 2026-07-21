@@ -1,3 +1,5 @@
+import { CORPORATE } from "./corporate";
+
 export {
   CONTACTS,
   INSTITUTIONAL_CONTACT,
@@ -6,10 +8,14 @@ export {
   type ContactKey,
 } from "./contacts";
 
+export { CORPORATE, STANKINGS_CAREERS_URL, STANKINGS_LEGACY_LTD } from "./corporate";
+/** @deprecated Use CORPORATE */
+export { CORPORATE as COMPANY } from "./corporate";
+
 export const HQ_SITE = {
-  name: "Stankings Group",
+  name: CORPORATE.legalName,
   domain: "stankings.com",
-  url: "https://stankings.com",
+  url: CORPORATE.website,
   founder: "Stanley Ukeje",
 } as const;
 
@@ -27,6 +33,6 @@ export const HQ_PATHS = {
   press: "/press",
   media: "/media",
   contact: "/contact",
-  careers: "/careers",
+  careers: "/career",
   constitution: "/constitution",
 } as const;

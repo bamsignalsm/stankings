@@ -62,7 +62,7 @@ export async function createCareerPost(formData: FormData) {
 
   if (error) throw new Error(error.message);
   revalidatePath("/energy/careers");
-  revalidatePath("/careers");
+  revalidatePath("/career");
 }
 
 export async function updateCareerPost(id: string, formData: FormData) {
@@ -93,7 +93,7 @@ export async function updateCareerPost(id: string, formData: FormData) {
 
   if (error) throw new Error(error.message);
   revalidatePath("/energy/careers");
-  revalidatePath("/careers");
+  revalidatePath("/career");
 }
 
 export async function approveMember(formData: FormData) {
@@ -156,5 +156,5 @@ export async function submitCareerApplication(formData: FormData) {
   });
 
   if (error) throw new Error(error.message);
-  revalidatePath("/careers");
+  revalidatePath("/career");
 }

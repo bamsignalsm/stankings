@@ -24,7 +24,7 @@ export const CONSTITUTION_CHAPTERS = [
 export const CONSTITUTION_INTRO = [
   {
     heading: "Highest internal governing document",
-    body: "Volume I — The Group Constitution — is the highest internal governing document of Stankings Group. It implements the Canons of Volume 0 and prevails over derived governance unless applicable law requires otherwise.",
+    body: "Volume I — The Group Constitution — is the highest internal governing document of Stankings Legacy Ltd. It implements the Canons of Volume 0 and prevails over derived governance unless applicable law requires otherwise.",
   },
   {
     heading: "What the public may read here",

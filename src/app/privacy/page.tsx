@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
-  description: "Stankings Group institutional privacy policy.",
+  description: "Stankings Legacy Ltd institutional privacy policy.",
   path: "/privacy",
 });
 

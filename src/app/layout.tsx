@@ -26,23 +26,24 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
-      { url: "/images/icon-32.webp", sizes: "32x32", type: "image/webp" },
-      { url: "/images/icon-512.webp", sizes: "512x512", type: "image/webp" },
+      { url: BRAND.favicon.src32, sizes: "32x32", type: "image/webp" },
+      { url: BRAND.favicon.src512, sizes: "512x512", type: "image/webp" },
     ],
     apple: [
-      { url: "/images/icon-180.webp", sizes: "180x180", type: "image/webp" },
+      { url: BRAND.favicon.src180, sizes: "180x180", type: "image/webp" },
     ],
-    shortcut: "/images/icon-32.webp",
+    shortcut: BRAND.favicon.src32,
   },
   manifest: "/site.webmanifest",
   title: {
-    default: "Stankings Group — Building Institutions That Empower Generations",
-    template: "%s | Stankings Group",
+    default: `${BRAND.displayName} — Building Institutions That Empower Generations`,
+    template: `%s | ${BRAND.displayName}`,
   },
   description:
-    "Stankings Group is one of Africa's emerging institutional groups — building trusted businesses, transformative technologies, respected educational institutions, and lasting social impact.",
+    `${BRAND.legalName} is one of Africa's emerging institutional groups — building trusted businesses, transformative technologies, respected educational institutions, and lasting social impact.`,
   keywords: [
-    "Stankings Group",
+    BRAND.displayName,
+    BRAND.legalName,
     "Yike",
     "BamSignal",
     "BayRight",
@@ -52,11 +53,10 @@ export const metadata: Metadata = {
     "trust",
   ],
   openGraph: {
-    title: "Stankings Group — Building Institutions That Empower Generations",
-    description:
-      "We are not building businesses to enrich one generation. We are building institutions that empower generations.",
+    title: `${BRAND.displayName} — Building Institutions That Empower Generations`,
+    description: BRAND.tagline,
     url: SITE_URL,
-    siteName: "Stankings Group",
+    siteName: BRAND.displayName,
     locale: "en_NG",
     type: "website",
     images: [
@@ -78,9 +78,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Stankings Group",
-    description:
-      "We are not building businesses to enrich one generation. We are building institutions that empower generations.",
+    title: BRAND.displayName,
+    description: BRAND.tagline,
     images: [BRAND.ogImage.src],
   },
 };
@@ -97,7 +96,7 @@ export default function RootLayout({
           data={{
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Stankings Group",
+            name: BRAND.legalName,
             url: SITE_URL,
             logo: `${SITE_URL}${BRAND.logo.src}`,
             email: CONTACTS.hello,

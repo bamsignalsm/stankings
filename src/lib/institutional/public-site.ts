@@ -30,7 +30,7 @@ export const PUBLIC_PAGE_AUDIT: PublicPageAudit[] = [
   { slug: "library", label: "Library", href: "/library", status: "live", phase: "Public Website" },
   { slug: "support", label: "Support", href: "/support", status: "live", phase: "Support Center" },
   { slug: "contact", label: "Contact", href: "/contact", status: "live", phase: "Public Website" },
-  { slug: "careers", label: "Careers", href: "/careers", status: "live", phase: "Public Website" },
+  { slug: "careers", label: "Careers", href: "/career", status: "live", phase: "Public Website" },
   { slug: "media", label: "Media", href: "/media", status: "live", phase: "Public Website" },
   { slug: "trust", label: "Trust Center", href: "/trust", status: "live", phase: "Trust Center" },
   { slug: "security", label: "Security", href: "/security", status: "live", phase: "Security Center" },

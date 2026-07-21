@@ -7,14 +7,14 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "About",
   description:
-    "Stankings Group — an enduring African institution building trusted businesses, technologies, education, and social impact.",
+    "Stankings Legacy Ltd — an enduring African institution building trusted businesses, technologies, education, and social impact.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <InstitutionalPageShell
-      eyebrow="About Stankings Group"
+      eyebrow="About Stankings Legacy Ltd"
       title="An enduring institution"
       description={SITE.brandPromise}
       width="wide"

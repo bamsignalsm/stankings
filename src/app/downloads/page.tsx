@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = buildPageMetadata({
   title: "Download Center",
   description:
-    "Reusable downloads for Stankings Group — company profile, press kit, brand assets, and mobile distribution notes.",
+    "Reusable downloads for Stankings Legacy Ltd — company profile, press kit, brand assets, and mobile distribution notes.",
   path: "/downloads",
 });
 

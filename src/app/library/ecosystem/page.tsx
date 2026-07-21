@@ -5,7 +5,7 @@ import { MemberBanner } from "@/components/MemberBanner";
 export const metadata: Metadata = {
   title: "Ecosystem Map",
   description:
-    "Explorable map of Stankings Group institutions — missions, capabilities, and relationships per CANON-005.",
+    "Explorable map of Stankings Legacy Ltd institutions — missions, capabilities, and relationships per CANON-005.",
   robots: { index: false, follow: false },
 };
 

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { EnergyAuthForm } from "@/components/EnergyAuthForm";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const metadata: Metadata = {
   title: "Sign In",
-  description: "Stankings Group institutional access.",
+  description: "Stankings Legacy Ltd institutional access.",
   robots: { index: false, follow: false },
 };
 
@@ -46,7 +47,9 @@ function EnergyAuthShell({ children }: { children?: React.ReactNode }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
       <div className="w-full max-w-sm">
-        <p className="mb-8 text-center font-serif text-xl text-cream">Stankings</p>
+        <div className="mb-8 flex justify-center">
+          <BrandLogo variant="auth" className="justify-center" />
+        </div>
         <div className="rounded-lg border border-gold-subtle bg-ink-muted p-8">
           {children}
         </div>

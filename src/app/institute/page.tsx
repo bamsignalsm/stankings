@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "The Stankings Institute",
   description:
-    "Leadership and custodian development for Stankings Group — preparing generations before succession requires it.",
+    "Leadership and custodian development for Stankings Legacy Ltd — preparing generations before succession requires it.",
   path: "/institute",
 });
 
@@ -15,7 +15,7 @@ export default function InstitutePage() {
     <InstitutionalPageShell
       eyebrow="The Stankings Institute"
       title="Leaders as custodians"
-      description="The Institute develops the people who will steward Stankings Group across generations — through curriculum, research, and the Custodian Programme."
+      description="The Institute develops the people who will steward Stankings Legacy Ltd across generations — through curriculum, research, and the Custodian Programme."
       width="wide"
     >
       <div className="space-y-10">

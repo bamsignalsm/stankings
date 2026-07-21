@@ -54,7 +54,7 @@ export default async function EnergyDashboard() {
         Overview
       </h1>
       <p className="mb-8 text-cream-muted">
-        Central operations for Stankings Group membership and recruitment.
+        Central operations for Stankings Legacy Ltd membership and recruitment.
         All career posts are published from here — not by individual companies.
       </p>
 
