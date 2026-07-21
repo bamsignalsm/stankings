@@ -14,7 +14,7 @@
     "seed:auth": "node scripts/seed-auth-users.mjs",
     "generate:logo": "node scripts/generate-logo-master.mjs",
     "optimize:brand": "node scripts/optimize-brand-assets.mjs",
-    "brand:refresh": "node scripts/generate-logo-master.mjs && node scripts/optimize-brand-assets.mjs"
+    "verify:brand": "node scripts/verify-brand-assets.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

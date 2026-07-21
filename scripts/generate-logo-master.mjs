@@ -1,19 +1,27 @@
 #!/usr/bin/env node
 /**
- * Build public/images/logo.png — editable master with STANKINGS wordmark only.
- * Preserves the existing gold S emblem from the prior logo; drops "GROUP" subline.
+ * LEGACY / experimental master builder.
  *
+ * Prefer dropping approved artwork into:
+ *   public/images/source/logo-master.png
+ *
+ * Do NOT use this script to “fix” legal-name text inside official artwork.
+ * Wait for revised design files, then archive as logo-master-vN.png and run:
+ *   npm run optimize:brand
+ *
+ * This script writes to public/images/source/logo-master.png only.
  * Run: node scripts/generate-logo-master.mjs
  */
-import { copyFile, stat } from "node:fs/promises";
+import { access, copyFile, mkdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const imagesDir = path.join(root, "public", "images");
-const logoPng = path.join(imagesDir, "logo.png");
-const legacyBackup = path.join(imagesDir, "logo-group-legacy.png");
+const sourceDir = path.join(imagesDir, "source");
+const logoMaster = path.join(sourceDir, "logo-master.png");
+const legacyBackup = path.join(sourceDir, "logo-group-legacy.png");
 
 const MARK_SIZE = 288;
 const PADDING_X = 28;
@@ -40,25 +48,43 @@ const WORDMARK_SVG = (width) => `<?xml version="1.0" encoding="UTF-8"?>
 </svg>`;
 
 async function main() {
-  const sourceMeta = await sharp(logoPng).metadata();
+  console.warn(
+    "[generate:logo] Legacy path — prefer official artwork in public/images/source/logo-master.png",
+  );
+
+  await mkdir(sourceDir, { recursive: true });
+
+  let sourcePath = logoMaster;
+  try {
+    await access(logoMaster);
+  } catch {
+    const oldPublic = path.join(imagesDir, "logo.png");
+    try {
+      await access(oldPublic);
+      sourcePath = oldPublic;
+    } catch {
+      throw new Error("No logo-master.png (or legacy public/images/logo.png) to rebuild from");
+    }
+  }
+
+  const sourceMeta = await sharp(sourcePath).metadata();
   if (!sourceMeta.width || !sourceMeta.height) {
-    throw new Error("Could not read logo.png");
+    throw new Error("Could not read master logo dimensions");
   }
 
   try {
     await stat(legacyBackup);
   } catch {
-    await copyFile(logoPng, legacyBackup);
-    console.log(`Backed up prior logo to ${path.basename(legacyBackup)}`);
+    await copyFile(sourcePath, legacyBackup);
+    console.log(`Backed up prior logo to source/${path.basename(legacyBackup)}`);
   }
 
-  const mark = await sharp(logoPng)
+  const mark = await sharp(sourcePath)
     .extract({ left: 0, top: 0, width: MARK_SIZE, height: MARK_SIZE })
     .png()
     .toBuffer();
 
   const wordmarkProbe = Buffer.from(WORDMARK_SVG(900));
-  const wordmarkMeta = await sharp(wordmarkProbe).png().toBuffer().then((b) => sharp(b).metadata());
   const wordmarkRendered = await sharp(wordmarkProbe).png().toBuffer();
   const trimmed = await sharp(wordmarkRendered).trim({ threshold: 10 }).png().toBuffer();
   const trimmedMeta = await sharp(trimmed).metadata();
@@ -104,12 +130,13 @@ async function main() {
     .png()
     .toBuffer();
 
-  await sharp(logo).toFile(logoPng);
+  await sharp(logo).toFile(logoMaster);
 
-  const outMeta = await sharp(logoPng).metadata();
+  const outMeta = await sharp(logoMaster).metadata();
   console.log(
-    `logo.png: ${outMeta.width}×${outMeta.height} (STANKINGS wordmark, emblem preserved)`,
+    `source/logo-master.png: ${outMeta.width}×${outMeta.height} (experimental STANKINGS wordmark)`,
   );
+  console.log("Next: npm run optimize:brand");
 }
 
 main().catch((err) => {

@@ -52,6 +52,21 @@ Health:
 - [bamsignal.com](https://bamsignal.com) — Relationships & community
 - [bayright.com](https://bayright.com) — Financial infrastructure
 
+## Branding
+
+Public brand assets are generated from a versioned master. See **[docs/branding/BRAND_ASSETS.md](docs/branding/BRAND_ASSETS.md)**.
+
+| Path | Role |
+|------|------|
+| `public/images/source/logo-master.png` | Editable master |
+| `public/images/*.webp` / `og-image.*` | Generated — do not edit by hand |
+| `src/lib/brand.ts` | Runtime `BRAND` API for UI / SEO |
+
+```bash
+npm run optimize:brand   # regenerate derived assets
+npm run verify:brand     # CI filesystem + import checks
+```
+
 ## Scripts
 
 | Script | Purpose |
@@ -61,4 +76,6 @@ Health:
 | `npm start` | Production server |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript |
+| `npm run optimize:brand` | Regenerate logo/icon/OG from master |
+| `npm run verify:brand` | Validate brand assets + forbid logo.png imports |
 | `npm run seed:auth` | Local/admin user seed (requires service role) |

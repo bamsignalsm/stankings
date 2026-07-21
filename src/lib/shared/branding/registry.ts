@@ -34,6 +34,8 @@ export const BRAND_USAGE_RULES = [
   "Do not recolor Legacy Gold or stretch the wordmark.",
   "Do not imply endorsement without written permission.",
   "Prefer WebP assets for web; request print packages from Press.",
+  "Never hardcode logo paths — use BRAND.logo.src (including future email templates).",
+  "Do not edit generated files under public/images/; regenerate with npm run optimize:brand.",
 ] as const;
 
 export function getBrandAsset(id: string) {
