@@ -2,6 +2,8 @@
 
 Shared blueprint: **GitHub (dedicated App per product) → Cloudflare → Coolify → Hetzner → healthy production**.
 
+See also: [PLATFORM_STANDARD.md](./PLATFORM_STANDARD.md)
+
 Canonical Coolify control plane: **`https://control.stankings.com`**  
 Compatibility alias: **`https://control.bamsignal.com`**
 
@@ -60,7 +62,7 @@ Product-specific runbooks: [`docs/deployment/`](../deployment/README.md).
 | BamSignal | ✅ | ✅ | bamsignal.com | `/ready` 200 | Reference |
 | Yike | ✅ | ✅ | yike.ng | 200 | — |
 | BayRight | ✅ | ✅ | bayright.com | 200 | `/api/health` degraded — migrate provider secrets to Coolify |
-| Stankings | ✅ | ✅ | stankings.com | apex 200 | **www.stankings.com → 503** — add www to Coolify domains |
+| Stankings | ✅ | ✅ | stankings.com | apex 200, www → apex 302 | Canonical non-www; both hosts healthy (verified 2026-07-21) |
 
 GitHub agent merge (Option 1): **all four repos ✅** — see [AUTOMATION_STANDARD.md](./AUTOMATION_STANDARD.md).
 
