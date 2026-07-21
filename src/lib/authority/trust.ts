@@ -60,7 +60,7 @@ export const TRUST_ARTICLES: Record<string, AuthorityArticle> = {
   ]),
   "community-standards": article("community-standards", "Community Standards", [
     { heading: "Respect", body: "Harassment, discrimination, and impersonation of Stankings institutions or leaders are prohibited." },
-    { heading: "Integrity", body: "Do not misrepresent affiliation with Stankings Group or its companies." },
+    { heading: "Integrity", body: "Do not misrepresent affiliation with Stankings Legacy Ltd or its companies." },
     { heading: "Enforcement", body: "Products enforce community standards on their platforms. HQ may revoke institutional membership for serious violations." },
   ]),
   safety: article("safety", "Safety", [

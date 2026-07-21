@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Companies",
   description:
-    "Centers of Excellence across the Stankings Group ecosystem — commerce, education, and society.",
+    "Centers of Excellence across the Stankings Legacy Ltd ecosystem — commerce, education, and society.",
   path: "/companies",
 });
 
@@ -20,7 +20,7 @@ export default function CompaniesPage() {
     <InstitutionalPageShell
       eyebrow="Our Companies"
       title="Centers of Excellence"
-      description="Stankings Group builds through specialized companies — each with its own mission, team, and operational independence."
+      description="Stankings Legacy Ltd builds through specialized companies — each with its own mission, team, and operational independence."
       width="full"
     >
       {live.length > 0 ? (
@@ -46,8 +46,8 @@ export default function CompaniesPage() {
       ) : null}
 
       <p className="mt-12 text-sm text-cream-muted">
-        <Link href="/careers" className="text-gold hover:text-gold-light">
-          Careers at Stankings Group →
+        <Link href="/career" className="text-gold hover:text-gold-light">
+          Careers at Stankings Legacy Ltd →
         </Link>
       </p>
     </InstitutionalPageShell>

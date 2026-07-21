@@ -15,7 +15,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = buildPageMetadata({
   title: "Brand Center",
   description:
-    "Central brand asset repository for Stankings Group — logos, colors, fonts, and usage rules.",
+    "Central brand asset repository for Stankings Legacy Ltd — logos, colors, fonts, and usage rules.",
   path: "/brand",
 });
 
@@ -57,13 +57,19 @@ export default function BrandPage() {
                   key={asset.id}
                   className="rounded-lg border border-gold-subtle bg-ink-muted p-6"
                 >
-                  <div className="mb-4 flex h-28 items-center justify-center rounded-sm bg-ink">
+                  <div className="mb-4 flex min-h-28 items-center justify-center rounded-sm bg-ink px-4 py-5">
                     <Image
                       src={asset.src}
                       alt={asset.title}
-                      width={200}
-                      height={80}
-                      className="max-h-16 w-auto object-contain"
+                      width={asset.id === "logo" ? 280 : asset.id === "icon" ? 96 : 240}
+                      height={asset.id === "logo" ? 72 : asset.id === "icon" ? 96 : 126}
+                      className={
+                        asset.id === "logo"
+                          ? "h-14 w-auto max-w-full object-contain sm:h-16"
+                          : asset.id === "icon"
+                            ? "h-20 w-20 object-contain"
+                            : "h-auto w-full max-w-[220px] object-contain"
+                      }
                     />
                   </div>
                   <figcaption className="font-serif text-lg text-cream">{asset.title}</figcaption>

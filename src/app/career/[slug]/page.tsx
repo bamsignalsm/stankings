@@ -42,7 +42,7 @@ export default async function CareerDetailPage({ params }: PageProps) {
       <section className="border-b border-gold-subtle py-16">
         <div className="mx-auto max-w-3xl px-6">
           <Link
-            href="/careers"
+            href="/career"
             className="mb-6 inline-block text-sm text-cream-muted hover:text-gold"
           >
             ← All careers

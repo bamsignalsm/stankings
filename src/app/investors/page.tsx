@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Investors",
   description:
-    "Institutional approach to capital, stewardship reporting, and long-term value at Stankings Group.",
+    "Institutional approach to capital, stewardship reporting, and long-term value at Stankings Legacy Ltd.",
   path: "/investors",
 });
 
@@ -16,7 +16,7 @@ export default function InvestorsPage() {
     <InstitutionalPageShell
       eyebrow="Investors"
       title="Capital in service of institutions"
-      description="Stankings Group treats capital as a means to build enduring institutions — not as an end that overrides trust, governance, or generational responsibility."
+      description="Stankings Legacy Ltd treats capital as a means to build enduring institutions — not as an end that overrides trust, governance, or generational responsibility."
       width="wide"
     >
       <div className="space-y-10">

@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Partners",
   description:
-    "How institutions, providers, and enterprises engage with Stankings Group.",
+    "How institutions, providers, and enterprises engage with Stankings Legacy Ltd.",
   path: "/partners",
 });
 
@@ -16,7 +16,7 @@ export default function PartnersPage() {
     <InstitutionalPageShell
       eyebrow="Partners"
       title="Partnership with institutional discipline"
-      description="Stankings Group engages partners who strengthen trust, capability, and long-term service — not short-term distribution alone."
+      description="Stankings Legacy Ltd engages partners who strengthen trust, capability, and long-term service — not short-term distribution alone."
       width="wide"
     >
       <div className="space-y-10">

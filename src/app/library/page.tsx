@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "The Library",
   description:
-    "Corporate document repository and institutional knowledge of Stankings Group — policies, governance, press, and member library access.",
+    "Corporate document repository and institutional knowledge of Stankings Legacy Ltd — policies, governance, press, and member library access.",
   path: "/library",
 });
 

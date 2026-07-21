@@ -9,7 +9,7 @@ export const COMPANY_AREAS = [
   "Education",
   "Leadership Development",
   "Community Development and Philanthropy",
-  "Stankings Group (Corporate)",
+  "Stankings Legacy Ltd (Corporate)",
 ] as const;
 
 export const EMPLOYMENT_TYPES = [

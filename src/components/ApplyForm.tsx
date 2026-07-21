@@ -43,7 +43,7 @@ export function ApplyForm({
       <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-6">
         <p className="font-medium text-emerald-300">Application submitted</p>
         <p className="mt-2 text-sm text-cream-muted">
-          Thank you for applying to {postTitle}. The Stankings Group recruitment
+          Thank you for applying to {postTitle}. The Stankings Legacy Ltd recruitment
           team will review your application.
         </p>
       </div>
@@ -65,7 +65,7 @@ export function ApplyForm({
           name="cover_letter"
           rows={5}
           className="w-full rounded-sm border border-gold-subtle bg-ink px-4 py-3 text-cream"
-          placeholder="Tell us why you want to join Stankings Group..."
+          placeholder="Tell us why you want to join Stankings Legacy Ltd..."
         />
       </div>
       {error && (

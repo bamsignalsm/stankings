@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Leadership",
   description:
-    "Executive leadership, governance structure, and corporate values of Stankings Group.",
+    "Executive leadership, governance structure, and corporate values of Stankings Legacy Ltd.",
   path: "/leadership",
 });
 
@@ -20,7 +20,7 @@ export default function LeadershipPage() {
     <InstitutionalPageShell
       eyebrow="Leadership"
       title="Stewardship, not personality"
-      description="Leadership at Stankings Group is constitutional stewardship. Authority is responsibility — every leader is entrusted to preserve and strengthen the institution for future generations."
+      description="Leadership at Stankings Legacy Ltd is constitutional stewardship. Authority is responsibility — every leader is entrusted to preserve and strengthen the institution for future generations."
       width="wide"
     >
       <div className="space-y-12">

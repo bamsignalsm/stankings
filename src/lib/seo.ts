@@ -13,10 +13,10 @@ export function buildPageMetadata(opts: {
     description: opts.description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${opts.title} | Stankings Group`,
+      title: `${opts.title} | ${BRAND.displayName}`,
       description: opts.description,
       url,
-      siteName: "Stankings Group",
+      siteName: BRAND.displayName,
       locale: "en_NG",
       type: "website",
       images: [
@@ -30,7 +30,7 @@ export function buildPageMetadata(opts: {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${opts.title} | Stankings Group`,
+      title: `${opts.title} | ${BRAND.displayName}`,
       description: opts.description,
       images: [BRAND.ogImage.src],
     },

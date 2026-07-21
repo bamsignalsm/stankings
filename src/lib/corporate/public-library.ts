@@ -10,7 +10,7 @@ export const PUBLIC_LIBRARY_CATEGORIES = [
   {
     slug: "governance",
     title: "Governance",
-    summary: "How Stankings Group is structured and led.",
+    summary: "How Stankings Legacy Ltd is structured and led.",
     href: "/constitution",
   },
   {

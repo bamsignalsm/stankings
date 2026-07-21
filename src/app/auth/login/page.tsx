@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AuthForm } from "@/components/AuthForm";
+import { AuthPageShell } from "@/components/AuthPageShell";
 import { USER_REGISTER_PATH } from "@/lib/auth-paths";
 
 export const metadata: Metadata = {
   title: "Sign In",
-  description: "Sign in to access Stankings Group institutional documents.",
+  description: "Sign in to access Stankings Legacy Ltd institutional documents.",
 };
 
 export default function AuthLoginPage({
@@ -31,8 +32,8 @@ async function LoginContent({
   return (
     <AuthPageShell title="Sign in">
       <p className="mb-8 text-sm leading-relaxed text-cream-muted">
-        Sign in with your verified member account to access The Stankings Library,
-        the Group Constitution, and other institutional documents.
+        Sign in with your verified member account to access The Stankings Library, the Group
+        Constitution, and other institutional documents.
       </p>
 
       {params.error === "auth" && (
@@ -55,29 +56,5 @@ async function LoginContent({
         </Link>
       </p>
     </AuthPageShell>
-  );
-}
-
-function AuthPageShell({
-  title,
-  children,
-}: {
-  title: string;
-  children?: React.ReactNode;
-}) {
-  return (
-    <div className="flex min-h-[80vh] items-center justify-center px-6 pt-24 pb-16">
-      <div className="w-full max-w-md">
-        <p className="mb-2 text-center text-xs uppercase tracking-[0.3em] text-gold">
-          Member Access
-        </p>
-        <h1 className="mb-8 text-center font-serif text-3xl font-semibold text-cream">
-          {title}
-        </h1>
-        <div className="rounded-lg border border-gold-subtle bg-ink-muted p-8">
-          {children}
-        </div>
-      </div>
-    </div>
   );
 }

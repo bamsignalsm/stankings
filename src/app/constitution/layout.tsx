@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Constitution",
   description:
-    "Volume I — The Group Constitution of Stankings Group. Structure, articles, and member access to the authoritative text.",
+    "Volume I — The Group Constitution of Stankings Legacy Ltd. Structure, articles, and member access to the authoritative text.",
   path: "/constitution",
 });
 

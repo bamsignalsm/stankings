@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Media",
-  description: "Corporate gallery — logos, brand assets, and approved imagery for Stankings Group.",
+  description: "Corporate gallery — logos, brand assets, and approved imagery for Stankings Legacy Ltd.",
   path: "/media",
 });
 
@@ -35,13 +35,19 @@ export default function MediaPage() {
                 key={asset.title}
                 className="rounded-lg border border-gold-subtle bg-ink-muted p-6"
               >
-                <div className="relative mb-4 flex h-32 items-center justify-center rounded-sm bg-ink">
+                <div className="relative mb-4 flex min-h-32 items-center justify-center rounded-sm bg-ink px-4 py-5">
                   <Image
                     src={asset.src}
                     alt={asset.title}
-                    width={200}
-                    height={80}
-                    className="max-h-20 w-auto object-contain"
+                    width={asset.title === "Primary logo" ? 280 : asset.title === "App icon" ? 96 : 240}
+                    height={asset.title === "Primary logo" ? 72 : asset.title === "App icon" ? 96 : 126}
+                    className={
+                      asset.title === "Primary logo"
+                        ? "h-16 w-auto max-w-full object-contain sm:h-[4.5rem]"
+                        : asset.title === "App icon"
+                          ? "h-20 w-20 object-contain"
+                          : "h-auto w-full max-w-[220px] object-contain"
+                    }
                   />
                 </div>
                 <figcaption>

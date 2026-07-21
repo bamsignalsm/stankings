@@ -1,5 +1,5 @@
 {
-  "name": "Stankings Group",
+  "name": "Stankings Legacy Ltd",
   "short_name": "Stankings",
   "description": "Building institutions that empower generations.",
   "start_url": "/",
@@ -10,12 +10,14 @@
     {
       "src": "/images/icon-180.webp",
       "sizes": "180x180",
-      "type": "image/webp"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
       "src": "/images/icon-512.webp",
       "sizes": "512x512",
-      "type": "image/webp"
+      "type": "image/webp",
+      "purpose": "any maskable"
     }
   ]
 }

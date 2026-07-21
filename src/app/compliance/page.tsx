@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Compliance Center",
   description:
-    "Shared compliance orientation for Stankings Group — data protection, records, and reporting.",
+    "Shared compliance orientation for Stankings Legacy Ltd — data protection, records, and reporting.",
   path: "/compliance",
 });
 

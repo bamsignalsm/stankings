@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Security Center",
   description:
-    "Security portal for Stankings Group — responsible disclosure, infrastructure principles, and incident response.",
+    "Security portal for Stankings Legacy Ltd — responsible disclosure, infrastructure principles, and incident response.",
   path: "/security",
 });
 

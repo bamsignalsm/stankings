@@ -5,7 +5,7 @@ import { MemberBanner } from "@/components/MemberBanner";
 export const metadata: Metadata = {
   title: "Institutional Identity Statements",
   description:
-    "Constitutional identity for every institution in the Stankings Group ecosystem — FRAMEWORK-IIS-001.",
+    "Constitutional identity for every institution in the Stankings Legacy Ltd ecosystem — FRAMEWORK-IIS-001.",
   robots: { index: false, follow: false },
 };
 

@@ -22,8 +22,10 @@ export function Header() {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 border-b border-gold-subtle bg-ink/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-        <BrandLogo variant="header" priority />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:gap-4 sm:px-6 sm:py-4">
+        <div className="min-w-0 flex-shrink">
+          <BrandLogo variant="header" priority />
+        </div>
 
         <nav className="hidden items-center gap-5 xl:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (

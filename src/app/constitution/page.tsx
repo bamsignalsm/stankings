@@ -31,7 +31,7 @@ export default function ConstitutionPublicPage() {
             The Group Constitution
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-cream-muted">
-            The highest internal governing document of Stankings Group — defining purpose,
+            The highest internal governing document of Stankings Legacy Ltd — defining purpose,
             governance, leadership, platforms, and succession.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 print:hidden">

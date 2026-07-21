@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Stankings Foundation",
   description:
-    "Community and social impact institution of Stankings Group — service as purpose, not marketing.",
+    "Community and social impact institution of Stankings Legacy Ltd — service as purpose, not marketing.",
   path: "/foundation",
 });
 
@@ -16,7 +16,7 @@ export default function FoundationPage() {
     <InstitutionalPageShell
       eyebrow="Stankings Foundation"
       title="Impact as institutional purpose"
-      description="The Foundation exists because serving people is part of why Stankings Group exists — measured in lasting community outcomes, not campaigns."
+      description="The Foundation exists because serving people is part of why Stankings Legacy Ltd exists — measured in lasting community outcomes, not campaigns."
       width="wide"
     >
       <div className="space-y-10">
