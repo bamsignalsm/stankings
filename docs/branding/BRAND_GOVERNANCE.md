@@ -106,8 +106,6 @@ This repository’s default brand remains `stankings`. Product sites (BamSignal,
 
 ## Known deferred item
 
-Current master artwork contains the text **“STANKINGS GROUP”**.
+None for wordmark copy. Active master (`logo-master-v2.png`) is the **STANKINGS LEGACY** artwork.
 
-This is the official source artwork. Do **not** alter it programmatically.
-
-When revised artwork is received: replace the master only, then regenerate all derived assets through the existing pipeline.
+When further revised artwork is received: replace the master only, then regenerate all derived assets through the existing pipeline.

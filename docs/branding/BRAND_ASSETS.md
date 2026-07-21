@@ -23,8 +23,8 @@ Single source of truth for public brand surfaces on [stankings.com](https://stan
 | File | Purpose |
 |------|---------|
 | `public/images/source/logo-master.png` | **Active** master used by the optimizer |
-| `public/images/source/logo-master-v1.png` | Versioned archive of the current master |
-| `public/images/source/logo-master-v2.png` | *(future)* next approved master |
+| `public/images/source/logo-master-v1.png` | Archived version 1 (prior wordmark) |
+| `public/images/source/logo-master-v2.png` | Version 2 — **STANKINGS LEGACY** (July 2026) |
 
 When new artwork arrives:
 
