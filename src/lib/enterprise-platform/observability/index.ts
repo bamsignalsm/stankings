@@ -32,9 +32,13 @@ export function buildPlatformHealthReport(): PlatformHealthReport {
     {
       id: "consent",
       status: "healthy",
+      detail: "Eight-Gate complete",
+    },
+    {
+      id: "passport",
+      status: "healthy",
       detail: "Eight-Gate complete (migration apply pending review)",
     },
-    { id: "passport", status: "interface_only" },
     { id: "trust", status: "interface_only" },
     { id: "explainability", status: "interface_only" },
     { id: "notifications", status: "healthy", detail: "foundation abstraction" },

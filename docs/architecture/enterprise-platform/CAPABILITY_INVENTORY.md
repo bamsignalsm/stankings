@@ -37,14 +37,15 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 ## Passport domain
 
-| Capability | Artifact | Class |
-|------------|----------|-------|
-| Passport contract | `SHARED_PLATFORM_CONTRACT` + `PASSPORT.md` | Docs only / contract |
-| Passport runtime stub | `capabilities/passport.ts` | Interface only |
-| Credential lifecycle | — | Missing |
-| Verification framework | — | Missing |
-| Identity linking | partial via `externalRefs` | Executable incomplete (Identity) |
-| Cross-platform identity | federation model | Executable incomplete |
+| Capability | Artifact | Class | Notes |
+|------------|----------|-------|-------|
+| Passport Runtime | `enterprise-platform/passport/*` | **Complete (8/8)** | Runtime 1.0.0; migration apply pending review |
+| Passport contract | `passport.record@1.0.0` | Complete | SDK `@stankings/platform-sdk/passport` |
+| Credential / record lifecycle | `passport/domain.ts` + `registry.ts` | Complete | issue/suspend/revoke/expire/renew |
+| Evidence framework | `passport/evidence.ts` + evidence table | Complete | References only |
+| Identity linking | `subjectId` sid_* binding | Complete | Via Shared Identity |
+| Persistence | Memory/File/Supabase + SQL | Complete | `20260722160000_shared_passport_persistence.sql` |
+| Consumer guide | `PASSPORT_CONSUMER_GUIDE.md` | Complete | |
 
 ---
 
@@ -62,11 +63,11 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 ## Consent domain
 
-| Capability | Artifact | Class |
-|------------|----------|-------|
-| Consent contract | `CONSENT.md` | Docs only / contract |
-| Consent runtime stub | `capabilities/consent.ts` | Interface only |
-| Consent history / revocation / versioning | — | Missing |
+| Capability | Artifact | Class | Notes |
+|------------|----------|-------|-------|
+| Consent Runtime | `enterprise-platform/consent/*` | **Complete (8/8)** | Runtime 1.0.0 |
+| Consent contract | `consent.record@1.0.0` | Complete | SDK consent client |
+| Consent history / revocation / versioning | consent store + history | Complete | |
 
 ---
 

@@ -1,20 +1,27 @@
 /**
- * Passport Runtime — interface surface only (Identity is gold standard).
+ * Passport Runtime pointer — implementation lives in enterprise-platform/passport.
+ * Avoid importing enterprise-platform here (circular risk via shared-runtime barrel).
  */
 
 export interface PassportCredentialRef {
-  credentialId: string;
+  passportId: string;
   subjectId: string;
-  status: "planned";
+  status: "active" | "suspended" | "revoked" | "expired" | "draft" | "issued";
 }
 
 export interface PassportRuntime {
-  readonly readiness: "interface_only";
+  readonly id: string;
+  readonly version: string;
+  readonly docsPath: string;
+  readonly eightGateComplete: true;
   describe(): string;
 }
 
 export const PASSPORT_RUNTIME: PassportRuntime = {
-  readiness: "interface_only",
+  id: "enterprise-passport-runtime",
+  version: "1.0.0",
+  docsPath: "docs/platform/PASSPORT_RUNTIME.md",
+  eightGateComplete: true,
   describe: () =>
-    "Passport Runtime reserved. Follow Identity Eight-Gate pattern when implementation begins.",
+    "Passport Runtime Eight-Gate complete — use @stankings/platform-sdk/passport or enterprise-platform/passport.",
 };

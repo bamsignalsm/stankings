@@ -4,7 +4,8 @@
  * Identity: domain + persistence + Subject Registry + HQ mapping + validation.
  * Federation + platform registration are executable contracts.
  * Enterprise quality / events / registry live under enterprise-platform.
- * Passport / Trust / Consent / Explainability expose interfaces only.
+ * Passport: Eight-Gate complete under enterprise-platform/passport.
+ * Trust / Explainability expose interfaces only.
  */
 
 export * from "./identity";

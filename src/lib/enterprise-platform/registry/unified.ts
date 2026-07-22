@@ -97,9 +97,9 @@ export function buildUnifiedEnterpriseRegistries(): UnifiedEnterpriseRegistries 
       },
       {
         moduleId: "sdk.passport",
-        exportPath: "@stankings/platform-sdk",
+        exportPath: "@stankings/platform-sdk/passport",
         version: PLATFORM_SDK_META.version,
-        readiness: "interface_only",
+        readiness: "executable",
         capabilityId: "passport",
       },
     ],

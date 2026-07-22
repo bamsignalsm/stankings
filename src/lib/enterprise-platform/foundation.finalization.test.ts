@@ -27,24 +27,25 @@ describe("foundation finalization modules", () => {
   it("builds runtime configuration and toggles", () => {
     const config = buildRuntimeConfiguration({
       platformId: "yike",
-      capabilityToggles: { passport: false },
+      capabilityToggles: { trust: false },
     });
     expect(isCapabilityEnabled(config, "identity")).toBe(true);
-    expect(isCapabilityEnabled(config, "passport")).toBe(false);
-    expect(config.defaults.sdkVersion).toBe("1.2.0");
+    expect(isCapabilityEnabled(config, "passport")).toBe(true);
+    expect(isCapabilityEnabled(config, "trust")).toBe(false);
+    expect(config.defaults.sdkVersion).toBe("1.3.0");
   });
 
   it("validates unified registries", () => {
     const regs = buildUnifiedEnterpriseRegistries();
-    expect(regs.contracts.some((c) => c.contractId === "consent.record")).toBe(true);
-    expect(regs.sdkModules.some((m) => m.moduleId === "sdk.consent")).toBe(true);
+    expect(regs.contracts.some((c) => c.contractId === "passport.record")).toBe(true);
+    expect(regs.sdkModules.some((m) => m.moduleId === "sdk.passport")).toBe(true);
     expect(validateUnifiedRegistries(regs).valid).toBe(true);
   });
 
   it("reports platform health", () => {
     const health = buildPlatformHealthReport();
     expect(health.overall).toBe("healthy");
-    expect(health.components.some((c) => c.id === "consent" && c.status === "healthy")).toBe(
+    expect(health.components.some((c) => c.id === "passport" && c.status === "healthy")).toBe(
       true,
     );
   });

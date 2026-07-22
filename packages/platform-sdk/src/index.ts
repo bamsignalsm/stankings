@@ -34,9 +34,12 @@ export {
 } from "./consent";
 
 export {
-  PASSPORT_CLIENT_EXTENSION,
-  TRUST_CLIENT_EXTENSION,
-} from "./extensions";
+  createPassportClient,
+  PassportClient,
+  type PassportClientOptions,
+} from "./passport";
+
+export { TRUST_CLIENT_EXTENSION } from "./extensions";
 
 export {
   createEnterpriseError,

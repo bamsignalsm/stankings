@@ -94,7 +94,7 @@ export function defaultConsentDefinitions(): ConsentDefinition[] {
       purpose: "Allow Passport credential presentation across ecosystem platforms",
       purposeKey: "passport.cross_platform",
       version: "1.0.0",
-      description: "Reserved for Passport runtime — definition only until Passport ships",
+      description: "Cross-platform Passport presentation — consumed by Passport Runtime evidence",
     },
   ];
 }

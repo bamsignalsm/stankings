@@ -1,6 +1,6 @@
 export const PLATFORM_SDK = {
   id: "stankings-platform-sdk",
-  version: "1.2.0",
-  milestone: "foundation-finalization",
+  version: "1.3.0",
+  milestone: "passport-runtime",
   docsPath: "docs/platform/ENTERPRISE_SDK.md",
 } as const;

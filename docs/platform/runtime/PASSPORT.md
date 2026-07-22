@@ -2,41 +2,35 @@
 
 **Capability id:** `passport`  
 **Contract maturity:** approved  
-**Runtime readiness:** contract_only  
+**Runtime readiness:** production  
 **Owner:** Stankings Legacy Ltd  
+**Eight-Gate:** Complete (migration apply pending review)
 
 ## Responsibility
 
-Portable verified identity credentials and accreditation across ecosystem products (members, guests, speakers, VIPs).
+Portable enterprise identity and verification record — aggregates verified evidence references across BamSignal, Yike, BayRight, and future platforms. Not a user profile.
 
 ## Interfaces (contract)
 
 | Interface | Purpose |
 |-----------|---------|
-| `PassportIssue` | Issue or refresh a credential for a subject |
-| `PassportVerify` | Verify credential presentation |
-| `PassportRevoke` | Revoke or suspend credential |
-| `AccreditationGrant` | Event/guest/VIP/speaker accreditation |
+| `PassportIssue` | Issue (and activate) a passport for a subject |
+| `PassportAttachEvidence` | Attach opaque evidence references |
+| `PassportSuspend` / `PassportRevoke` / `PassportExpire` | Lifecycle controls |
+| `PassportPrepareRenewal` | Draft successor for renewal |
+| `PassportHistory` | Audit history |
 
 ## Data ownership
 
 - Subject identity anchors owned by Shared Identity  
-- Credential attestations owned by Passport service  
+- Passport records + evidence refs owned by Passport service  
 - Product-local profiles remain in product databases  
 
 ## Dependencies
 
 - Shared Identity (required)  
-- Consent (for cross-product sharing)  
-
-## Integration points
-
-BamSignal, Yike, BayRight, Legacy Live events, Hotel guest flows, Times press accreditation.
+- Consent (recommended for cross-product presentation)  
 
 ## Non-goals
 
-Not matchmaking, not payments, not a social graph.
-
-## Implementation note
-
-Do not build executable services in this sprint.
+Not matchmaking, not payments, not Trust Engine, not Explainability, not authentication.

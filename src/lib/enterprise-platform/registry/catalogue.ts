@@ -21,19 +21,27 @@ import type {
 const SHARED_RUNTIME_VERSION = "1.0.0";
 
 export function buildCapabilityRegistry(): CapabilityRegistryEntry[] {
-  return SHARED_CAPABILITY_CONTRACTS.map((c) => ({
-    capabilityId: c.id,
-    name: c.name,
-    owner: c.owner,
-    status: c.maturity === "deprecated" ? "deprecated" : "active",
-    contractVersion: SHARED_PLATFORM_CONTRACT.version,
-    runtimeVersion:
-      c.id === "identity" ? IDENTITY_PROVIDER.runtimeVersion : c.runtimeReadiness === "prototype" ? "0.0.0-prototype" : "0.0.0",
-    runtimeReadiness: c.runtimeReadiness,
-    dependsOn: [...c.dependsOn],
-    consumers: [...c.consumers],
-    docsPath: c.docsPath,
-  }));
+  return SHARED_CAPABILITY_CONTRACTS.map((c) => {
+    let runtimeVersion = "0.0.0";
+    if (c.id === "identity") runtimeVersion = IDENTITY_PROVIDER.runtimeVersion;
+    else if (c.id === "consent" || c.id === "passport" || c.id === "capability_discovery") {
+      runtimeVersion = "1.0.0";
+    } else if (c.runtimeReadiness === "prototype") {
+      runtimeVersion = "0.0.0-prototype";
+    }
+    return {
+      capabilityId: c.id,
+      name: c.name,
+      owner: c.owner,
+      status: c.maturity === "deprecated" ? "deprecated" : "active",
+      contractVersion: SHARED_PLATFORM_CONTRACT.version,
+      runtimeVersion,
+      runtimeReadiness: c.runtimeReadiness,
+      dependsOn: [...c.dependsOn],
+      consumers: [...c.consumers],
+      docsPath: c.docsPath,
+    };
+  });
 }
 
 export function buildServiceRegistry(): ServiceRegistryEntry[] {
@@ -81,6 +89,15 @@ export function buildServiceRegistry(): ServiceRegistryEntry[] {
       status: "active",
       runtimeVersion: "1.0.0",
       modulePath: "src/lib/enterprise-platform/consent",
+      health: "healthy",
+    },
+    {
+      serviceId: "svc-enterprise-passport",
+      name: "Enterprise Passport Runtime",
+      capabilityId: "passport",
+      status: "active",
+      runtimeVersion: "1.0.0",
+      modulePath: "src/lib/enterprise-platform/passport",
       health: "healthy",
     },
     {
@@ -132,6 +149,14 @@ export function buildRuntimeRegistry(): RuntimeRegistryEntry[] {
       packagePath: "src/lib/enterprise-platform/quality",
     },
     {
+      runtimeId: "enterprise-passport-runtime",
+      name: "Enterprise Passport Runtime",
+      version: "1.0.0",
+      capabilities: ["passport"],
+      status: "active",
+      packagePath: "src/lib/enterprise-platform/passport",
+    },
+    {
       runtimeId: "enterprise-event-foundation",
       name: "Enterprise Event Foundation",
       version: ENTERPRISE_EVENT_FOUNDATION.version,
@@ -160,6 +185,13 @@ export function buildVersionRegistry(): VersionRegistryEntry[] {
       artifactId: "identity-runtime",
       artifactKind: "runtime",
       version: IDENTITY_PROVIDER.runtimeVersion,
+      schemaVersion: 1,
+      compatibleWith: [SHARED_PLATFORM_CONTRACT.version],
+    },
+    {
+      artifactId: "passport-runtime",
+      artifactKind: "runtime",
+      version: "1.0.0",
       schemaVersion: 1,
       compatibleWith: [SHARED_PLATFORM_CONTRACT.version],
     },

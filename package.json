@@ -19,7 +19,8 @@
     "verify:brand": "node scripts/verify-brand-assets.mjs",
     "verify:supabase-project": "node scripts/verify-supabase-project.mjs",
     "verify:identity-migration": "node scripts/verify-identity-migration.mjs",
-    "verify:consent-migration": "node scripts/verify-consent-migration.mjs"
+    "verify:consent-migration": "node scripts/verify-consent-migration.mjs",
+    "verify:passport-migration": "node scripts/verify-passport-migration.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

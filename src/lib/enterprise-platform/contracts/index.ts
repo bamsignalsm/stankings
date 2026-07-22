@@ -28,3 +28,5 @@ export {
   CONSENT_PUBLIC_CONTRACT,
   GOVERNANCE_PUBLIC_CONTRACT,
 } from "./discovery-contract";
+
+export { PASSPORT_PUBLIC_CONTRACT } from "./passport-contract";

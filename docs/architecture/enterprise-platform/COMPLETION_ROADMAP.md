@@ -129,10 +129,11 @@ X4 Future companies
 |--|--|
 | **Objective** | Passport eight gates |
 | **Prerequisites** | M2; M4 strongly recommended before production sharing |
-| **Deliverables** | Credential lifecycle, verification framework, linking to Identity, persistence, tests, docs |
+| **Deliverables** | Credential lifecycle, evidence framework, linking to Identity, persistence, tests, docs |
 | **Validation** | G1–G8; no OAuth scope creep unless separately approved |
 | **Complexity** | L |
 | **Consumer impact** | Primary cross-product credential surface |
+| **Status (2026-07-22)** | **✅ Complete (code)** — `assessPassportEightGates().complete === true`; migration **not applied** pending architectural review |
 
 ### M6 — Trust Runtime (T0)
 
