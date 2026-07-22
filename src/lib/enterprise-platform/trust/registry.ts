@@ -90,7 +90,7 @@ export class TrustRegistry {
     await this.ensureDefaultPolicies();
     const catalogue = await this.listPolicies();
     const policy = resolvePolicyForRequest(input, catalogue);
-    let draft = createDraftAssessment(input, policy);
+    const draft = createDraftAssessment(input, policy);
     const ran = runAssessment(draft, policy, input.now ?? draft.updatedAt);
     let assessment = ran.assessment;
     const audit = buildTrustAudit(assessment, "assess");
