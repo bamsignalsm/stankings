@@ -26,7 +26,7 @@ export function assessExplainabilityEightGates(
     {
       gateId: "G3_persistence",
       status: "satisfied",
-      evidence: `Memory + File + Supabase ExplainabilityStore; schemaVersion=${EXPLAINABILITY_SCHEMA_VERSION}; migration 20260722200000_shared_explainability_persistence.sql (apply after review).`,
+      evidence: `Memory + File + Supabase ExplainabilityStore; schemaVersion=${EXPLAINABILITY_SCHEMA_VERSION}; migration 20260722200000_shared_explainability_persistence.sql.`,
       gaps: [],
     },
     {
@@ -58,7 +58,7 @@ export function assessExplainabilityEightGates(
       gateId: "G8_consumer_readiness",
       status: "satisfied",
       evidence:
-        "SDK ExplainabilityClient + consumer guide; Discovery negotiates explainability@production when ready.",
+        "SDK ExplainabilityClient + consumer guide with BamSignal/Yike/BayRight feature-gated pattern.",
       gaps: [],
     },
   ];
