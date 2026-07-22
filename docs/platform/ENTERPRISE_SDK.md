@@ -1,8 +1,12 @@
 # Enterprise SDK
 
 **Package:** `@stankings/platform-sdk` **1.5.0**  
-**Certified tag:** `enterprise-platform-v1.3-explainability`  
-**Certification:** [SPRINT_PLATFORM_CERTIFICATION.md](../architecture/enterprise-platform/SPRINT_PLATFORM_CERTIFICATION.md)
+**Certified tag:** `enterprise-platform-v1.0-certified`  
+**Certification:** [SPRINT_PLATFORM_CERTIFICATION.md](../architecture/enterprise-platform/SPRINT_PLATFORM_CERTIFICATION.md)  
+**Release notes:** [RELEASE_NOTES_v1.0.md](./RELEASE_NOTES_v1.0.md)  
+**Upgrade:** [SDK_UPGRADE_GUIDE.md](./SDK_UPGRADE_GUIDE.md) · [Deprecation](./SDK_DEPRECATION_POLICY.md)  
+**Security / Ops:** [SECURITY_HANDBOOK.md](./SECURITY_HANDBOOK.md) · [OPERATIONS_HANDBOOK.md](./OPERATIONS_HANDBOOK.md)  
+**Architecture:** [PLATFORM_ARCHITECTURE_GUIDE.md](./PLATFORM_ARCHITECTURE_GUIDE.md)
 
 | Surface | Guide |
 |---------|-------|

@@ -36,7 +36,7 @@
 
 - [x] SDK exports: identity, discovery, consent, passport, trust, explainability
 - [x] Feature-gate consumer guides published
-- [ ] Tag pushed to remote
+- [x] Tag pushed to remote (`enterprise-platform-v1.0-certified`)
 - [ ] BamSignal integration PR against tag (feature-gated)
 - [ ] Yike integration PR against tag (feature-gated)
 - [ ] BayRight integration PR against tag (feature-gated)
@@ -46,6 +46,7 @@
 - [x] Migration verify scripts present
 - [x] Rollback SQL present for each durable runtime
 - [x] Health report includes all six cores
+- [x] RLS enabled+forced on all shared_* tables (TD-003 mitigated)
 - [ ] On-call runbook ownership assigned
 - [ ] Incident response path includes IIAF for material platform incidents
 
@@ -55,7 +56,7 @@
 |-----------|----------|
 | Certification GO | Yes |
 | Migrations applied on Stankings only | Yes |
-| RLS accepted or explicitly waived | Yes |
+| RLS accepted or explicitly waived | Yes — mitigated |
 | Consumer feature gates documented | Yes |
 
-**Current recommendation:** **GO** for foundation adoption; complete TD-003 (RLS) before exposing `shared_*` tables via broad Supabase Data API roles.
+**Current recommendation:** **GO** for foundation adoption. Consumers pin `enterprise-platform-v1.0-certified`. Remaining work is ecosystem PRs, package publish (TD-001), and monitoring (TD-006).

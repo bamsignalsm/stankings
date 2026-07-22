@@ -6,6 +6,10 @@ Index for the Shared Enterprise Platform Completion Program.
 |----------|---------|
 | [Program root](../SHARED_ENTERPRISE_PLATFORM_PROGRAM.md) | Binding completion definition + estimate |
 | [**Platform Certification (v1.0)**](./SPRINT_PLATFORM_CERTIFICATION.md) | Cross-runtime GO / NO-GO certification |
+| [Post-Certification Hardening](./SPRINT_POST_CERTIFICATION_HARDENING.md) | RLS, SDK release, ops, adoption |
+| [Shared Table Security](./SHARED_TABLE_SECURITY_REPORT.md) | RLS on all shared_* tables |
+| [SDK Release Readiness](./SDK_RELEASE_READINESS.md) | Package / changelog / publish path |
+| [Ecosystem Adoption](./ECOSYSTEM_ADOPTION_REPORT.md) | BamSignal / Yike / BayRight readiness |
 | [Production Checklist](./PRODUCTION_CHECKLIST.md) | Deployment gates |
 | [Technical Debt Register](./TECHNICAL_DEBT_REGISTER.md) | Residual work |
 | [Capability Inventory](./CAPABILITY_INVENTORY.md) | Full catalogue by class |
