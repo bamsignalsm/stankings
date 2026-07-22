@@ -49,6 +49,9 @@ const INSTITUTION_DATES: Record<
   "stankings-institute": { proposed: "2025-01", approved: "2025-06", stage: "formation" },
   "hannahkings-education": { proposed: "2025-03", approved: "2025-06", stage: "concept_development" },
   "stankings-foundation": { proposed: "2025-06", approved: "2026-01", stage: "concept_development" },
+  "stankings-times": { proposed: "2026-06", approved: "2026-07", stage: "formation" },
+  "stankings-hotel-and-suites": { proposed: "2026-06", approved: "2026-07", stage: "formation" },
+  "shodis-industries": { proposed: "2026-06", approved: "2026-07", stage: "formation" },
   "stankings-venture-studio": {
     proposed: "2026-06",
     approved: "2026-06",

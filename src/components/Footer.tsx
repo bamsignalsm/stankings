@@ -4,6 +4,7 @@ import { SITE } from "@/lib/institutional/public-site";
 import { CONTACTS } from "@/lib/shared/config/contacts";
 import { USER_LOGIN_PATH } from "@/lib/auth-paths";
 import { BrandLogo } from "@/components/BrandLogo";
+import { COMPANIES } from "@/lib/data";
 
 /** Required on every page — HQ as central authority */
 const AUTHORITY_LINKS = [
@@ -42,7 +43,7 @@ export function Footer() {
   return (
     <footer className="border-t border-gold-subtle bg-ink-light">
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
             <div className="mb-5">
               <BrandLogo variant="footer" />
@@ -81,6 +82,24 @@ export function Footer() {
                     className="text-sm text-cream-muted transition-colors hover:text-cream"
                   >
                     {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-xs font-semibold tracking-widest text-gold uppercase">
+              Portfolio
+            </h3>
+            <ul className="space-y-2">
+              {COMPANIES.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/companies/${c.slug}`}
+                    className="text-sm text-cream-muted transition-colors hover:text-cream"
+                  >
+                    {c.name}
                   </Link>
                 </li>
               ))}

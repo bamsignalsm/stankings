@@ -7,6 +7,8 @@ import { HQ_SITE } from "@/lib/shared/config";
 export interface Company {
   slug: string;
   name: string;
+  legalName: string;
+  businessSector: string;
   tagline: string;
   excellence: string;
   description: string;
@@ -59,7 +61,18 @@ export const PILLARS = [
     subtitle: "Generate wealth",
     description:
       "Operating companies that solve real problems, create employment, and fund the institution's broader mission.",
-    companies: ["yike", "bamsignal", "bayright", "stanhan", "stankings-auto-hub", "hannahkings-gadgets", "stankings-logistics"],
+    companies: [
+      "yike",
+      "bamsignal",
+      "bayright",
+      "stanhan",
+      "stankings-auto-hub",
+      "hannahkings-gadgets",
+      "stankings-logistics",
+      "stankings-times",
+      "stankings-hotel-and-suites",
+      "shodis-industries",
+    ],
   },
   {
     title: "Education",

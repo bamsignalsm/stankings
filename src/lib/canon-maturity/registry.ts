@@ -25,6 +25,9 @@ const ECOSYSTEM_COMPANIES = [
   "stankings-institute",
   "stankings-foundation",
   "stankings-auto-hub",
+  "stankings-times",
+  "stankings-hotel-and-suites",
+  "shodis-industries",
 ];
 
 const POLICY_PLACEHOLDERS: Record<string, { identifier: string; title: string }[]> = {
