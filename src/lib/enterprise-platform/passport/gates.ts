@@ -57,7 +57,8 @@ export function assessPassportEightGates(
     {
       gateId: "G8_consumer_readiness",
       status: "satisfied",
-      evidence: "SDK PassportClient + consumer guide; Discovery negotiates passport@production when ready.",
+      evidence:
+        "SDK PassportClient + consumer guide with BamSignal/Yike/BayRight feature-gated read pattern.",
       gaps: [],
     },
   ];

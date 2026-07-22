@@ -63,6 +63,10 @@ export const ENTERPRISE_EVENT_TYPES = {
   PASSPORT_RENEWAL_PREPARED: "passport.renewal_prepared",
   PASSPORT_EVIDENCE_ATTACHED: "passport.evidence.attached",
   TRUST_CHANGED: "trust.changed",
+  TRUST_ASSESSED: "trust.assessed",
+  TRUST_EVIDENCE_INGESTED: "trust.evidence.ingested",
+  TRUST_POLICY_UPDATED: "trust.policy.updated",
+  TRUST_INVALIDATED: "trust.invalidated",
   AUDIT_CREATED: "audit.created",
   GOVERNANCE_POLICY_EVALUATED: "governance.policy.evaluated",
 } as const;

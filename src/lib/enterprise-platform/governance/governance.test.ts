@@ -18,14 +18,16 @@ describe("governance + events maturity", () => {
     expect(result.allowed).toBe(false);
   });
 
-  it("allows identity-backed feature gate", () => {
+  it("allows identity and passport feature gates", () => {
     expect(isFeatureEnabled("sdk.identity", defaultFeatureGates())).toBe(true);
-    expect(isFeatureEnabled("runtime.passport", defaultFeatureGates())).toBe(false);
+    expect(isFeatureEnabled("runtime.passport", defaultFeatureGates())).toBe(true);
+    expect(isFeatureEnabled("runtime.trust", defaultFeatureGates())).toBe(true);
   });
 
-  it("lists reserved passport/trust/explainability events", () => {
+  it("lists passport/trust/explainability events", () => {
     const defs = listEventDefinitions();
     expect(defs.some((d) => d.eventType === ENTERPRISE_EVENT_TYPES.PASSPORT_ISSUED)).toBe(true);
+    expect(defs.some((d) => d.eventType === ENTERPRISE_EVENT_TYPES.TRUST_ASSESSED)).toBe(true);
     expect(defs.some((d) => d.eventType === "explainability.decision.recorded")).toBe(true);
     expect(negotiateEventCompatibility(ENTERPRISE_EVENT_TYPES.CONSENT_GRANTED, 1).ok).toBe(true);
   });

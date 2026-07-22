@@ -1,12 +1,11 @@
 /**
- * Extension points — contract-first placeholders for future clients.
- * Passport is executable via ./passport; Trust remains interface-only.
+ * Extension points — placeholders for capabilities not yet executable.
  */
 
-export interface TrustClientPlaceholder {
+export interface ExplainabilityClientPlaceholder {
   readonly readiness: "interface_only";
 }
 
-export const TRUST_CLIENT_EXTENSION: TrustClientPlaceholder = {
+export const EXPLAINABILITY_CLIENT_EXTENSION: ExplainabilityClientPlaceholder = {
   readiness: "interface_only",
 };

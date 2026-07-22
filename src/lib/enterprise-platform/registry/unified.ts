@@ -102,6 +102,13 @@ export function buildUnifiedEnterpriseRegistries(): UnifiedEnterpriseRegistries 
         readiness: "executable",
         capabilityId: "passport",
       },
+      {
+        moduleId: "sdk.trust",
+        exportPath: "@stankings/platform-sdk/trust",
+        version: PLATFORM_SDK_META.version,
+        readiness: "executable",
+        capabilityId: "trust",
+      },
     ],
     consumers: buildSeedPlatformCatalogue().map((p) => ({
       platformId: p.platformId,

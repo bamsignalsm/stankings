@@ -51,13 +51,14 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 ## Trust domain
 
-| Capability | Artifact | Class |
-|------------|----------|-------|
-| Trust contract | `TRUST.md` + contract entry | Docs only / contract |
-| Trust runtime stub | `capabilities/trust.ts` | Interface only |
-| HQ Trust registers / CTC pages | `shared/trust`, Library surfaces | Docs / HQ UI — not shared runtime |
-| Reputation engine | — | Missing |
-| Trust events / ledger / scores / history / policies | — | Missing |
+| Capability | Artifact | Class | Notes |
+|------------|----------|-------|-------|
+| Trust Runtime | `enterprise-platform/trust/*` | **Complete (8/8)** | Runtime 1.0.0; migration apply pending review |
+| Trust contract | `trust.assessment@1.0.0` | Complete | SDK `@stankings/platform-sdk/trust` |
+| Policy engine | `trust/policy.ts` | Complete | Configurable require/contribute/risk_flag |
+| Evidence ingestion | `trust/evidence.ts` | Complete | References only |
+| Persistence | Memory/File/Supabase + SQL | Complete | `20260722180000_shared_trust_persistence.sql` |
+| HQ Trust registers / CTC pages | `shared/trust`, Library surfaces | Docs / HQ UI — not shared runtime | |
 
 ---
 

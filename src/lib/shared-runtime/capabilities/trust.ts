@@ -1,15 +1,20 @@
 /**
- * Trust Runtime — interface surface only.
- * No Trust Graph implementation in this sprint.
+ * Trust Runtime pointer — implementation lives in enterprise-platform/trust.
  */
 
 export interface TrustRuntime {
-  readonly readiness: "interface_only";
+  readonly id: string;
+  readonly version: string;
+  readonly docsPath: string;
+  readonly eightGateComplete: true;
   describe(): string;
 }
 
 export const TRUST_RUNTIME: TrustRuntime = {
-  readiness: "interface_only",
+  id: "enterprise-trust-runtime",
+  version: "1.0.0",
+  docsPath: "docs/platform/TRUST_RUNTIME.md",
+  eightGateComplete: true,
   describe: () =>
-    "Trust Runtime interface reserved. Trust Graph and reputation APIs are out of scope for Shared Identity Runtime Foundation.",
+    "Trust Runtime Eight-Gate complete — use @stankings/platform-sdk/trust or enterprise-platform/trust.",
 };

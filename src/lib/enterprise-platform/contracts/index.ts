@@ -30,3 +30,4 @@ export {
 } from "./discovery-contract";
 
 export { PASSPORT_PUBLIC_CONTRACT } from "./passport-contract";
+export { TRUST_PUBLIC_CONTRACT } from "./trust-contract";

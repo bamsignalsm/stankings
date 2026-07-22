@@ -1,13 +1,15 @@
 /**
- * SDK factory v1.3 — Identity, Discovery, Consent, Passport + registries/config/health.
+ * SDK factory v1.4 — Identity, Discovery, Consent, Passport, Trust + registries/config/health.
  */
 
 import type { IdentityStore } from "@/lib/shared-runtime/persistence/types";
 import type { ConsentStore } from "@/lib/enterprise-platform/consent/store";
 import type { PassportStore } from "@/lib/enterprise-platform/passport/store";
+import type { TrustStore } from "@/lib/enterprise-platform/trust/store";
 import type { MemoryEventCollector } from "@/lib/enterprise-platform/events";
 import { createMemoryConsentStore } from "@/lib/enterprise-platform/consent";
 import { createMemoryPassportStore } from "@/lib/enterprise-platform/passport";
+import { createMemoryTrustStore } from "@/lib/enterprise-platform/trust";
 import {
   buildUnifiedEnterpriseRegistries,
   type UnifiedEnterpriseRegistries,
@@ -22,9 +24,10 @@ import { createIdentityClient, type IdentityClient } from "./identity/client";
 import { createDiscoveryClient, type DiscoveryClient } from "./discovery-client";
 import { createConsentClient, type ConsentClient } from "./consent/client";
 import { createPassportClient, type PassportClient } from "./passport/client";
+import { createTrustClient, type TrustClient } from "./trust/client";
 import {
-  TRUST_CLIENT_EXTENSION,
-  type TrustClientPlaceholder,
+  EXPLAINABILITY_CLIENT_EXTENSION,
+  type ExplainabilityClientPlaceholder,
 } from "./extensions";
 import { PLATFORM_SDK } from "./meta";
 import { buildLogLine } from "@/lib/enterprise-platform/quality/logging";
@@ -34,10 +37,12 @@ export interface CreatePlatformSdkOptions {
   identityStore: IdentityStore;
   consentStore?: ConsentStore;
   passportStore?: PassportStore;
+  trustStore?: TrustStore;
   declaredIdentityContractVersion?: string;
   declaredDiscoveryContractVersion?: string;
   declaredConsentContractVersion?: string;
   declaredPassportContractVersion?: string;
+  declaredTrustContractVersion?: string;
   configOverrides?: Omit<ConsumerOverrides, "platformId">;
   events?: MemoryEventCollector;
 }
@@ -49,7 +54,8 @@ export interface PlatformSdk {
   discovery: DiscoveryClient;
   consent: ConsentClient;
   passport: PassportClient;
-  trust: TrustClientPlaceholder;
+  trust: TrustClient;
+  explainability: ExplainabilityClientPlaceholder;
   registries: () => UnifiedEnterpriseRegistries;
   configuration: () => RuntimeConfiguration;
   health: () => PlatformHealthReport;
@@ -79,6 +85,12 @@ export function createPlatformSdk(options: CreatePlatformSdkOptions): PlatformSd
     declaredContractVersion: options.declaredPassportContractVersion,
     events: options.events,
   });
+  const trust = createTrustClient({
+    platformId: options.platformId,
+    store: options.trustStore ?? createMemoryTrustStore(),
+    declaredContractVersion: options.declaredTrustContractVersion,
+    events: options.events,
+  });
 
   return {
     version: PLATFORM_SDK.version,
@@ -87,7 +99,8 @@ export function createPlatformSdk(options: CreatePlatformSdkOptions): PlatformSd
     discovery,
     consent,
     passport,
-    trust: TRUST_CLIENT_EXTENSION,
+    trust,
+    explainability: EXPLAINABILITY_CLIENT_EXTENSION,
     registries: () => buildUnifiedEnterpriseRegistries(),
     configuration: () =>
       buildRuntimeConfiguration({

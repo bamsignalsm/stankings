@@ -24,7 +24,12 @@ export function buildCapabilityRegistry(): CapabilityRegistryEntry[] {
   return SHARED_CAPABILITY_CONTRACTS.map((c) => {
     let runtimeVersion = "0.0.0";
     if (c.id === "identity") runtimeVersion = IDENTITY_PROVIDER.runtimeVersion;
-    else if (c.id === "consent" || c.id === "passport" || c.id === "capability_discovery") {
+    else if (
+      c.id === "consent" ||
+      c.id === "passport" ||
+      c.id === "trust" ||
+      c.id === "capability_discovery"
+    ) {
       runtimeVersion = "1.0.0";
     } else if (c.runtimeReadiness === "prototype") {
       runtimeVersion = "0.0.0-prototype";
@@ -101,6 +106,15 @@ export function buildServiceRegistry(): ServiceRegistryEntry[] {
       health: "healthy",
     },
     {
+      serviceId: "svc-enterprise-trust",
+      name: "Enterprise Trust Runtime",
+      capabilityId: "trust",
+      status: "active",
+      runtimeVersion: "1.0.0",
+      modulePath: "src/lib/enterprise-platform/trust",
+      health: "healthy",
+    },
+    {
       serviceId: "svc-enterprise-governance",
       name: "Enterprise Governance Foundation",
       capabilityId: "platform_status",
@@ -157,6 +171,14 @@ export function buildRuntimeRegistry(): RuntimeRegistryEntry[] {
       packagePath: "src/lib/enterprise-platform/passport",
     },
     {
+      runtimeId: "enterprise-trust-runtime",
+      name: "Enterprise Trust Runtime",
+      version: "1.0.0",
+      capabilities: ["trust"],
+      status: "active",
+      packagePath: "src/lib/enterprise-platform/trust",
+    },
+    {
       runtimeId: "enterprise-event-foundation",
       name: "Enterprise Event Foundation",
       version: ENTERPRISE_EVENT_FOUNDATION.version,
@@ -190,6 +212,13 @@ export function buildVersionRegistry(): VersionRegistryEntry[] {
     },
     {
       artifactId: "passport-runtime",
+      artifactKind: "runtime",
+      version: "1.0.0",
+      schemaVersion: 1,
+      compatibleWith: [SHARED_PLATFORM_CONTRACT.version],
+    },
+    {
+      artifactId: "trust-runtime",
       artifactKind: "runtime",
       version: "1.0.0",
       schemaVersion: 1,

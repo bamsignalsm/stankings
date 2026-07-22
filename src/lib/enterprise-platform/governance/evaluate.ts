@@ -57,9 +57,9 @@ export function defaultFeatureGates(): FeatureGate[] {
     {
       gateId: "fg.passport.runtime",
       featureId: "runtime.passport",
-      enabled: false,
+      enabled: true,
       requiresCapabilities: ["passport", "identity"],
-      notes: "Passport runtime not started",
+      notes: "Passport Eight-Gate complete — consumers may read behind product feature flags",
     },
     {
       gateId: "fg.consent.runtime",
@@ -67,6 +67,13 @@ export function defaultFeatureGates(): FeatureGate[] {
       enabled: true,
       requiresCapabilities: ["consent", "identity"],
       notes: "Consent Eight-Gate complete",
+    },
+    {
+      gateId: "fg.trust.runtime",
+      featureId: "runtime.trust",
+      enabled: true,
+      requiresCapabilities: ["trust", "passport", "identity"],
+      notes: "Trust Eight-Gate complete — consumers may assess behind product feature flags; migration pending review",
     },
   ];
 }

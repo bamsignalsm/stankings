@@ -141,10 +141,11 @@ X4 Future companies
 |--|--|
 | **Objective** | Trust eight gates |
 | **Prerequisites** | M2, M5 |
-| **Deliverables** | Events, ledger, scores, history, policies, persistence, tests, docs |
+| **Deliverables** | Events, policy engine, assessments, evidence refs, history, persistence, tests, docs |
 | **Validation** | G1–G8 |
 | **Complexity** | XL |
 | **Consumer impact** | High for Yike/BayRight/BamSignal risk decisions |
+| **Status (2026-07-22)** | **✅ Complete (code)** — `assessTrustEightGates().complete === true`; migration **not applied** pending architectural review |
 
 ### M7 — Explainability Runtime (E0)
 

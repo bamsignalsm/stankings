@@ -23,12 +23,14 @@ import {
   GOVERNANCE_PUBLIC_CONTRACT,
 } from "./discovery-contract";
 import { PASSPORT_PUBLIC_CONTRACT } from "./passport-contract";
+import { TRUST_PUBLIC_CONTRACT } from "./trust-contract";
 
 const CONTRACTS: EnterpriseContractMeta[] = [
   IDENTITY_PUBLIC_CONTRACT,
   DISCOVERY_PUBLIC_CONTRACT,
   CONSENT_PUBLIC_CONTRACT,
   PASSPORT_PUBLIC_CONTRACT,
+  TRUST_PUBLIC_CONTRACT,
   GOVERNANCE_PUBLIC_CONTRACT,
 ];
 

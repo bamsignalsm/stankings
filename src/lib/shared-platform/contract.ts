@@ -93,13 +93,17 @@ export const SHARED_CAPABILITY_CONTRACTS: SharedCapabilityContract[] = [
     name: "Shared Trust",
     owner: "Stankings Legacy Ltd",
     maturity: "approved",
-    runtimeReadiness: "contract_only",
+    runtimeReadiness: "production",
     responsibility:
-      "Trust signals, verification outcomes, reputation portability, and fraud intelligence interfaces for high-value decisions.",
-    nonGoals: ["Not a substitute for product compliance programmes"],
+      "Policy-driven enterprise trust assessments over verified evidence references bound to Identity and Passport — not a product scoring engine. Eight-Gate complete foundation runtime.",
+    nonGoals: [
+      "Not a substitute for product compliance programmes",
+      "Not product-specific marketplace or financial scoring",
+      "Not Explainability Runtime",
+    ],
     consumers: ["Yike", "BayRight", "BamSignal", "Stanhan", "Auto Hub"],
     dependsOn: ["identity", "passport"],
-    docsPath: "docs/platform/runtime/TRUST.md",
+    docsPath: "docs/platform/TRUST_RUNTIME.md",
   },
   {
     id: "consent",
