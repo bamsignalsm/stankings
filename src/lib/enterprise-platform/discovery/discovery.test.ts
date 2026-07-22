@@ -21,30 +21,31 @@ describe("discovery runtime", () => {
     expect(snap.capabilities.some((c) => c.capabilityId === "identity")).toBe(true);
   });
 
-  it("negotiates identity, passport, and trust grants", () => {
+  it("negotiates core enterprise capabilities including explainability", () => {
     const result = negotiateCapabilities({
       platformId: "bamsignal",
-      requiredCapabilities: ["identity", "passport", "trust"],
+      requiredCapabilities: ["identity", "passport", "trust", "explainability"],
       declaredContractVersions: {
         identity: "1.0.0",
         passport: "1.0.0",
         trust: "1.0.0",
+        explainability: "1.0.0",
       },
     });
     expect(result.granted).toEqual(
-      expect.arrayContaining(["identity", "passport", "trust"]),
+      expect.arrayContaining(["identity", "passport", "trust", "explainability"]),
     );
     expect(result.ok).toBe(true);
   });
 
-  it("denies explainability while trust is production-ready", () => {
+  it("denies unknown capabilities", () => {
     const result = negotiateCapabilities({
       platformId: "bamsignal",
-      requiredCapabilities: ["identity", "explainability"],
+      requiredCapabilities: ["identity", "not_a_real_capability"],
       declaredContractVersions: { identity: "1.0.0" },
     });
     expect(result.granted).toContain("identity");
-    expect(result.denied.some((d) => d.capabilityId === "explainability")).toBe(true);
+    expect(result.denied.some((d) => d.capabilityId === "not_a_real_capability")).toBe(true);
     expect(result.ok).toBe(false);
   });
 

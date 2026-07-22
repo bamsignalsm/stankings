@@ -1,7 +1,7 @@
 # Enterprise SDK
 
-**Package:** `@stankings/platform-sdk` **1.4.0** (Trust — pending review commit)  
-**Stable tagged release:** `enterprise-platform-v1.1-passport` → SDK **1.3.0**
+**Package:** `@stankings/platform-sdk` **1.5.0** (Explainability — pending review)  
+**Stable tagged:** `enterprise-platform-v1.2-trust` → SDK **1.4.0**
 
 | Surface | Guide |
 |---------|-------|
@@ -10,16 +10,13 @@
 | Consent | [CONSENT_CONSUMER_GUIDE.md](./CONSENT_CONSUMER_GUIDE.md) |
 | Passport | [PASSPORT_CONSUMER_GUIDE.md](./PASSPORT_CONSUMER_GUIDE.md) |
 | Trust | [TRUST_CONSUMER_GUIDE.md](./TRUST_CONSUMER_GUIDE.md) |
-| Architecture | [PLATFORM_ARCHITECTURE.md](./PLATFORM_ARCHITECTURE.md) |
+| Explainability | [EXPLAINABILITY_CONSUMER_GUIDE.md](./EXPLAINABILITY_CONSUMER_GUIDE.md) |
 
 ```ts
-const platform = createPlatformSdk({ platformId: "bamsignal", identityStore, … });
 platform.identity
 platform.discovery
 platform.consent
 platform.passport
-platform.trust
-// platform.explainability — interface_only
+platform.trust        // what
+platform.explainability // why
 ```
-
-Gate new capability reads with Discovery negotiation + feature flags (`runtime.passport`, `runtime.trust`).

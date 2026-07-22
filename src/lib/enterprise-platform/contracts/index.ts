@@ -31,3 +31,4 @@ export {
 
 export { PASSPORT_PUBLIC_CONTRACT } from "./passport-contract";
 export { TRUST_PUBLIC_CONTRACT } from "./trust-contract";
+export { EXPLAINABILITY_PUBLIC_CONTRACT } from "./explainability-contract";

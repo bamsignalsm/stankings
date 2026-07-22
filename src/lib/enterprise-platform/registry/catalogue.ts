@@ -28,6 +28,7 @@ export function buildCapabilityRegistry(): CapabilityRegistryEntry[] {
       c.id === "consent" ||
       c.id === "passport" ||
       c.id === "trust" ||
+      c.id === "explainability" ||
       c.id === "capability_discovery"
     ) {
       runtimeVersion = "1.0.0";
@@ -115,6 +116,15 @@ export function buildServiceRegistry(): ServiceRegistryEntry[] {
       health: "healthy",
     },
     {
+      serviceId: "svc-enterprise-explainability",
+      name: "Enterprise Explainability Runtime",
+      capabilityId: "explainability",
+      status: "active",
+      runtimeVersion: "1.0.0",
+      modulePath: "src/lib/enterprise-platform/explainability",
+      health: "healthy",
+    },
+    {
       serviceId: "svc-enterprise-governance",
       name: "Enterprise Governance Foundation",
       capabilityId: "platform_status",
@@ -179,6 +189,14 @@ export function buildRuntimeRegistry(): RuntimeRegistryEntry[] {
       packagePath: "src/lib/enterprise-platform/trust",
     },
     {
+      runtimeId: "enterprise-explainability-runtime",
+      name: "Enterprise Explainability Runtime",
+      version: "1.0.0",
+      capabilities: ["explainability"],
+      status: "active",
+      packagePath: "src/lib/enterprise-platform/explainability",
+    },
+    {
       runtimeId: "enterprise-event-foundation",
       name: "Enterprise Event Foundation",
       version: ENTERPRISE_EVENT_FOUNDATION.version,
@@ -219,6 +237,13 @@ export function buildVersionRegistry(): VersionRegistryEntry[] {
     },
     {
       artifactId: "trust-runtime",
+      artifactKind: "runtime",
+      version: "1.0.0",
+      schemaVersion: 1,
+      compatibleWith: [SHARED_PLATFORM_CONTRACT.version],
+    },
+    {
+      artifactId: "explainability-runtime",
       artifactKind: "runtime",
       version: "1.0.0",
       schemaVersion: 1,

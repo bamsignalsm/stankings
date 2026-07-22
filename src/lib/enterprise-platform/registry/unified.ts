@@ -109,6 +109,13 @@ export function buildUnifiedEnterpriseRegistries(): UnifiedEnterpriseRegistries 
         readiness: "executable",
         capabilityId: "trust",
       },
+      {
+        moduleId: "sdk.explainability",
+        exportPath: "@stankings/platform-sdk/explainability",
+        version: PLATFORM_SDK_META.version,
+        readiness: "executable",
+        capabilityId: "explainability",
+      },
     ],
     consumers: buildSeedPlatformCatalogue().map((p) => ({
       platformId: p.platformId,

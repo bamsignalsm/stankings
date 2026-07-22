@@ -33,7 +33,7 @@ export interface RuntimeConfiguration {
   capabilityToggles: Record<string, boolean>;
 }
 
-export function platformDefaults(sdkVersion = "1.4.0"): PlatformDefaults {
+export function platformDefaults(sdkVersion = "1.5.0"): PlatformDefaults {
   return {
     sharedContractVersion: SHARED_PLATFORM_CONTRACT.version,
     identityRuntimeVersion: IDENTITY_PROVIDER.runtimeVersion,
@@ -62,7 +62,7 @@ export function buildRuntimeConfiguration(
     consent: true,
     passport: true,
     trust: true,
-    explainability: false,
+    explainability: true,
     ...(overrides?.capabilityToggles ?? {}),
   };
 

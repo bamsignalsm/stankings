@@ -1,11 +1,11 @@
 /**
- * Extension points — placeholders for capabilities not yet executable.
+ * Extension points — placeholders for future capabilities.
  */
 
-export interface ExplainabilityClientPlaceholder {
+export interface FutureCapabilityPlaceholder {
   readonly readiness: "interface_only";
 }
 
-export const EXPLAINABILITY_CLIENT_EXTENSION: ExplainabilityClientPlaceholder = {
+export const FUTURE_CAPABILITY_EXTENSION: FutureCapabilityPlaceholder = {
   readiness: "interface_only",
 };

@@ -123,13 +123,17 @@ export const SHARED_CAPABILITY_CONTRACTS: SharedCapabilityContract[] = [
     name: "Explainability",
     owner: "Stankings Legacy Ltd",
     maturity: "approved",
-    runtimeReadiness: "contract_only",
+    runtimeReadiness: "production",
     responsibility:
-      "Human-readable explanations for automated or institutional decisions that affect trust, access, or outcomes.",
-    nonGoals: ["Not a generic logging dump"],
+      "First-class transparent explanations for enterprise decisions — why an assessment or decision was reached — without re-evaluating business logic. Eight-Gate complete foundation runtime.",
+    nonGoals: [
+      "Not a generic logging dump",
+      "Not product UI copy",
+      "Not a substitute for Trust evaluation",
+    ],
     consumers: ["Yike", "BayRight", "BamSignal", "Library / IKI"],
     dependsOn: ["identity", "trust"],
-    docsPath: "docs/platform/runtime/EXPLAINABILITY.md",
+    docsPath: "docs/platform/EXPLAINABILITY_RUNTIME.md",
   },
   {
     id: "registry_access",

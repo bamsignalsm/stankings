@@ -67,6 +67,7 @@ export const ENTERPRISE_EVENT_TYPES = {
   TRUST_EVIDENCE_INGESTED: "trust.evidence.ingested",
   TRUST_POLICY_UPDATED: "trust.policy.updated",
   TRUST_INVALIDATED: "trust.invalidated",
+  EXPLAINABILITY_RECORDED: "explainability.decision.recorded",
   AUDIT_CREATED: "audit.created",
   GOVERNANCE_POLICY_EVALUATED: "governance.policy.evaluated",
 } as const;

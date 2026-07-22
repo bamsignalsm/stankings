@@ -153,10 +153,11 @@ X4 Future companies
 |--|--|
 | **Objective** | Explainability eight gates |
 | **Prerequisites** | M2, M6 |
-| **Deliverables** | Decision explanations, evidence, metadata, audit trail hooks, tests, docs |
+| **Deliverables** | Decision explanations, evidence/policy refs, metadata, audit trail hooks, tests, docs |
 | **Validation** | G1–G8 |
 | **Complexity** | L |
 | **Consumer impact** | Required for trust-affecting automated decisions |
+| **Status (2026-07-22)** | **✅ Complete (code)** — `assessExplainabilityEightGates().complete === true`; migration **not applied** pending review |
 
 ### M8 — Shared Services (S0)
 

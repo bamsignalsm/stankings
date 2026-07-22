@@ -73,7 +73,15 @@ export function defaultFeatureGates(): FeatureGate[] {
       featureId: "runtime.trust",
       enabled: true,
       requiresCapabilities: ["trust", "passport", "identity"],
-      notes: "Trust Eight-Gate complete — consumers may assess behind product feature flags; migration pending review",
+      notes: "Trust Eight-Gate complete — consumers may assess behind product feature flags",
+    },
+    {
+      gateId: "fg.explainability.runtime",
+      featureId: "runtime.explainability",
+      enabled: true,
+      requiresCapabilities: ["explainability", "trust", "identity"],
+      notes:
+        "Explainability Eight-Gate complete — consumers may record explanations behind product flags; migration pending review",
     },
   ];
 }

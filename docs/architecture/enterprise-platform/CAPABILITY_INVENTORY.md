@@ -53,11 +53,11 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 | Capability | Artifact | Class | Notes |
 |------------|----------|-------|-------|
-| Trust Runtime | `enterprise-platform/trust/*` | **Complete (8/8)** | Runtime 1.0.0; migration apply pending review |
+| Trust Runtime | `enterprise-platform/trust/*` | **Complete (8/8)** | Runtime 1.0.0; migrated on Stankings |
 | Trust contract | `trust.assessment@1.0.0` | Complete | SDK `@stankings/platform-sdk/trust` |
 | Policy engine | `trust/policy.ts` | Complete | Configurable require/contribute/risk_flag |
 | Evidence ingestion | `trust/evidence.ts` | Complete | References only |
-| Persistence | Memory/File/Supabase + SQL | Complete | `20260722180000_shared_trust_persistence.sql` |
+| Persistence | Memory/File/Supabase + SQL | Complete | Applied `20260722180000_shared_trust_persistence.sql` |
 | HQ Trust registers / CTC pages | `shared/trust`, Library surfaces | Docs / HQ UI — not shared runtime | |
 
 ---
@@ -74,11 +74,12 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 ## Explainability domain
 
-| Capability | Artifact | Class |
-|------------|----------|-------|
-| Explainability contract | `EXPLAINABILITY.md` | Docs only / contract |
-| Runtime stub | `capabilities/explainability.ts` | Interface only |
-| Decision explanations / evidence / audit trail runtime | — | Missing |
+| Capability | Artifact | Class | Notes |
+|------------|----------|-------|-------|
+| Explainability Runtime | `enterprise-platform/explainability/*` | **Complete (8/8)** | Runtime 1.0.0; migration pending review |
+| Explainability contract | `explainability.record@1.0.0` | Complete | SDK explainability client |
+| Generators | Trust / Passport / Consent | Complete | Narrate only — no re-evaluation |
+| Persistence | Memory/File/Supabase + SQL | Complete | `20260722200000_shared_explainability_persistence.sql` |
 
 ---
 

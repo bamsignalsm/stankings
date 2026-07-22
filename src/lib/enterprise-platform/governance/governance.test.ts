@@ -28,7 +28,7 @@ describe("governance + events maturity", () => {
     const defs = listEventDefinitions();
     expect(defs.some((d) => d.eventType === ENTERPRISE_EVENT_TYPES.PASSPORT_ISSUED)).toBe(true);
     expect(defs.some((d) => d.eventType === ENTERPRISE_EVENT_TYPES.TRUST_ASSESSED)).toBe(true);
-    expect(defs.some((d) => d.eventType === "explainability.decision.recorded")).toBe(true);
+    expect(defs.some((d) => d.eventType === ENTERPRISE_EVENT_TYPES.EXPLAINABILITY_RECORDED)).toBe(true);
     expect(negotiateEventCompatibility(ENTERPRISE_EVENT_TYPES.CONSENT_GRANTED, 1).ok).toBe(true);
   });
 });

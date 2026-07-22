@@ -178,12 +178,20 @@ export const EVENT_CATALOGUE: EventDefinition[] = [
     compatibleEnvelopeVersions: [1],
   },
   {
-    eventType: "explainability.decision.recorded",
+    eventType: ENTERPRISE_EVENT_TYPES.EXPLAINABILITY_RECORDED,
     domain: "governance",
     version: 1,
-    description: "Reserved — decision explanation recorded",
-    payloadSchemaNotes: "{ decisionId, subjectId } (future)",
+    description: "Explainability record created for an enterprise decision",
+    payloadSchemaNotes:
+      "{ explanationId, capabilityId, decisionType, decisionRef, version, auditRef }",
     compatibleEnvelopeVersions: [1],
+    lineage: {
+      typicallyCausedBy: [
+        ENTERPRISE_EVENT_TYPES.TRUST_ASSESSED,
+        ENTERPRISE_EVENT_TYPES.PASSPORT_ISSUED,
+        ENTERPRISE_EVENT_TYPES.CONSENT_GRANTED,
+      ],
+    },
   },
   {
     eventType: ENTERPRISE_EVENT_TYPES.GOVERNANCE_POLICY_EVALUATED,

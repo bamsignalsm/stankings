@@ -45,7 +45,11 @@ export {
   type TrustClientOptions,
 } from "./trust";
 
-export { EXPLAINABILITY_CLIENT_EXTENSION } from "./extensions";
+export {
+  createExplainabilityClient,
+  ExplainabilityClient,
+  type ExplainabilityClientOptions,
+} from "./explainability";
 
 export {
   createEnterpriseError,

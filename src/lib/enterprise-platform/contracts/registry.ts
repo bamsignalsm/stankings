@@ -24,6 +24,7 @@ import {
 } from "./discovery-contract";
 import { PASSPORT_PUBLIC_CONTRACT } from "./passport-contract";
 import { TRUST_PUBLIC_CONTRACT } from "./trust-contract";
+import { EXPLAINABILITY_PUBLIC_CONTRACT } from "./explainability-contract";
 
 const CONTRACTS: EnterpriseContractMeta[] = [
   IDENTITY_PUBLIC_CONTRACT,
@@ -31,6 +32,7 @@ const CONTRACTS: EnterpriseContractMeta[] = [
   CONSENT_PUBLIC_CONTRACT,
   PASSPORT_PUBLIC_CONTRACT,
   TRUST_PUBLIC_CONTRACT,
+  EXPLAINABILITY_PUBLIC_CONTRACT,
   GOVERNANCE_PUBLIC_CONTRACT,
 ];
 
