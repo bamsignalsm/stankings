@@ -22,7 +22,8 @@
     "verify:consent-migration": "node scripts/verify-consent-migration.mjs",
     "verify:passport-migration": "node scripts/verify-passport-migration.mjs",
     "verify:trust-migration": "node scripts/verify-trust-migration.mjs",
-    "verify:explainability-migration": "node scripts/verify-explainability-migration.mjs"
+    "verify:explainability-migration": "node scripts/verify-explainability-migration.mjs",
+    "verify:platform-certification": "node scripts/verify-platform-certification.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

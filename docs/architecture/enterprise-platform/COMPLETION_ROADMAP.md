@@ -157,7 +157,7 @@ X4 Future companies
 | **Validation** | G1–G8 |
 | **Complexity** | L |
 | **Consumer impact** | Required for trust-affecting automated decisions |
-| **Status (2026-07-22)** | **✅ Complete (code)** — `assessExplainabilityEightGates().complete === true`; migration **not applied** pending review |
+| **Status (2026-07-22)** | **✅ Complete (live)** — migrated on `dfaqkrikdvohvvcuxoek`; included in Platform v1.0 certification GO |
 
 ### M8 — Shared Services (S0)
 

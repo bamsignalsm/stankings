@@ -5,9 +5,25 @@ Index for the Shared Enterprise Platform Completion Program.
 | Document | Purpose |
 |----------|---------|
 | [Program root](../SHARED_ENTERPRISE_PLATFORM_PROGRAM.md) | Binding completion definition + estimate |
+| [**Platform Certification (v1.0)**](./SPRINT_PLATFORM_CERTIFICATION.md) | Cross-runtime GO / NO-GO certification |
+| [Production Checklist](./PRODUCTION_CHECKLIST.md) | Deployment gates |
+| [Technical Debt Register](./TECHNICAL_DEBT_REGISTER.md) | Residual work |
 | [Capability Inventory](./CAPABILITY_INVENTORY.md) | Full catalogue by class |
-| [Gap Analysis](./GAP_ANALYSIS.md) | Missing runtime/persistence/tests/docs per capability |
-| [Consumer Readiness](./CONSUMER_READINESS.md) | Package boundaries, versions, deprecation |
+| [Consumer Readiness](./CONSUMER_READINESS.md) | SDK boundaries, versions, feature gates |
+| [Gap Analysis](./GAP_ANALYSIS.md) | Historical gaps |
 | [Quality Foundation](./QUALITY_FOUNDATION.md) | Eight gates + quality standards |
-| [Sprint M0–M2A Report](./SPRINT_M0_M1_M2_M2A.md) | Quality, registry, identity gates, events, tests |
-| [Registry Runtime](./REGISTRY_RUNTIME.md) | M1 executable catalogues |
+| [Registry Runtime](./REGISTRY_RUNTIME.md) | Executable catalogues |
+| [Sprint Explainability](./SPRINT_EXPLAINABILITY.md) | Explainability Eight-Gate |
+| [Sprint Trust](./SPRINT_TRUST.md) | Trust Eight-Gate |
+| [Sprint Passport](./SPRINT_PASSPORT.md) | Passport Eight-Gate |
+| [Sprint Foundation Finalization](./SPRINT_FOUNDATION_FINALIZATION.md) | Identity/Consent foundation |
+
+## Core runtime chain (certified)
+
+```text
+Identity → Consent → Passport → Trust → Explainability
+                 Discovery · Registries · SDK · Config · Observability
+```
+
+**SDK:** `@stankings/platform-sdk` **1.5.0**  
+**Tag:** `enterprise-platform-v1.3-explainability`

@@ -76,10 +76,11 @@ Classification legend: **Complete** · **Executable incomplete** · **Interface 
 
 | Capability | Artifact | Class | Notes |
 |------------|----------|-------|-------|
-| Explainability Runtime | `enterprise-platform/explainability/*` | **Complete (8/8)** | Runtime 1.0.0; migration pending review |
+| Explainability Runtime | `enterprise-platform/explainability/*` | **Complete (8/8)** | Runtime 1.0.0; migrated on Stankings |
 | Explainability contract | `explainability.record@1.0.0` | Complete | SDK explainability client |
 | Generators | Trust / Passport / Consent | Complete | Narrate only — no re-evaluation |
-| Persistence | Memory/File/Supabase + SQL | Complete | `20260722200000_shared_explainability_persistence.sql` |
+| Persistence | Memory/File/Supabase + SQL | Complete | Applied `20260722200000_shared_explainability_persistence.sql` |
+| Platform certification | `enterprise-platform/certification` | Complete | `assessPlatformCertification()` → GO |
 
 ---
 
