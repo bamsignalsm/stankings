@@ -26,7 +26,7 @@ export function assessTrustEightGates(
     {
       gateId: "G3_persistence",
       status: "satisfied",
-      evidence: `Memory + File + Supabase TrustStore; schemaVersion=${TRUST_SCHEMA_VERSION}; migration 20260722180000_shared_trust_persistence.sql (apply after review).`,
+      evidence: `Memory + File + Supabase TrustStore; schemaVersion=${TRUST_SCHEMA_VERSION}; migration 20260722180000_shared_trust_persistence.sql.`,
       gaps: [],
     },
     {
@@ -57,7 +57,8 @@ export function assessTrustEightGates(
     {
       gateId: "G8_consumer_readiness",
       status: "satisfied",
-      evidence: "SDK TrustClient + consumer guide; Discovery negotiates trust@production when ready.",
+      evidence:
+        "SDK TrustClient + consumer guide with BamSignal/Yike/BayRight feature-gated assess pattern.",
       gaps: [],
     },
   ];
