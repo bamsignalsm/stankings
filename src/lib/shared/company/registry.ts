@@ -1,14 +1,73 @@
 /**
- * Company registry — single source for every Stankings company.
+ * Company registry — single source of truth for every Stankings company.
+ * Future subsidiaries require updating this registry only; UI, search, and
+ * ecosystem maps consume it (or enrichment layers keyed by registry ids).
  */
 
 import { CONTACTS } from "@/lib/shared/config/contacts";
+import type { RegistryManifest } from "@/lib/shared/registry/convention";
+
+export const COMPANY_REGISTRY_MANIFEST: RegistryManifest = {
+  registryId: "company-registry",
+  name: "Company Registry",
+  owner: "Stankings Legacy Ltd",
+  status: "active",
+  version: "1.1.0",
+  docsPath: "docs/architecture/CORPORATE_PORTFOLIO.md",
+  entryKind: "company_or_institution",
+  audience: ["hq", "library", "ecosystem", "public"],
+  governanceRefs: ["CANON-005", "CANON-012", "Art. IX", "Art. X"],
+  consumers: [
+    "Stankings HQ",
+    "BamSignal",
+    "Yike",
+    "BayRight",
+    "Stankings Times",
+    "Stankings Hotel & Suites",
+    "Shodis Industries",
+  ],
+  isSingleSourceOfTruth: true,
+  notes: "Do not fork company lists in downstream repos. Legacy Live is not a company entry.",
+};
 
 export type CompanyLaunchStatus =
   | "operating"
   | "in_development"
   | "institutional"
   | "frozen";
+
+/** Portfolio taxonomy for dashboards, filters, reports, and investor materials. */
+export type BusinessSector =
+  | "technology"
+  | "marketplace"
+  | "financial"
+  | "property"
+  | "automotive"
+  | "logistics"
+  | "media"
+  | "hospitality"
+  | "manufacturing"
+  | "education"
+  | "foundation"
+  | "institutional"
+  /** Classification for Legacy Live reports — not assigned to a COMPANY_REGISTRY subsidiary. */
+  | "community_live_experiences";
+
+export const BUSINESS_SECTOR_LABELS: Record<BusinessSector, string> = {
+  technology: "Technology",
+  marketplace: "Marketplace",
+  financial: "Financial",
+  property: "Property",
+  automotive: "Automotive",
+  logistics: "Logistics",
+  media: "Media",
+  hospitality: "Hospitality",
+  manufacturing: "Manufacturing",
+  education: "Education",
+  foundation: "Foundation",
+  institutional: "Institutional",
+  community_live_experiences: "Community & Live Experiences",
+};
 
 export interface CompanyBrandColors {
   primary: string;
@@ -17,7 +76,11 @@ export interface CompanyBrandColors {
 
 export interface CompanyRecord {
   id: string;
+  /** Trading / brand name shown in UI */
   name: string;
+  /** Registered legal entity name */
+  legalName: string;
+  businessSector: BusinessSector;
   domain: string;
   url: string;
   supportEmail: string;
@@ -42,12 +105,18 @@ export interface CompanyRecord {
   roadmap: string[];
   isLive?: boolean;
   icon: string;
+  /** Optional etymology / naming meaning (e.g. SHODIS) */
+  nameMeaning?: string;
+  flagshipProducts?: string[];
+  strategicRole?: string;
 }
 
 export const COMPANY_REGISTRY: CompanyRecord[] = [
   {
     id: "hq",
     name: "Stankings HQ",
+    legalName: "Stankings Legacy Ltd",
+    businessSector: "institutional",
     domain: "stankings.com",
     url: "https://stankings.com",
     supportEmail: CONTACTS.support,
@@ -72,10 +141,13 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     privacyPath: "/privacy",
     roadmap: ["Production deploy", "Stage 1 exit", "Maintenance mode"],
     icon: "◆",
+    strategicRole: "Parent company and constitutional headquarters of the ecosystem.",
   },
   {
     id: "bamsignal",
     name: "BamSignal",
+    legalName: "BamSignal Ltd",
+    businessSector: "technology",
     domain: "bamsignal.com",
     url: "https://bamsignal.com",
     supportEmail: "support@bamsignal.com",
@@ -110,10 +182,14 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     ],
     isLive: true,
     icon: "♥",
+    strategicRole:
+      "Identity, community, relationship platform, and trust ecosystem for the Group. Hosts Singles Synergy and The Shared Path under Stankings Legacy Live — does not own those programmes and is not an events company.",
   },
   {
     id: "yike",
     name: "Yike",
+    legalName: "Yike Ltd",
+    businessSector: "marketplace",
     domain: "yike.ng",
     url: "https://yike.ng",
     supportEmail: "support@yike.ng",
@@ -144,10 +220,13 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     roadmap: ["Marketplace trust capabilities", "Vendor operations tooling"],
     isLive: true,
     icon: "◆",
+    strategicRole: "Marketplace infrastructure — property listings and vehicle marketplace.",
   },
   {
     id: "bayright",
     name: "BayRight",
+    legalName: "BayRight Ltd",
+    businessSector: "financial",
     domain: "bayright.com",
     url: "https://bayright.com",
     supportEmail: "support@bayright.com",
@@ -174,10 +253,13 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     roadmap: ["Provider certification", "Wallet and escrow reliability"],
     isLive: true,
     icon: "₦",
+    strategicRole: "Payments, billing, escrow, and financial services for the ecosystem.",
   },
   {
     id: "stanhan",
     name: "Stanhan",
+    legalName: "Stanhan Real Estate Ltd",
+    businessSector: "property",
     domain: "stankings.com",
     url: "https://stankings.com/companies/stanhan",
     supportEmail: CONTACTS.hello,
@@ -201,10 +283,14 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     privacyPath: "/privacy",
     roadmap: ["Property verification standards", "Development pipeline governance"],
     icon: "⌂",
+    strategicRole:
+      "Property acquisition, development, and housing — distinct from hospitality operations.",
   },
   {
     id: "stankings-auto-hub",
     name: "Stankings Auto Hub",
+    legalName: "Stankings Auto Hub Ltd",
+    businessSector: "automotive",
     domain: "stankings.com",
     url: "https://stankings.com/companies/stankings-auto-hub",
     supportEmail: CONTACTS.hello,
@@ -231,6 +317,8 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
   {
     id: "hannahkings-gadgets",
     name: "Hannahkings Gadgets",
+    legalName: "Hannahkings Gadgets Ltd",
+    businessSector: "technology",
     domain: "stankings.com",
     url: "https://stankings.com/companies/hannahkings-gadgets",
     supportEmail: CONTACTS.hello,
@@ -257,6 +345,8 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
   {
     id: "stankings-institute",
     name: "The Stankings Institute",
+    legalName: "The Stankings Institute",
+    businessSector: "education",
     domain: "stankings.com",
     url: "https://stankings.com/institute",
     supportEmail: CONTACTS.hello,
@@ -279,10 +369,14 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     privacyPath: "/privacy",
     roadmap: ["Custodian Programme curriculum", "Leadership stewardship standards"],
     icon: "✦",
+    strategicRole:
+      "Leadership and knowledge institution. Hosts Leadership Summits and Business Forums under Stankings Legacy Live — does not own those programmes.",
   },
   {
     id: "hannahkings-education",
     name: "Hannahkings Education",
+    legalName: "Hannahkings Education Ltd",
+    businessSector: "education",
     domain: "stankings.com",
     url: "https://stankings.com/companies/hannahkings-education",
     supportEmail: CONTACTS.hello,
@@ -309,6 +403,8 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
   {
     id: "stankings-foundation",
     name: "Stankings Foundation",
+    legalName: "Stankings Foundation",
+    businessSector: "foundation",
     domain: "stankings.com",
     url: "https://stankings.com/foundation",
     supportEmail: CONTACTS.foundation,
@@ -335,6 +431,8 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
   {
     id: "stankings-logistics",
     name: "Stankings Logistics",
+    legalName: "Stankings Logistics Ltd",
+    businessSector: "logistics",
     domain: "stankings.com",
     url: "https://stankings.com/companies/stankings-logistics",
     supportEmail: CONTACTS.hello,
@@ -358,6 +456,163 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     roadmap: ["Fleet and haulage reliability", "Port and import handling"],
     icon: "→",
   },
+  {
+    id: "stankings-times",
+    name: "Stankings Times",
+    legalName: "Stankings Times Ltd",
+    businessSector: "media",
+    domain: "stankings.com",
+    url: "https://stankings.com/companies/stankings-times",
+    supportEmail: CONTACTS.hello,
+    legalEmail: CONTACTS.legal,
+    trustEmail: CONTACTS.trust,
+    securityEmail: CONTACTS.security,
+    status: "in_development",
+    brandColors: { primary: "#B45309" },
+    launchStatus: "In development",
+    storeUrls: {},
+    description:
+      "Official media and communications arm of Stankings Legacy Ltd — digital publishing, business news, and corporate storytelling.",
+    tagline: "Media, publishing & corporate authority",
+    excellence: "Media & Publishing Excellence",
+    mission:
+      "To build corporate authority, strengthen public trust, and promote every ecosystem company through owned media.",
+    services: [
+      "Digital publishing",
+      "Daily business news",
+      "Executive interviews",
+      "Podcasts",
+      "Industry reports",
+      "Investigative journalism",
+      "Corporate storytelling",
+      "Thought leadership",
+    ],
+    areaOfOperation: "Africa — business media and corporate communications",
+    relationshipToHq:
+      "Media and communications subsidiary of Stankings Legacy Ltd. Supports every subsidiary through strategic communication.",
+    supportPath: "/support/general",
+    legalPath: "/legal",
+    privacyPath: "/privacy",
+    roadmap: [
+      "Executive Briefing programme",
+      "Founder Interviews series",
+      "Stankings Times Awards",
+      "Leadership Series",
+    ],
+    icon: "☰",
+    flagshipProducts: [
+      "Stankings Times Awards",
+      "Executive Briefing",
+      "Founder Interviews",
+      "Leadership Series",
+    ],
+    strategicRole:
+      "Official media and communications arm — build corporate authority, strengthen public trust, promote every ecosystem company, and create long-term relationships with business leaders across Africa. Hosts Stankings Times Awards and provides media for all Stankings Legacy Live programmes.",
+  },
+  {
+    id: "stankings-hotel-and-suites",
+    name: "Stankings Hotel & Suites",
+    legalName: "Stankings Hotel & Suites Ltd",
+    businessSector: "hospitality",
+    domain: "stankings.com",
+    url: "https://stankings.com/companies/stankings-hotel-and-suites",
+    supportEmail: CONTACTS.hello,
+    legalEmail: CONTACTS.legal,
+    trustEmail: CONTACTS.trust,
+    securityEmail: CONTACTS.security,
+    status: "in_development",
+    brandColors: { primary: "#A16207" },
+    launchStatus: "In development",
+    storeUrls: {},
+    description:
+      "Premium hospitality, executive suites, conference facilities, and event venues — not a real estate development company.",
+    tagline: "Hospitality, accommodation & event venues",
+    excellence: "Hospitality Excellence",
+    mission:
+      "To provide the physical hospitality infrastructure for the Stankings ecosystem and its guests.",
+    services: [
+      "Hotel ownership & operations",
+      "Premium hospitality",
+      "Executive suites",
+      "Conference facilities",
+      "Event venues",
+      "Corporate accommodation",
+      "VIP guest hosting",
+      "Serviced suites",
+    ],
+    areaOfOperation: "Nigeria — premium hospitality and corporate venues",
+    relationshipToHq:
+      "Hospitality operating company within Stankings Legacy Ltd. Property acquisition and development remain with Stanhan Real Estate Ltd.",
+    supportPath: "/support/general",
+    legalPath: "/legal",
+    privacyPath: "/privacy",
+    roadmap: [
+      "Landmark hospitality asset acquisition",
+      "Executive conference centres",
+      "Premium serviced apartments",
+      "Luxury hospitality experiences",
+    ],
+    icon: "◈",
+    strategicRole:
+      "Physical hospitality infrastructure for Stankings Legacy Live — primary venue for Singles Synergy, The Shared Path, Times Awards, summits, and forums (external venues until operational). Hospitality operations only — not real estate development.",
+  },
+  {
+    id: "shodis-industries",
+    name: "Shodis Industries",
+    legalName: "Shodis Industries Ltd",
+    businessSector: "manufacturing",
+    domain: "stankings.com",
+    url: "https://stankings.com/companies/shodis-industries",
+    supportEmail: CONTACTS.hello,
+    legalEmail: CONTACTS.legal,
+    trustEmail: CONTACTS.trust,
+    securityEmail: CONTACTS.security,
+    status: "in_development",
+    brandColors: { primary: "#57534E" },
+    launchStatus: "In development",
+    storeUrls: {},
+    description:
+      "Manufacturing, industrial production, and regional trade — factory-direct construction materials for the ecosystem and export markets.",
+    tagline: "Manufacturing, industrial production & regional trade",
+    excellence: "Manufacturing & Industrial Excellence",
+    mission:
+      "To provide factory-direct construction materials for Stanhan developments, hospitality projects, and regional export markets.",
+    services: [
+      "Manufacturing",
+      "Factory production",
+      "Industrial processing",
+      "Regional distribution",
+      "Construction materials",
+      "Export trade",
+    ],
+    areaOfOperation: "Nigeria and regional markets — industrial production and trade",
+    relationshipToHq:
+      "Manufacturing subsidiary of Stankings Legacy Ltd. Supplies Stanhan Real Estate, Stankings Hotel & Suites, and future infrastructure projects.",
+    supportPath: "/support/general",
+    legalPath: "/legal",
+    privacyPath: "/privacy",
+    roadmap: [
+      "Ceramic and floor tile production",
+      "Sanitary and toilet ware lines",
+      "Roofing sheets and building finishes",
+      "Regional export readiness",
+    ],
+    icon: "▣",
+    nameMeaning:
+      "SHODIS — S (Stanley), H (Hannah), O (Olanma), D (Dike), I (Ikenna), S (Stanley).",
+    flagshipProducts: [
+      "Ceramic tiles",
+      "Floor tiles",
+      "Wall tiles",
+      "Sanitary ware",
+      "Toilet ware",
+      "Roofing sheets",
+      "Building finishes",
+      "Construction materials",
+    ],
+    strategicRole:
+      "Factory-direct materials and industrial supply for Stanhan Real Estate, Stankings Hotel & Suites, future commercial developments, and regional export.",
+  },
 ];
 
 export function getCompany(id: string): CompanyRecord | undefined {
@@ -376,11 +631,21 @@ export function getOperatingCompanies(): CompanyRecord[] {
   return COMPANY_REGISTRY.filter((c) => c.status === "operating" || c.isLive);
 }
 
+export function getCompaniesBySector(sector: BusinessSector): CompanyRecord[] {
+  return COMPANY_REGISTRY.filter((c) => c.businessSector === sector);
+}
+
+export function getSubsidiaryCompanies(): CompanyRecord[] {
+  return COMPANY_REGISTRY.filter((c) => c.id !== "hq");
+}
+
 /** Compatibility shape for legacy Company type consumers */
 export function toLegacyCompany(c: CompanyRecord) {
   return {
     slug: c.id === "hq" ? "stankings-hq" : c.id,
     name: c.name,
+    legalName: c.legalName,
+    businessSector: c.businessSector,
     tagline: c.tagline,
     excellence: c.excellence,
     description: c.description,

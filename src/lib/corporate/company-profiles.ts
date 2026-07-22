@@ -3,8 +3,10 @@
  */
 
 import {
+  BUSINESS_SECTOR_LABELS,
   COMPANY_REGISTRY,
   getCompany,
+  type BusinessSector,
   type CompanyLaunchStatus,
   type CompanyRecord,
 } from "@/lib/shared/company/registry";
@@ -14,6 +16,9 @@ export type CompanyStatus = CompanyLaunchStatus;
 export interface CompanyProfile {
   slug: string;
   name: string;
+  legalName: string;
+  businessSector: BusinessSector;
+  businessSectorLabel: string;
   tagline: string;
   excellence: string;
   description: string;
@@ -31,12 +36,18 @@ export interface CompanyProfile {
   legalPath: string;
   privacyPath: string;
   roadmap: string[];
+  nameMeaning?: string;
+  flagshipProducts?: string[];
+  strategicRole?: string;
 }
 
 function toProfile(c: CompanyRecord): CompanyProfile {
   return {
     slug: c.id,
     name: c.name,
+    legalName: c.legalName,
+    businessSector: c.businessSector,
+    businessSectorLabel: BUSINESS_SECTOR_LABELS[c.businessSector],
     tagline: c.tagline,
     excellence: c.excellence,
     description: c.description,
@@ -54,6 +65,9 @@ function toProfile(c: CompanyRecord): CompanyProfile {
     legalPath: c.legalPath,
     privacyPath: c.privacyPath,
     roadmap: c.roadmap,
+    nameMeaning: c.nameMeaning,
+    flagshipProducts: c.flagshipProducts,
+    strategicRole: c.strategicRole,
   };
 }
 

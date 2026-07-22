@@ -1,7 +1,27 @@
 /**
  * Stankings Group Platform Registry
  * Architectural inventory per CANON-012 — Executive Decision No. 14
+ *
+ * Inventory maturity ≠ runtime readiness. See Shared Platform Contract.
  */
+
+import type { RegistryManifest } from "@/lib/shared/registry/convention";
+
+export const PLATFORM_REGISTRY_MANIFEST: RegistryManifest = {
+  registryId: "platform-registry",
+  name: "Platform Registry",
+  owner: "Stankings Legacy Ltd — Group Platform",
+  status: "active",
+  version: "1.1.0",
+  docsPath: "docs/platform/SHARED_PLATFORM_CONTRACT.md",
+  entryKind: "shared_platform_capability",
+  audience: ["hq", "library", "ecosystem", "internal"],
+  governanceRefs: ["CANON-012", "CANON-002", "Executive Decision No. 14"],
+  consumers: ["BamSignal", "Yike", "BayRight", "Stankings HQ", "Future subsidiaries"],
+  isSingleSourceOfTruth: true,
+  notes:
+    "status on entries describes inventory intent. Runtime readiness is governed by Shared Platform Contract — do not treat inventory 'active' as shipped cross-product API.",
+};
 
 export type PlatformStatus = "active" | "planned" | "deprecated" | "proposed";
 

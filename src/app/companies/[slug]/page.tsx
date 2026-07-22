@@ -61,7 +61,11 @@ export default async function CompanyPage({ params }: PageProps) {
               <h1 className="mb-3 font-serif text-5xl font-semibold text-cream md:text-6xl">
                 {company.name}
               </h1>
-              <p className="text-xl text-cream-muted">{company.tagline}</p>
+              <p className="text-sm text-cream-muted">{company.legalName}</p>
+              <p className="mt-1 text-xs tracking-widest text-gold uppercase">
+                {company.businessSectorLabel}
+              </p>
+              <p className="mt-3 text-xl text-cream-muted">{company.tagline}</p>
               <p className="mt-4 text-sm text-cream-muted">
                 Status:{" "}
                 <span className="text-cream">{STATUS_LABEL[company.statusLabel]}</span>
@@ -91,6 +95,37 @@ export default async function CompanyPage({ params }: PageProps) {
                 <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">Mission</h2>
                 <p className="leading-relaxed text-cream-muted">{company.mission}</p>
               </div>
+              {company.strategicRole ? (
+                <div>
+                  <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+                    Strategic role
+                  </h2>
+                  <p className="leading-relaxed text-cream-muted">{company.strategicRole}</p>
+                </div>
+              ) : null}
+              {company.nameMeaning ? (
+                <div>
+                  <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+                    Corporate meaning
+                  </h2>
+                  <p className="leading-relaxed text-cream-muted">{company.nameMeaning}</p>
+                </div>
+              ) : null}
+              {company.flagshipProducts && company.flagshipProducts.length > 0 ? (
+                <div>
+                  <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
+                    Flagship products
+                  </h2>
+                  <ul className="space-y-2">
+                    {company.flagshipProducts.map((item) => (
+                      <li key={item} className="flex gap-2 text-cream-muted">
+                        <span className="text-gold">◆</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <div>
                 <h2 className="mb-4 font-serif text-2xl font-semibold text-cream">
                   Area of operation

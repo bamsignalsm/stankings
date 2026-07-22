@@ -22,6 +22,9 @@ export const TRUST_NETWORK_INSTITUTIONS = [
   { id: "stanhan", label: "Stanhan", role: "Property" },
   { id: "stankings-auto-hub", label: "Auto Hub", role: "Automotive" },
   { id: "stankings-logistics", label: "Logistics", role: "Logistics" },
+  { id: "stankings-times", label: "Stankings Times", role: "Media" },
+  { id: "stankings-hotel-and-suites", label: "Hotel & Suites", role: "Hospitality" },
+  { id: "shodis-industries", label: "Shodis Industries", role: "Manufacturing" },
   { id: "stankings-foundation", label: "Foundation", role: "Social Impact" },
   { id: "stankings-institute", label: "The Institute", role: "Leadership" },
 ];

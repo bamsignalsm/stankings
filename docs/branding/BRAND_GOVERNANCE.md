@@ -7,7 +7,13 @@
 
 The Brand System Hardening initiative is complete. Branding is governed by repository policy and CI.
 
+## Future updates
+
 **No additional branding infrastructure work** should be performed unless official brand assets change.
+
+### Umbrella brands (non-asset)
+
+Corporate umbrella brands such as **Stankings Legacy Live** are documented in architecture (`docs/community/`, `src/lib/legacy-live/`) and are **not** subsidiaries. Visual asset pipelines for Legacy Live programmes are deferred until official programme launch.
 
 ---
 

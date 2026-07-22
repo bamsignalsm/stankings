@@ -154,6 +154,9 @@ export const ARTICLE_CROSS_LINKS: Record<string, ArticleCrossLinks> = {
       company("bayright", "BayRight"),
       company("stanhan", "Stanhan Real Estate"),
       company("stankings-auto-hub", "Stankings Auto Hub"),
+      company("stankings-times", "Stankings Times"),
+      company("stankings-hotel-and-suites", "Stankings Hotel & Suites"),
+      company("shodis-industries", "Shodis Industries"),
     ],
     knowledgeObjects: [
       framework("FRAMEWORK-IEP-001", "Institutional Ecosystem Portal", "institutional-ecosystem-portal"),

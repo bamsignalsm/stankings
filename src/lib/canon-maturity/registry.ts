@@ -14,18 +14,10 @@ import type {
 import { getAllStaticKnowledgeObjects } from "@/lib/library-engine/seed";
 import { INSTITUTIONAL_GRAPH_EDGES } from "@/lib/iki/graph";
 import { getAllStaticLexiconTerms } from "@/lib/lexicon-engine/seed";
+import { getSubsidiaryCompanies } from "@/lib/shared/company/registry";
 
-const ECOSYSTEM_COMPANIES = [
-  "yike",
-  "stanhan",
-  "bayright",
-  "bamsignal",
-  "stankings-logistics",
-  "hannahkings-education",
-  "stankings-institute",
-  "stankings-foundation",
-  "stankings-auto-hub",
-];
+/** Derived from COMPANY_REGISTRY — do not maintain a parallel slug list. */
+const ECOSYSTEM_COMPANIES = getSubsidiaryCompanies().map((c) => c.id);
 
 const POLICY_PLACEHOLDERS: Record<string, { identifier: string; title: string }[]> = {
   "CANON-007": [{ identifier: "POL-TRUTH-001", title: "Truth in Reporting Policy" }],

@@ -1,0 +1,46 @@
+{
+  "name": "@stankings/platform-sdk",
+  "version": "1.5.0",
+  "private": true,
+  "description": "Stankings Enterprise Platform SDK — consumer façade for Identity, Discovery, Consent, Passport, Trust, and Explainability",
+  "type": "module",
+  "license": "UNLICENSED",
+  "author": "Stankings Legacy Ltd",
+  "homepage": "https://github.com/bamsignalsm/stankings",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamsignalsm/stankings.git",
+    "directory": "packages/platform-sdk"
+  },
+  "keywords": [
+    "stankings",
+    "enterprise-platform",
+    "identity",
+    "passport",
+    "trust",
+    "consent",
+    "explainability",
+    "sdk"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./identity": "./src/identity/index.ts",
+    "./discovery": "./src/discovery-client.ts",
+    "./consent": "./src/consent/index.ts",
+    "./passport": "./src/passport/index.ts",
+    "./trust": "./src/trust/index.ts",
+    "./explainability": "./src/explainability/index.ts",
+    "./errors": "./src/errors.ts"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

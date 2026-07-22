@@ -69,7 +69,7 @@ const IDENTITY_ENRICHMENT: Record<string, IdentityEnrichment> = {
     purpose:
       "To strengthen human connection through verified identity and reputation that travels across the Group.",
     strategicRole:
-      "Relationship and community trust layer — identity and reputation that strengthens every sibling institution.",
+      "Relationship and community trust layer — identity and reputation that strengthens every sibling institution. Hosts Singles Synergy and The Shared Path under Stankings Legacy Live; does not own those programmes and is not an events company.",
     longTermVision:
       "The trusted social infrastructure through which authentic relationships are formed and verified.",
     primaryCustomers: [
@@ -82,6 +82,7 @@ const IDENTITY_ENRICHMENT: Record<string, IdentityEnrichment> = {
       "Maintain reputation integrity across platforms",
       "Resist commodification of human connection",
       "Strengthen ecosystem-wide trust signals",
+      "Host Legacy Live relationship programmes without absorbing programme ownership",
     ],
     status: "approved",
   },
@@ -178,7 +179,7 @@ const IDENTITY_ENRICHMENT: Record<string, IdentityEnrichment> = {
     purpose:
       "To develop custodians and preserve institutional knowledge across generations.",
     strategicRole:
-      "Leadership and knowledge institution — prepares successors before succession becomes urgent.",
+      "Leadership and knowledge institution — prepares successors before succession becomes urgent. Hosts Leadership Summits and Business Forums under Stankings Legacy Live; does not own those programmes.",
     longTermVision:
       "The permanent school of stewardship for Stankings Group and its ecosystem.",
     primaryCustomers: [
@@ -186,12 +187,14 @@ const IDENTITY_ENRICHMENT: Record<string, IdentityEnrichment> = {
       "Directors and senior leaders",
       "Institutional architects",
       "Custodian Programme participants",
+      "Leadership Summit and Business Forum delegates",
     ],
     stewardshipResponsibilities: [
       "Preserve and transmit institutional knowledge",
       "Form leaders worthy of constitutional trust",
       "Maintain the Library as living curriculum",
       "Prepare generations not yet born",
+      "Host Legacy Live leadership programmes without absorbing programme ownership",
     ],
     status: "approved",
   },
@@ -258,6 +261,76 @@ const IDENTITY_ENRICHMENT: Record<string, IdentityEnrichment> = {
       "Support sibling institutions' operational reliability",
       "Maintain fleet and haulage standards",
       "Strengthen supply chain trust",
+    ],
+    status: "approved",
+  },
+  "stankings-times": {
+    founded: "In formation",
+    purpose:
+      "To serve as the official media and communications arm of Stankings Legacy Ltd — building corporate authority and public trust through owned media.",
+    strategicRole:
+      "Media, publishing and corporate authority — promotes every subsidiary through strategic communication; hosts Stankings Times Awards and provides media for all Stankings Legacy Live programmes.",
+    longTermVision:
+      "Africa's most trusted institutional business media brand.",
+    primaryCustomers: [
+      "Business leaders and executives",
+      "Investors and strategic partners",
+      "Ecosystem companies seeking owned-media visibility",
+      "Public audiences seeking credible business journalism",
+    ],
+    stewardshipResponsibilities: [
+      "Maintain editorial integrity worthy of institutional trust",
+      "Promote ecosystem companies without compromising journalistic standards",
+      "Build long-term relationships with African business leaders",
+      "Strengthen public trust in Stankings Legacy Ltd",
+      "Host Times Awards under Legacy Live without claiming programme ownership from the parent",
+    ],
+    status: "approved",
+  },
+  "stankings-hotel-and-suites": {
+    founded: "In formation",
+    purpose:
+      "To provide premium hospitality, executive accommodation and event venues that host the ecosystem's most important gatherings.",
+    strategicRole:
+      "Hospitality infrastructure for Stankings Legacy Live — primary venue for Singles Synergy, The Shared Path, Times Awards, summits and forums. Not real estate development. Hosts awards, summits, investor meetings and corporate retreats; accommodates investors, partners and international guests.",
+    longTermVision:
+      "A premium hospitality brand recognized across Nigeria and beyond — operating hotel rooms, suites, serviced apartments and conference facilities under one company.",
+    primaryCustomers: [
+      "Investors and strategic partners",
+      "Conference and awards delegates",
+      "Corporate retreat and summit hosts",
+      "VIP and international guests",
+      "Stankings Legacy Live programme organisers",
+    ],
+    stewardshipResponsibilities: [
+      "Operate hospitality assets with premium service standards",
+      "Remain distinct from Stanhan Real Estate development activities",
+      "Support Stankings Legacy Live venues (BamSignal-hosted programmes, Times Awards, summits)",
+      "Protect guest dignity, safety and institutional reputation",
+    ],
+    status: "approved",
+  },
+  "shodis-industries": {
+    founded: "In formation",
+    purpose:
+      "To manufacture and distribute factory-direct construction materials that strengthen Stanhan developments, hospitality projects and regional trade.",
+    institutionPurposeStatement:
+      "Shodis Industries Ltd exists to provide manufacturing, industrial production and regional trade capability for Stankings Legacy Ltd. SHODIS represents Stanley, Hannah, Olanma, Dike, Ikenna and Stanley — a family name carried into industrial excellence. The company supplies ceramic tiles, sanitary ware, roofing sheets and building finishes to Stanhan Real Estate, Stankings Hotel & Suites, future commercial developments and export markets, without competing as a property developer or hospitality operator.",
+    strategicRole:
+      "Manufacturing and industrial supply — factory-direct materials for property, hospitality and regional export.",
+    longTermVision:
+      "A trusted regional manufacturer of construction materials serving ecosystem projects and export markets.",
+    primaryCustomers: [
+      "Stanhan Real Estate developments",
+      "Stankings Hotel & Suites projects",
+      "Commercial developers",
+      "Regional export distributors",
+    ],
+    stewardshipResponsibilities: [
+      "Maintain factory quality and export readiness",
+      "Supply sibling institutions without becoming a developer or hotelier",
+      "Honour the SHODIS family meaning through durable industrial excellence",
+      "Strengthen regional trade capability for the Group",
     ],
     status: "approved",
   },

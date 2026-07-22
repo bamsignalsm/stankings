@@ -75,6 +75,9 @@ export function buildSearchIndex(): SharedSearchDocument[] {
         c.excellence,
         c.tagline,
         c.domain,
+        c.legalName,
+        c.businessSector,
+        ...(c.nameMeaning ? [c.nameMeaning] : []),
       ]),
     ),
     ...TRUST_REGISTRY.map((t) =>

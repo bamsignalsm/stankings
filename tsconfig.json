@@ -17,7 +17,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@stankings/core": ["./packages/core/src/index.ts"],
-      "@stankings/core/*": ["./packages/core/src/*"]
+      "@stankings/core/*": ["./packages/core/src/*"],
+      "@stankings/platform-sdk": ["./packages/platform-sdk/src/index.ts"],
+      "@stankings/platform-sdk/*": ["./packages/platform-sdk/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,11 +1,15 @@
 import Link from "next/link";
 import type { Company } from "@/lib/data";
+import { BUSINESS_SECTOR_LABELS, type BusinessSector } from "@/lib/shared/company/registry";
 
 interface CompanyCardProps {
   company: Company;
 }
 
 export function CompanyCard({ company }: CompanyCardProps) {
+  const sectorLabel =
+    BUSINESS_SECTOR_LABELS[company.businessSector as BusinessSector] ?? company.businessSector;
+
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gold-subtle bg-ink-muted p-6 transition-all duration-300 hover:border-gold/40 hover:bg-ink-light">
       <div
@@ -29,7 +33,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
             </span>
           )}
           <span className="text-right text-[10px] uppercase tracking-widest text-cream-muted/60">
-            {company.excellence}
+            {sectorLabel}
           </span>
         </div>
       </div>
@@ -37,6 +41,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
         <h3 className="mb-1 font-serif text-xl font-semibold text-cream group-hover:text-gold-light">
           {company.name}
         </h3>
+        <p className="mb-1 text-xs text-cream-muted/70">{company.legalName}</p>
         <p className="mb-4 text-sm text-cream-muted">{company.tagline}</p>
       </Link>
       <div className="mt-auto flex flex-wrap items-center gap-3">

@@ -5,6 +5,7 @@
 
 export * from "./config";
 export * from "./company/registry";
+export * from "./registry";
 export * from "./support/registry";
 export * from "./legal/registry";
 export * from "./status/registry";

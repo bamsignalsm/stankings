@@ -97,7 +97,7 @@ export function Header() {
           <div className="mt-6 border-t border-gold-subtle pt-6">
             <p className="mb-3 text-xs tracking-widest text-cream-muted uppercase">Companies</p>
             <div className="grid grid-cols-2 gap-2">
-              {COMPANIES.slice(0, 6).map((c) => (
+              {COMPANIES.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/companies/${c.slug}`}
