@@ -1,0 +1,14 @@
+{
+  "name": "@stankings/platform-sdk",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Stankings Enterprise Platform SDK — consumer façade for shared capabilities",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./identity": "./src/identity/index.ts",
+    "./discovery": "./src/discovery-client.ts",
+    "./consent": "./src/consent/index.ts",
+    "./errors": "./src/errors.ts"
+  }
+}

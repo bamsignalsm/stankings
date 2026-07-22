@@ -5,6 +5,30 @@
  */
 
 import { CONTACTS } from "@/lib/shared/config/contacts";
+import type { RegistryManifest } from "@/lib/shared/registry/convention";
+
+export const COMPANY_REGISTRY_MANIFEST: RegistryManifest = {
+  registryId: "company-registry",
+  name: "Company Registry",
+  owner: "Stankings Legacy Ltd",
+  status: "active",
+  version: "1.1.0",
+  docsPath: "docs/architecture/CORPORATE_PORTFOLIO.md",
+  entryKind: "company_or_institution",
+  audience: ["hq", "library", "ecosystem", "public"],
+  governanceRefs: ["CANON-005", "CANON-012", "Art. IX", "Art. X"],
+  consumers: [
+    "Stankings HQ",
+    "BamSignal",
+    "Yike",
+    "BayRight",
+    "Stankings Times",
+    "Stankings Hotel & Suites",
+    "Shodis Industries",
+  ],
+  isSingleSourceOfTruth: true,
+  notes: "Do not fork company lists in downstream repos. Legacy Live is not a company entry.",
+};
 
 export type CompanyLaunchStatus =
   | "operating"

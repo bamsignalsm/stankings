@@ -1,0 +1,17 @@
+export {
+  IDENTITY_PROVIDER,
+  FEDERATION_RULES,
+  resolveFederationConflict,
+  compareContractVersions,
+  assessFederationCompatibility,
+  type FederatedPlatformType,
+  type FederatedPlatformStatus,
+  type PlatformRuntimeReadiness,
+  type PlatformHealthStatus,
+  type PlatformFeatureAvailability,
+  type FederationCompatibility,
+  type IdentityProviderDescriptor,
+  type ConsumerPlatformDescriptor,
+  type FederationSyncRequest,
+  type FederationSyncResult,
+} from "./model";

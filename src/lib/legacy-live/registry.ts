@@ -10,6 +10,30 @@
  *   Awards: Award Institution → Annual Edition → Ceremony (+ categories, nominees, archive)
  */
 
+import type { RegistryManifest } from "@/lib/shared/registry/convention";
+
+export const LEGACY_LIVE_REGISTRY_MANIFEST: RegistryManifest = {
+  registryId: "legacy-live-registry",
+  name: "Legacy Live Registry",
+  owner: "Stankings Legacy Ltd",
+  status: "active",
+  version: "1.1.0",
+  docsPath: "docs/community/STANKINGS_LEGACY_LIVE.md",
+  entryKind: "live_programme_or_umbrella",
+  audience: ["hq", "library", "ecosystem", "internal"],
+  governanceRefs: ["CANON-005", "CANON-003", "Art. IX"],
+  consumers: [
+    "Stankings HQ",
+    "BamSignal",
+    "Stankings Times",
+    "Stankings Hotel & Suites",
+    "The Stankings Institute",
+    "BayRight",
+  ],
+  isSingleSourceOfTruth: true,
+  notes: "Umbrella brand + programmes. Not a COMPANY_REGISTRY entry.",
+};
+
 /** Classification for reports — not a company sector assignment in COMPANY_REGISTRY. */
 export const LEGACY_LIVE_BUSINESS_SECTOR = "community_live_experiences" as const;
 export const LEGACY_LIVE_BUSINESS_SECTOR_LABEL = "Community & Live Experiences" as const;

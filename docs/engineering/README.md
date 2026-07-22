@@ -17,8 +17,12 @@ Projects: **Stankings** (HQ), **BamSignal**, **BayRight**, **Yike**.
 | [UI_STANDARD.md](./UI_STANDARD.md) | Institutional design system (Stankings HQ) |
 | [API_STANDARD.md](./API_STANDARD.md) | Health, readiness, public API conventions |
 | [DATABASE_STANDARD.md](./DATABASE_STANDARD.md) | Supabase/Postgres patterns |
+| [PROJECT_IDENTITY.md](./PROJECT_IDENTITY.md) | Repo identity, Supabase ref, verify script |
+| [REGISTRY_CONVENTION.md](./REGISTRY_CONVENTION.md) | Registry naming, manifests, consumption (SDK deferred) |
 
-## Rule for engineers and AI assistants
+## Shared platform
+
+Cross-product contracts live under [`docs/platform/`](../platform/SHARED_PLATFORM_CONTRACT.md). Build shared capabilities in Stankings; consume in BamSignal, Yike, BayRight, and future platforms.
 
 Before introducing a new pattern, **check whether an existing standard already covers it**.
 
