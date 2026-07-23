@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
-import { setApplicationStatus, advanceApplicationStatus } from "../actions";
+import { setApplicationStatus } from "../actions";
+import { advanceApplicationStatus } from "@/app/skl/actions";
 import type { CareerApplication } from "@/lib/types";
 import { HIRING_PIPELINE_STATUSES } from "@/lib/workforce/types";
 

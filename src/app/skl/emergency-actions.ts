@@ -11,7 +11,7 @@ async function requireSuperAdmin() {
   return member!;
 }
 
-export type EmergencyAction =
+type EmergencyAction =
   | "suspend_workforce"
   | "disable_skl"
   | "force_logout"
