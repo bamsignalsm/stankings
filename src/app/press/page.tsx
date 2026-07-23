@@ -37,7 +37,7 @@ export default function PressPage() {
             {SITE.name} is an African institutional group building trusted businesses,
             transformative technologies, educational institutions, and lasting social impact. Live
             platforms include {LIVE_PLATFORMS.map((p) => p.name).join(", ")}. Founded by{" "}
-            {SITE.founder}. Headquarters: Lagos, Nigeria. Website: {SITE_URL}.
+            {SITE.founder}. Headquarters: Abia State, Nigeria. Website: {SITE_URL}.
           </p>
         </section>
 

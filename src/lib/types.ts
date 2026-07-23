@@ -2,6 +2,7 @@ export type MemberRole = "member" | "admin" | "super_admin";
 export type MemberStatus = "pending" | "approved" | "rejected";
 export type CareerPostStatus = "draft" | "published" | "closed";
 export type ApplicationStatus =
+  | "draft"
   | "submitted"
   | "new"
   | "reviewing"
@@ -43,6 +44,7 @@ export interface CareerPost {
   description: string;
   requirements: string | null;
   location: string;
+  work_location_type?: string | null;
   employment_type: string;
   status: CareerPostStatus;
   created_by: string | null;
@@ -54,11 +56,20 @@ export interface CareerApplication {
   id: string;
   post_id: string;
   applicant_id: string | null;
+  passport_id?: string | null;
   full_name: string;
+  preferred_name?: string | null;
   email: string;
   phone: string | null;
   cover_letter: string | null;
   linkedin_url: string | null;
+  profile?: Record<string, unknown> | null;
+  shortlisted?: boolean;
+  talent_pool?: boolean;
+  passport_match?: boolean;
+  duplicate_flag?: boolean;
+  recruiter_scorecard?: Record<string, unknown> | null;
+  hiring_recommendation?: string | null;
   status: ApplicationStatus;
   interview_score?: number | null;
   hiring_decision?: string | null;
@@ -72,5 +83,7 @@ export interface CareerApplication {
     role_key?: string | null;
     workspace_key?: string | null;
     department_slug?: string | null;
+    location?: string | null;
+    work_location_type?: string | null;
   };
 }

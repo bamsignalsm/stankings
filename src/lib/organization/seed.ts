@@ -189,7 +189,8 @@ export async function seedOrganizationRegistry(createdBy?: string): Promise<{
       description,
       requirements:
         "Professional communication, institutional discipline, digital literacy",
-      location: "Lagos, Nigeria / Hybrid",
+      location: "Stankings HQ, Abia State, Nigeria / Hybrid",
+      work_location_type: "hybrid",
       employment_type: "full-time",
       status: postStatus,
       catalogue_key: catalogueKey,

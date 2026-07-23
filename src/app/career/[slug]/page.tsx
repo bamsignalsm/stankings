@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentMember } from "@/lib/members";
 import { ApplyForm } from "@/components/ApplyForm";
+import { formatCareerLocation } from "@/lib/careers/location";
+import { resolveRoleQuestions, type RoleQuestion } from "@/lib/careers/ats-schema";
 import type { CareerPost } from "@/lib/types";
 
 interface PageProps {
@@ -34,8 +36,21 @@ export default async function CareerDetailPage({ params }: PageProps) {
     .single();
 
   if (!data) notFound();
-  const post = data as CareerPost;
+  const post = data as CareerPost & { role_questions?: RoleQuestion[] | null };
   const member = await getCurrentMember();
+  let passportId: string | null = null;
+  if (member) {
+    const { data: link } = await supabase
+      .from("passport_person_links")
+      .select("passport_id")
+      .eq("user_id", member.id)
+      .maybeSingle();
+    passportId = link?.passport_id ?? null;
+  }
+  const roleQuestions = resolveRoleQuestions(
+    post.workspace_key,
+    Array.isArray(post.role_questions) ? post.role_questions : null
+  );
 
   return (
     <div className="pt-20">
@@ -55,7 +70,8 @@ export default async function CareerDetailPage({ params }: PageProps) {
             {post.title}
           </h1>
           <p className="text-cream-muted">
-            {post.location} · {post.employment_type}
+            {formatCareerLocation(post.location, post.work_location_type)} ·{" "}
+            {post.employment_type}
             {post.department_slug ? ` · ${post.department_slug}` : ""}
           </p>
           {post.reporting_manager_title ? (
@@ -127,8 +143,11 @@ export default async function CareerDetailPage({ params }: PageProps) {
             <ApplyForm
               postId={post.id}
               postTitle={post.title}
+              workspaceKey={post.workspace_key}
+              roleQuestions={roleQuestions}
               defaultEmail={member?.email}
               defaultName={member?.full_name ?? undefined}
+              passportId={passportId}
             />
           </div>
         </div>

@@ -1,4 +1,9 @@
 import { COMPANY_AREAS, EMPLOYMENT_TYPES } from "@/lib/careers";
+import {
+  DEFAULT_CAREER_LOCATION,
+  WORK_LOCATION_TYPE_LABELS,
+  type WorkLocationType,
+} from "@/lib/careers/location";
 import type { CareerPost } from "@/lib/types";
 
 interface CareerPostFormProps {
@@ -31,8 +36,28 @@ export function CareerPostForm({ action, post }: CareerPostFormProps) {
       <Field
         label="Location"
         name="location"
-        defaultValue={post?.location ?? "Lagos, Nigeria"}
+        defaultValue={post?.location ?? DEFAULT_CAREER_LOCATION}
       />
+      <div>
+        <label className="mb-1.5 block text-xs uppercase tracking-widest text-cream-muted">
+          Work location type
+        </label>
+        <select
+          name="work_location_type"
+          defaultValue={
+            (post?.work_location_type as WorkLocationType) ?? "hybrid"
+          }
+          className="w-full rounded-sm border border-gold-subtle bg-ink px-4 py-3 text-cream"
+        >
+          {(Object.keys(WORK_LOCATION_TYPE_LABELS) as WorkLocationType[]).map(
+            (key) => (
+              <option key={key} value={key}>
+                {WORK_LOCATION_TYPE_LABELS[key]}
+              </option>
+            )
+          )}
+        </select>
+      </div>
       <div>
         <label className="mb-1.5 block text-xs uppercase tracking-widest text-cream-muted">
           Employment type

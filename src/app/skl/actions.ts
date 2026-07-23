@@ -25,7 +25,10 @@ export async function advanceApplicationStatus(formData: FormData) {
   const interviewScore = String(formData.get("interview_score") ?? "").trim();
   const hiringDecision = String(formData.get("hiring_decision") ?? "").trim();
 
-  if (!applicationId || !HIRING_PIPELINE_STATUSES.includes(status)) {
+  if (
+    status === "draft" ||
+    !HIRING_PIPELINE_STATUSES.includes(status as (typeof HIRING_PIPELINE_STATUSES)[number])
+  ) {
     throw new Error("Invalid application status");
   }
 

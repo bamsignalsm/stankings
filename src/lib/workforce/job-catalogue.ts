@@ -39,7 +39,7 @@ export interface JobCatalogueEntry {
   hierarchyLevel: "ceo" | "company_head" | "department_manager" | "staff";
 }
 
-const LOC = "Lagos, Nigeria / Hybrid";
+const LOC = "Stankings HQ, Abia State, Nigeria / Hybrid";
 
 function job(
   partial: Omit<JobCatalogueEntry, "employmentType" | "location" | "permissionKeys" | "hierarchyLevel"> &

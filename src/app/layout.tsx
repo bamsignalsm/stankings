@@ -105,7 +105,7 @@ export default function RootLayout({
             email: CONTACTS.hello,
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Lagos",
+              addressLocality: "Abia State",
               addressCountry: "NG",
             },
             sameAs: [
