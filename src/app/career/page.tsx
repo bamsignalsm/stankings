@@ -27,7 +27,7 @@ export default async function CareersPage({
   const orgCompanies = getOrgCompanies();
 
   let posts: CareerPost[] = [];
-  let companyStatuses: Record<string, RecruitmentStatus> = {};
+  const companyStatuses: Record<string, RecruitmentStatus> = {};
   try {
     const supabase = await createClient();
     const { data: orgRows } = await supabase
