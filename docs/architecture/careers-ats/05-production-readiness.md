@@ -1,7 +1,8 @@
 # Careers ATS — Production Readiness Report
 
-**Date:** 2026-07-22  
-**Commit:** Hold until Founder GO  
+**Date:** 2026-07-23  
+**Status:** **PRODUCTION-READY**  
+**Release:** Merged via [PR #16](https://github.com/bamsignalsm/stankings/pull/16) → `main` @ `3e6cfe9`
 
 ## Validation checklist
 
@@ -15,13 +16,15 @@
 | Lagos → Abia on careers + HQ metadata | PASS |
 | Migration applied (`dfaqkrikdvohvvcuxoek`) | PASS |
 | Identity / Passport / RBAC / provisioner unchanged | PASS |
+| CI build | PASS |
+| Coolify deploy | PASS (`3e6cfe9`) |
 
-## Residual
+## Residual (next iteration)
 
-- Binary file upload UX (URLs supported; bucket ready)
-- Server-side draft applications (status `draft` reserved)
-- Offer letter / interview email templates still text-based (location constants available)
+- Binary file upload UX
+- Server-side draft applications
+- Offer/interview email templates
 
 ## Recommendation
 
-Approved for Founder architectural review. **Do not commit until GO.**
+**Careers ATS enhancement is production-ready.** Authenticated end-to-end submit/scorecard actions should be confirmed once in Energy by Founder/HR.
