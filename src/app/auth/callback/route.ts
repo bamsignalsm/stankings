@@ -1,12 +1,18 @@
 import { createClient } from "@/lib/supabase/server";
 import { bootstrapSuperAdmin } from "@/lib/supabase/admin";
 import { USER_LOGIN_PATH } from "@/lib/auth-paths";
+import { SITE_URL } from "@/lib/brand";
 import { ensurePassportForUser } from "@/lib/passport/person";
 import { resolvePostAuthDestination } from "@/lib/passport/routing";
 import { NextResponse } from "next/server";
 
+function redirectTo(path: string) {
+  const base = SITE_URL.replace(/\/$/, "");
+  return NextResponse.redirect(`${base}${path.startsWith("/") ? path : `/${path}`}`);
+}
+
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
   const nextParam = searchParams.get("next");
 
@@ -43,13 +49,13 @@ export async function GET(request: Request) {
         }
 
         if (!user.email_confirmed_at) {
-          return NextResponse.redirect(
-            `${origin}/auth/verify-email?next=${encodeURIComponent(nextParam ?? "/library")}`
+          return redirectTo(
+            `/auth/verify-email?next=${encodeURIComponent(nextParam ?? "/library")}`
           );
         }
 
         if (recoveryRequired) {
-          return NextResponse.redirect(`${origin}/passport/recovery`);
+          return redirectTo("/passport/recovery");
         }
 
         const destination = await resolvePostAuthDestination(user.id, {
@@ -57,10 +63,10 @@ export async function GET(request: Request) {
           next: nextParam,
         });
 
-        return NextResponse.redirect(`${origin}${destination}`);
+        return redirectTo(destination);
       }
     }
   }
 
-  return NextResponse.redirect(`${origin}${USER_LOGIN_PATH}?error=auth`);
+  return redirectTo(`${USER_LOGIN_PATH}?error=auth`);
 }
