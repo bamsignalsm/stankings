@@ -108,7 +108,19 @@ export default async function ApplicantDashboardPage() {
               </p>
               <p className="mt-1 text-xs text-cream-muted">
                 Submitted {new Date(app.created_at).toLocaleDateString()}
+                {app.preferred_name ? ` · Preferred: ${app.preferred_name}` : ""}
               </p>
+              {app.profile &&
+              typeof app.profile === "object" &&
+              Array.isArray((app.profile as { skills?: unknown[] }).skills) ? (
+                <p className="mt-2 text-xs text-cream-muted">
+                  Structured ATS profile on file · Skills:{" "}
+                  {(app.profile as { skills: unknown[] }).skills.length} · Education:{" "}
+                  {Array.isArray((app.profile as { education?: unknown[] }).education)
+                    ? (app.profile as { education: unknown[] }).education.length
+                    : 0}
+                </p>
+              ) : null}
               {app.status === "offer_extended" ? (
                 <div className="mt-4 flex gap-3">
                   <form action={respondToOffer}>

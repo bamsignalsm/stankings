@@ -134,7 +134,7 @@ export const COMPANY_REGISTRY: CompanyRecord[] = [
     excellence: "Institutional Excellence",
     mission: "Provide shared institutional identity and trust infrastructure.",
     services: ["Trust Center", "Legal Center", "Support Center", "Security Center", "Library"],
-    areaOfOperation: "Global institutional — Lagos HQ",
+    areaOfOperation: "Global institutional — Abia State HQ",
     relationshipToHq: "This is Stankings HQ.",
     supportPath: "/support/hq",
     legalPath: "/legal",

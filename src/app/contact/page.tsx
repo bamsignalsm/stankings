@@ -56,7 +56,7 @@ export default function ContactPage() {
 
       <div className="mt-12 rounded-lg border border-gold-subtle bg-ink-muted p-6">
         <h2 className="mb-2 font-serif text-xl text-cream">Headquarters</h2>
-        <p className="text-cream-muted">Lagos, Nigeria</p>
+        <p className="text-cream-muted">Abia State, Nigeria</p>
         <p className="mt-2 text-sm text-cream-muted">
           {HQ_SITE.name} Ltd · {HQ_SITE.domain}
         </p>

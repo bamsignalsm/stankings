@@ -10,6 +10,7 @@ import {
   RECRUITMENT_STATUS_LABELS,
   type RecruitmentStatus,
 } from "@/lib/organization/registry";
+import { formatCareerLocation, STANKINGS_HQ_LOCATION } from "@/lib/careers/location";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
@@ -68,7 +69,8 @@ export default async function CareersPage({
           </h1>
           <p className="text-lg text-cream-muted">
             Apply with your Stankings Passport. One lifetime identity — employment
-            is a capability, never a second account.
+            is a capability, never a second account. Headquarters:{" "}
+            {STANKINGS_HQ_LOCATION.display}.
           </p>
         </div>
       </section>
@@ -135,7 +137,12 @@ export default async function CareersPage({
                     {post.title}
                   </h3>
                   <p className="mt-2 text-sm text-cream-muted">
-                    {post.location} · {post.employment_type}
+                    {formatCareerLocation(
+                      post.location,
+                      (post as CareerPost & { work_location_type?: string })
+                        .work_location_type
+                    )}{" "}
+                    · {post.employment_type}
                     {post.department_slug ? ` · ${post.department_slug}` : ""}
                     {post.workspace_key ? ` · ${post.workspace_key}` : ""}
                   </p>
