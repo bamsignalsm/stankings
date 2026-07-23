@@ -2,13 +2,13 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import {
   ADMIN_AUTH_PATH,
-  ENERGY_HOME_PATH,
   USER_LOGIN_PATH,
   USER_REGISTER_PATH,
   isEnergyPanelPath,
   resolveEnergyNext,
 } from "@/lib/auth-paths";
 import { isProtectedPath } from "@/lib/auth";
+import { resolvePostAuthDestination } from "@/lib/passport/capability-routing";
 
 async function getMemberStatus(
   supabase: ReturnType<typeof createServerClient>,
@@ -57,6 +57,28 @@ export async function updateSession(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/skl" || pathname.startsWith("/skl/")) {
+    if (!user) {
+      const url = request.nextUrl.clone();
+      url.pathname = USER_LOGIN_PATH;
+      url.searchParams.set("next", pathname);
+      return NextResponse.redirect(url);
+    }
+    const { data: emp } = await supabase
+      .from("workforce_employees")
+      .select("id, status, skl_access, locked_pending_investigation")
+      .eq("user_id", user.id)
+      .in("status", ["active", "invited"])
+      .eq("skl_access", true)
+      .limit(1)
+      .maybeSingle();
+    if (!emp || emp.locked_pending_investigation) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/auth/unauthorized";
+      return NextResponse.redirect(url);
+    }
+  }
+
   if (isEnergyPanelPath(pathname)) {
     if (!user) {
       const url = request.nextUrl.clone();
@@ -74,8 +96,14 @@ export async function updateSession(request: NextRequest) {
 
     const member = await getMemberStatus(supabase, user.id);
     if (member?.role !== "super_admin" || member?.status !== "approved") {
+      // Workers never enter Energy — route by capability
+      const destination = await resolvePostAuthDestination(supabase, user.id, {
+        email: user.email,
+      });
       const url = request.nextUrl.clone();
-      url.pathname = "/auth/unauthorized";
+      url.pathname =
+        destination.startsWith("/energy") ? "/auth/unauthorized" : destination;
+      url.search = "";
       return NextResponse.redirect(url);
     }
   }
@@ -125,17 +153,13 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (user?.email_confirmed_at && isMemberAuthPage(pathname)) {
-    const member = await getMemberStatus(supabase, user.id);
-    const next = request.nextUrl.searchParams.get("next") || "/library";
+    const next = request.nextUrl.searchParams.get("next");
+    const destination = await resolvePostAuthDestination(supabase, user.id, {
+      email: user.email,
+      next,
+    });
     const url = request.nextUrl.clone();
-
-    if (member?.role === "super_admin" && member?.status === "approved") {
-      url.pathname = ENERGY_HOME_PATH;
-    } else if (member?.status === "approved") {
-      url.pathname = next;
-    } else {
-      url.pathname = "/auth/pending-approval";
-    }
+    url.pathname = destination;
     url.search = "";
     return NextResponse.redirect(url);
   }
@@ -144,15 +168,13 @@ export async function updateSession(request: NextRequest) {
     user?.email_confirmed_at &&
     (pathname === "/login" || pathname === "/signup")
   ) {
-    const member = await getMemberStatus(supabase, user.id);
-    const next = request.nextUrl.searchParams.get("next") || "/library";
+    const next = request.nextUrl.searchParams.get("next");
+    const destination = await resolvePostAuthDestination(supabase, user.id, {
+      email: user.email,
+      next,
+    });
     const url = request.nextUrl.clone();
-    url.pathname =
-      member?.role === "super_admin" && member?.status === "approved"
-        ? ENERGY_HOME_PATH
-        : member?.status === "approved"
-          ? next
-          : "/auth/pending-approval";
+    url.pathname = destination;
     url.search = "";
     return NextResponse.redirect(url);
   }

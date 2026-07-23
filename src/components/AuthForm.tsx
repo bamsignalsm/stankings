@@ -15,7 +15,11 @@ interface AuthFormProps {
 export function AuthForm({ mode }: AuthFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") || "/library";
+  const nextParam = searchParams.get("next");
+  const continuePath = nextParam
+    ? `/auth/continue?next=${encodeURIComponent(nextParam)}`
+    : "/auth/continue";
+  const next = nextParam ?? "/auth/continue";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +44,9 @@ export function AuthForm({ mode }: AuthFormProps) {
         password,
         options: {
           data: { full_name: fullName },
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+          emailRedirectTo: `${window.location.origin}/auth/callback${
+            next ? `?next=${encodeURIComponent(next)}` : ""
+          }`,
         },
       });
 
@@ -52,9 +58,11 @@ export function AuthForm({ mode }: AuthFormProps) {
       }
 
       setMessage(
-        "Account created. Verify your email, then wait for a super admin to approve your membership."
+        "Account created. Verify your email, then continue — your Stankings Passport routes you by capability."
       );
-      router.push(`/auth/verify-email?next=${encodeURIComponent(next)}`);
+      router.push(
+        `/auth/verify-email?next=${encodeURIComponent(continuePath)}`
+      );
       return;
     }
 
@@ -75,22 +83,14 @@ export function AuthForm({ mode }: AuthFormProps) {
     } = await supabase.auth.getUser();
 
     if (!user?.email_confirmed_at) {
-      router.push(`/auth/verify-email?next=${encodeURIComponent(next)}`);
+      router.push(
+        `/auth/verify-email?next=${encodeURIComponent(continuePath)}`
+      );
       return;
     }
 
-    const { data: member } = await supabase
-      .from("stankings_members")
-      .select("status, role")
-      .eq("id", user.id)
-      .single();
-
-    if (member?.status !== "approved") {
-      router.push("/auth/pending-approval");
-      return;
-    }
-
-    router.push(next);
+    // Capability routing is canonical — never hardcode /library for applicants
+    router.push(continuePath);
     router.refresh();
   }
 

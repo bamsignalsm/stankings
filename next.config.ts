@@ -36,6 +36,16 @@ const nextConfig: NextConfig = {
         destination: "/career/:path*",
         permanent: true,
       },
+      {
+        source: "/office",
+        destination: "/skl",
+        permanent: true,
+      },
+      {
+        source: "/office/:path*",
+        destination: "/skl/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

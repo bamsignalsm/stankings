@@ -5,6 +5,11 @@ import type { CareerPost } from "@/lib/types";
 import { EmptyState } from "@/components/institutional/InstitutionalPageShell";
 import { CONTACTS } from "@/lib/shared/config/contacts";
 import { buildPageMetadata } from "@/lib/seo";
+import {
+  getOrgCompanies,
+  RECRUITMENT_STATUS_LABELS,
+  type RecruitmentStatus,
+} from "@/lib/organization/registry";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
@@ -13,16 +18,40 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/career",
 });
 
-export default async function CareersPage() {
+export default async function CareersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ company?: string }>;
+}) {
+  const { company } = await searchParams;
+  const orgCompanies = getOrgCompanies();
+
   let posts: CareerPost[] = [];
+  const companyStatuses: Record<string, RecruitmentStatus> = {};
   try {
     const supabase = await createClient();
-    const { data } = await supabase
+    const { data: orgRows } = await supabase
+      .from("organization_companies")
+      .select("company_id, recruitment_status");
+    for (const row of orgRows ?? []) {
+      companyStatuses[row.company_id] = row.recruitment_status as RecruitmentStatus;
+    }
+
+    let q = supabase
       .from("stankings_career_posts")
       .select("*")
       .eq("status", "published")
       .order("created_at", { ascending: false });
-    posts = (data ?? []) as CareerPost[];
+    if (company) q = q.eq("company_id", company);
+    const { data } = await q;
+    const recruitingIds = new Set(
+      orgCompanies
+        .filter((c) => (companyStatuses[c.id] ?? c.recruitmentStatus) === "recruiting")
+        .map((c) => c.id)
+    );
+    posts = ((data ?? []) as CareerPost[]).filter((p) => {
+      return !p.company_id || recruitingIds.has(p.company_id);
+    });
   } catch {
     posts = [];
   }
@@ -38,43 +67,58 @@ export default async function CareersPage() {
             Build institutions that empower generations
           </h1>
           <p className="text-lg text-cream-muted">
-            All recruitment across the Stankings Legacy Ltd portfolio is published centrally.
-            Individual products do not post roles independently.
+            Apply with your Stankings Passport. One lifetime identity — employment
+            is a capability, never a second account.
           </p>
         </div>
       </section>
 
-      <section className="border-b border-gold-subtle py-16">
-        <div className="mx-auto grid max-w-5xl gap-8 px-6 md:grid-cols-3">
-          {[
-            {
-              title: "Culture",
-              body: "Stewardship over personality. Standards over shortcuts. Long-term thinking in daily work.",
-            },
-            {
-              title: "Benefits",
-              body: "Competitive compensation, meaningful work, and the opportunity to build institutions — not disposable products.",
-            },
-            {
-              title: "Hiring philosophy",
-              body: "We hire for character, craft, and custodianship. Leadership appointments follow stewardship questions, not charisma alone.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="rounded-lg border border-gold-subtle bg-ink-muted p-6">
-              <h2 className="font-serif text-xl text-cream">{item.title}</h2>
-              <p className="mt-2 text-sm text-cream-muted">{item.body}</p>
-            </div>
-          ))}
+      <section className="border-b border-gold-subtle py-12">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="mb-4 font-serif text-xl text-cream">Companies</h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {orgCompanies.map((c) => {
+              const status =
+                companyStatuses[c.id] ?? c.recruitmentStatus;
+              return (
+                <Link
+                  key={c.id}
+                  href={`/career?company=${c.id}`}
+                  className={`rounded-sm border px-4 py-3 ${
+                    company === c.id
+                      ? "border-gold"
+                      : "border-gold-subtle hover:border-gold/40"
+                  }`}
+                >
+                  <p className="text-cream">{c.name}</p>
+                  <p className="text-xs text-gold">
+                    {RECRUITMENT_STATUS_LABELS[status]}
+                  </p>
+                </Link>
+              );
+            })}
+          </div>
+          {company ? (
+            <p className="mt-4 text-sm">
+              <Link href="/career" className="text-gold">
+                Clear company filter
+              </Link>
+            </p>
+          ) : null}
         </div>
       </section>
 
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="mb-6 font-serif text-2xl text-cream">Open positions</h2>
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="font-serif text-2xl text-cream">Open positions</h2>
+            <p className="text-sm text-cream-muted">{posts.length} roles</p>
+          </div>
+
           {posts.length === 0 ? (
             <EmptyState
-              title="No open positions at this time"
-              body={`Check back soon, or send a general expression of interest to ${CONTACTS.careers}.`}
+              title="No open positions for this filter"
+              body={`Companies may be Hiring Soon or Not Recruiting. Check back, or write ${CONTACTS.careers}.`}
             />
           ) : (
             <div className="space-y-4">
@@ -84,10 +128,16 @@ export default async function CareersPage() {
                   href={`/career/${post.slug}`}
                   className="block rounded-lg border border-gold-subtle bg-ink-muted p-6 transition hover:border-gold/40"
                 >
-                  <p className="text-xs tracking-widest text-gold uppercase">{post.company_area}</p>
-                  <h3 className="mt-1 font-serif text-xl font-semibold text-cream">{post.title}</h3>
+                  <p className="text-xs tracking-widest text-gold uppercase">
+                    {post.company_area}
+                  </p>
+                  <h3 className="mt-1 font-serif text-xl font-semibold text-cream">
+                    {post.title}
+                  </h3>
                   <p className="mt-2 text-sm text-cream-muted">
                     {post.location} · {post.employment_type}
+                    {post.department_slug ? ` · ${post.department_slug}` : ""}
+                    {post.workspace_key ? ` · ${post.workspace_key}` : ""}
                   </p>
                 </Link>
               ))}
@@ -97,16 +147,15 @@ export default async function CareersPage() {
           <div className="mt-12 rounded-lg border border-gold-subtle bg-ink-muted p-6">
             <h2 className="mb-2 font-serif text-xl text-cream">Application process</h2>
             <ol className="list-decimal space-y-2 pl-5 text-sm text-cream-muted">
-              <li>Review the role and apply through the published posting.</li>
-              <li>Applications are reviewed centrally by Stankings Legacy Ltd.</li>
-              <li>Shortlisted candidates are contacted for interviews.</li>
-              <li>Offers reflect stewardship expectations for the role.</li>
+              <li>Create or sign in with your Stankings Passport.</li>
+              <li>Apply and track progress on your Applicant Dashboard.</li>
+              <li>On hire, workforce access attaches to the same Passport.</li>
+              <li>Employees work in /skl — never Energy.</li>
             </ol>
-            <p className="mt-4 text-sm text-cream-muted">
-              General enquiries:{" "}
-              <a href={`mailto:${CONTACTS.careers}`} className="text-gold hover:text-gold-light">
-                {CONTACTS.careers}
-              </a>
+            <p className="mt-4 text-sm">
+              <Link href="/passport/applicant" className="text-gold hover:text-gold-light">
+                Applicant Dashboard →
+              </Link>
             </p>
           </div>
         </div>
