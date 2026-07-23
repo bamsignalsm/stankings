@@ -2,11 +2,19 @@ export type MemberRole = "member" | "admin" | "super_admin";
 export type MemberStatus = "pending" | "approved" | "rejected";
 export type CareerPostStatus = "draft" | "published" | "closed";
 export type ApplicationStatus =
+  | "submitted"
   | "new"
   | "reviewing"
   | "shortlisted"
+  | "interview_scheduled"
+  | "interview_completed"
+  | "offer_extended"
+  | "offer_accepted"
+  | "offer_rejected"
+  | "accepted"
+  | "hired"
   | "rejected"
-  | "hired";
+  | "archived";
 
 export interface StankingsMember {
   id: string;
@@ -23,6 +31,15 @@ export interface CareerPost {
   title: string;
   slug: string;
   company_area: string;
+  company_id?: string | null;
+  department_slug?: string | null;
+  role_key?: string | null;
+  workspace_key?: string | null;
+  responsibilities?: string | null;
+  required_skills?: string | null;
+  reporting_manager_title?: string | null;
+  salary_range?: string | null;
+  catalogue_key?: string | null;
   description: string;
   requirements: string | null;
   location: string;
@@ -43,6 +60,17 @@ export interface CareerApplication {
   cover_letter: string | null;
   linkedin_url: string | null;
   status: ApplicationStatus;
+  interview_score?: number | null;
+  hiring_decision?: string | null;
+  internal_notes?: string | null;
   created_at: string;
-  stankings_career_posts?: { title: string; slug: string };
+  updated_at?: string;
+  stankings_career_posts?: {
+    title: string;
+    slug: string;
+    company_id?: string | null;
+    role_key?: string | null;
+    workspace_key?: string | null;
+    department_slug?: string | null;
+  };
 }

@@ -12,6 +12,8 @@ export const config = {
     "/documents/:path*",
     "/energy",
     "/energy/:path*",
+    "/skl",
+    "/skl/:path*",
     "/auth/login",
     "/auth/register",
     "/login",

@@ -49,13 +49,25 @@ export default async function CareerDetailPage({ params }: PageProps) {
           </Link>
           <p className="mb-2 text-xs uppercase tracking-widest text-gold">
             {post.company_area}
+            {post.company_id ? ` · ${post.company_id}` : ""}
           </p>
           <h1 className="mb-3 font-serif text-4xl font-semibold text-cream">
             {post.title}
           </h1>
           <p className="text-cream-muted">
             {post.location} · {post.employment_type}
+            {post.department_slug ? ` · ${post.department_slug}` : ""}
           </p>
+          {post.reporting_manager_title ? (
+            <p className="mt-2 text-sm text-cream-muted">
+              Reports to: {post.reporting_manager_title}
+            </p>
+          ) : null}
+          {post.workspace_key ? (
+            <p className="mt-1 text-sm text-gold">
+              Office workspace: {post.workspace_key}
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -68,6 +80,26 @@ export default async function CareerDetailPage({ params }: PageProps) {
             <div className="space-y-4 whitespace-pre-wrap text-cream-muted">
               <p>{post.description}</p>
             </div>
+            {post.responsibilities ? (
+              <>
+                <h2 className="mb-4 mt-8 font-serif text-xl font-semibold text-cream">
+                  Responsibilities
+                </h2>
+                <p className="whitespace-pre-wrap text-cream-muted">
+                  {post.responsibilities}
+                </p>
+              </>
+            ) : null}
+            {post.required_skills ? (
+              <>
+                <h2 className="mb-4 mt-8 font-serif text-xl font-semibold text-cream">
+                  Required skills
+                </h2>
+                <p className="whitespace-pre-wrap text-cream-muted">
+                  {post.required_skills}
+                </p>
+              </>
+            ) : null}
             {post.requirements && (
               <>
                 <h2 className="mb-4 mt-8 font-serif text-xl font-semibold text-cream">
@@ -78,6 +110,14 @@ export default async function CareerDetailPage({ params }: PageProps) {
                 </p>
               </>
             )}
+            {post.salary_range ? (
+              <>
+                <h2 className="mb-4 mt-8 font-serif text-xl font-semibold text-cream">
+                  Compensation
+                </h2>
+                <p className="text-cream-muted">{post.salary_range}</p>
+              </>
+            ) : null}
           </div>
 
           <div className="rounded-lg border border-gold-subtle bg-ink-muted p-6">

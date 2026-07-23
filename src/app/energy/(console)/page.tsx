@@ -10,6 +10,8 @@ export default async function EnergyDashboard() {
     { count: pendingMembers },
     { count: publishedJobs },
     { count: newApplications },
+    { count: employees },
+    { count: activeEmployees },
   ] = await Promise.all([
     supabase
       .from("stankings_members")
@@ -22,7 +24,12 @@ export default async function EnergyDashboard() {
     supabase
       .from("stankings_career_applications")
       .select("*", { count: "exact", head: true })
-      .eq("status", "new"),
+      .in("status", ["submitted", "new", "reviewing"]),
+    supabase.from("workforce_employees").select("*", { count: "exact", head: true }),
+    supabase
+      .from("workforce_employees")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "active"),
   ]);
 
   const cards = [
@@ -32,12 +39,18 @@ export default async function EnergyDashboard() {
       href: "/energy/members",
     },
     {
+      label: "Employees",
+      value: employees ?? 0,
+      href: "/energy/employees",
+      hint: `${activeEmployees ?? 0} active`,
+    },
+    {
       label: "Published roles",
       value: publishedJobs ?? 0,
       href: "/energy/careers",
     },
     {
-      label: "New applications",
+      label: "Open applications",
       value: newApplications ?? 0,
       href: "/energy/applications",
     },
@@ -45,6 +58,11 @@ export default async function EnergyDashboard() {
       label: "Knowledge Objects",
       value: libraryStats.total,
       href: "/energy/library",
+    },
+    {
+      label: "SKL Monitor",
+      value: "→",
+      href: "/energy/skl-monitor",
     },
   ];
 
@@ -54,11 +72,11 @@ export default async function EnergyDashboard() {
         Overview
       </h1>
       <p className="mb-8 text-cream-muted">
-        Central operations for Stankings Legacy Ltd membership and recruitment.
-        All career posts are published from here — not by individual companies.
+        Founder operations for membership, recruitment, and workforce oversight.
+        Workers use /skl — never Energy. Career posts are published centrally.
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card) => (
           <Link
             key={card.label}
@@ -67,6 +85,9 @@ export default async function EnergyDashboard() {
           >
             <p className="text-3xl font-semibold text-gold">{card.value}</p>
             <p className="mt-1 text-sm text-cream-muted">{card.label}</p>
+            {"hint" in card && card.hint ? (
+              <p className="mt-1 text-xs text-cream-muted">{card.hint}</p>
+            ) : null}
           </Link>
         ))}
       </div>

@@ -43,8 +43,11 @@ export function ApplyForm({
       <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-6">
         <p className="font-medium text-emerald-300">Application submitted</p>
         <p className="mt-2 text-sm text-cream-muted">
-          Thank you for applying to {postTitle}. The Stankings Legacy Ltd recruitment
-          team will review your application.
+          Thank you for applying to {postTitle}. Track progress on your{" "}
+          <a href="/passport/applicant" className="text-gold hover:text-gold-light">
+            Applicant Dashboard
+          </a>
+          .
         </p>
       </div>
     );

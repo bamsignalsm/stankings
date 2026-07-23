@@ -5,8 +5,14 @@ const ENERGY_NAV = [
   { href: "/energy", label: "Overview" },
   { href: "/energy/launch", label: "Launch War Room" },
   { href: "/energy/members", label: "Members" },
+  { href: "/energy/employees", label: "Employees" },
+  { href: "/energy/organization", label: "Organization" },
+  { href: "/energy/workforce", label: "Workforce" },
+  { href: "/energy/departments", label: "Departments" },
   { href: "/energy/careers", label: "Careers" },
   { href: "/energy/applications", label: "Applications" },
+  { href: "/energy/passport-recovery", label: "Passport Recovery" },
+  { href: "/energy/skl-monitor", label: "SKL Monitor" },
   { href: "/energy/library", label: "Library Engine" },
 ];
 
